@@ -1,6 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 var io_common_distribution_pb = require('../../io/common/distribution_pb.js');
@@ -105,7 +106,7 @@ function deserialize_io_Url(buffer_arg) {
 }
 
 
-var DistributionService = exports['io.Distribution'] = {
+var DistributionService = exports.DistributionService = {
   sendWelcomeEmail: {
     path: '/io.Distribution/sendWelcomeEmail',
     requestStream: false,
@@ -174,3 +175,4 @@ var DistributionService = exports['io.Distribution'] = {
   },
 };
 
+exports.DistributionClient = grpc.makeGenericClientConstructor(DistributionService);

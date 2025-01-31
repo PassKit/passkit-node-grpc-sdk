@@ -5,6 +5,7 @@
 // This protocol is suit for cases where the business logic is handled elsewhere, and the purpose is purely to issue and
 // update content for Apple Wallet and Google Pay.
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 var io_raw_project_pb = require('../../io/raw/project_pb.js');
@@ -99,7 +100,7 @@ function deserialize_raw_PassRecordByExternalIdRequest(buffer_arg) {
 }
 
 
-var RawService = exports['raw.Raw'] = {
+var RawService = exports.RawService = {
   createPassProject: {
     path: '/raw.Raw/createPassProject',
     requestStream: false,
@@ -245,3 +246,4 @@ var RawService = exports['raw.Raw'] = {
   },
 };
 
+exports.RawClient = grpc.makeGenericClientConstructor(RawService);

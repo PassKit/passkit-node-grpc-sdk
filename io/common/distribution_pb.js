@@ -1016,7 +1016,11 @@ proto.io.EmailTemplate.toObject = function(includeInstance, msg) {
     localizedfooterhtmlcontent: (f = msg.getLocalizedfooterhtmlcontent()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     messagebackgroundcolor: jspb.Message.getFieldWithDefault(msg, 16, ""),
     pagebackgroundcolor: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    templateoptions: jspb.Message.getFieldWithDefault(msg, 18, 0)
+    templateoptions: jspb.Message.getFieldWithDefault(msg, 18, 0),
+    darkmodebuttontextcolor: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    darkmodebuttonbackgroundcolor: jspb.Message.getFieldWithDefault(msg, 20, ""),
+    darkmodepagebackgroundcolor: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    darkmodecontentbackgroundcolor: jspb.Message.getFieldWithDefault(msg, 22, "")
   };
 
   if (includeInstance) {
@@ -1130,6 +1134,22 @@ proto.io.EmailTemplate.deserializeBinaryFromReader = function(msg, reader) {
     case 18:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setTemplateoptions(value);
+      break;
+    case 19:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDarkmodebuttontextcolor(value);
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDarkmodebuttonbackgroundcolor(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDarkmodepagebackgroundcolor(value);
+      break;
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDarkmodecontentbackgroundcolor(value);
       break;
     default:
       reader.skipField();
@@ -1289,6 +1309,34 @@ proto.io.EmailTemplate.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeInt32(
       18,
+      f
+    );
+  }
+  f = message.getDarkmodebuttontextcolor();
+  if (f.length > 0) {
+    writer.writeString(
+      19,
+      f
+    );
+  }
+  f = message.getDarkmodebuttonbackgroundcolor();
+  if (f.length > 0) {
+    writer.writeString(
+      20,
+      f
+    );
+  }
+  f = message.getDarkmodepagebackgroundcolor();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
+      f
+    );
+  }
+  f = message.getDarkmodecontentbackgroundcolor();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
       f
     );
   }
@@ -1730,6 +1778,78 @@ proto.io.EmailTemplate.prototype.getTemplateoptions = function() {
  */
 proto.io.EmailTemplate.prototype.setTemplateoptions = function(value) {
   return jspb.Message.setProto3IntField(this, 18, value);
+};
+
+
+/**
+ * optional string darkModeButtonTextColor = 19;
+ * @return {string}
+ */
+proto.io.EmailTemplate.prototype.getDarkmodebuttontextcolor = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.EmailTemplate} returns this
+ */
+proto.io.EmailTemplate.prototype.setDarkmodebuttontextcolor = function(value) {
+  return jspb.Message.setProto3StringField(this, 19, value);
+};
+
+
+/**
+ * optional string darkModeButtonBackgroundColor = 20;
+ * @return {string}
+ */
+proto.io.EmailTemplate.prototype.getDarkmodebuttonbackgroundcolor = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.EmailTemplate} returns this
+ */
+proto.io.EmailTemplate.prototype.setDarkmodebuttonbackgroundcolor = function(value) {
+  return jspb.Message.setProto3StringField(this, 20, value);
+};
+
+
+/**
+ * optional string darkModePageBackgroundColor = 21;
+ * @return {string}
+ */
+proto.io.EmailTemplate.prototype.getDarkmodepagebackgroundcolor = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.EmailTemplate} returns this
+ */
+proto.io.EmailTemplate.prototype.setDarkmodepagebackgroundcolor = function(value) {
+  return jspb.Message.setProto3StringField(this, 21, value);
+};
+
+
+/**
+ * optional string darkModeContentBackgroundColor = 22;
+ * @return {string}
+ */
+proto.io.EmailTemplate.prototype.getDarkmodecontentbackgroundcolor = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.EmailTemplate} returns this
+ */
+proto.io.EmailTemplate.prototype.setDarkmodecontentbackgroundcolor = function(value) {
+  return jspb.Message.setProto3StringField(this, 22, value);
 };
 
 

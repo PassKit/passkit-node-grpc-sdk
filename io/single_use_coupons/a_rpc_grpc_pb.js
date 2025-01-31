@@ -4,6 +4,7 @@
 // *
 // Single Use Coupon Protocol is suit for cases where the user requires a clean and simple single use coupon for short term coupon campaigns in Apple Wallet and Google Pay.
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 var io_common_pagination_pb = require('../../io/common/pagination_pb.js');
@@ -34,6 +35,17 @@ function serialize_io_AnalyticsRequest(arg) {
 
 function deserialize_io_AnalyticsRequest(buffer_arg) {
   return io_common_reporting_pb.AnalyticsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_io_BulkPassActionRequest(arg) {
+  if (!(arg instanceof io_common_common_objects_pb.BulkPassActionRequest)) {
+    throw new Error('Expected argument of type io.BulkPassActionRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_BulkPassActionRequest(buffer_arg) {
+  return io_common_common_objects_pb.BulkPassActionRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_io_Count(arg) {
@@ -224,7 +236,7 @@ function deserialize_single_use_coupons_ListRequestDeprecated(buffer_arg) {
 }
 
 
-var SingleUseCouponsService = exports['single_use_coupons.SingleUseCoupons'] = {
+var SingleUseCouponsService = exports.SingleUseCouponsService = {
   createCouponCampaign: {
     path: '/single_use_coupons.SingleUseCoupons/createCouponCampaign',
     requestStream: false,
@@ -467,6 +479,17 @@ var SingleUseCouponsService = exports['single_use_coupons.SingleUseCoupons'] = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
+  bulkVoidCoupons: {
+    path: '/single_use_coupons.SingleUseCoupons/bulkVoidCoupons',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_common_common_objects_pb.BulkPassActionRequest,
+    responseType: google_protobuf_empty_pb.Empty,
+    requestSerialize: serialize_io_BulkPassActionRequest,
+    requestDeserialize: deserialize_io_BulkPassActionRequest,
+    responseSerialize: serialize_google_protobuf_Empty,
+    responseDeserialize: deserialize_google_protobuf_Empty,
+  },
   listCouponsByCouponCampaignDeprecated: {
     path: '/single_use_coupons.SingleUseCoupons/listCouponsByCouponCampaignDeprecated',
     requestStream: false,
@@ -546,3 +569,4 @@ var SingleUseCouponsService = exports['single_use_coupons.SingleUseCoupons'] = {
   },
 };
 
+exports.SingleUseCouponsClient = grpc.makeGenericClientConstructor(SingleUseCouponsService);

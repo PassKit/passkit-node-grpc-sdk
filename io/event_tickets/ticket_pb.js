@@ -2685,7 +2685,34 @@ proto.event_tickets.Seat.toObject = function(includeInstance, msg) {
     section: jspb.Message.getFieldWithDefault(msg, 5, ""),
     localizedsection: (f = msg.getLocalizedsection()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     gate: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    localizedgate: (f = msg.getLocalizedgate()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f)
+    localizedgate: (f = msg.getLocalizedgate()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    identifier: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    localizedidentifier: (f = msg.getLocalizedidentifier()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    description: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    localizeddescription: (f = msg.getLocalizeddescription()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    type: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    localizedtype: (f = msg.getLocalizedtype()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    level: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    localizedlevel: (f = msg.getLocalizedlevel()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    aisle: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    localizedaisle: (f = msg.getLocalizedaisle()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    door: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    localizeddoor: (f = msg.getLocalizeddoor()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    sectioncolor: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    portalurl: jspb.Message.getFieldWithDefault(msg, 22, ""),
+    localizedportalurl: (f = msg.getLocalizedportalurl()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    venueentrance: jspb.Message.getFieldWithDefault(msg, 24, ""),
+    localizedvenueentrance: (f = msg.getLocalizedvenueentrance()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    admissionlevel: jspb.Message.getFieldWithDefault(msg, 26, ""),
+    localizedadmissionlevel: (f = msg.getLocalizedadmissionlevel()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    admissionlevelabbreviation: jspb.Message.getFieldWithDefault(msg, 28, ""),
+    localizedadmissionlevelabbreviation: (f = msg.getLocalizedadmissionlevelabbreviation()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    entrancedescription: jspb.Message.getFieldWithDefault(msg, 30, ""),
+    localizedentrancedescription: (f = msg.getLocalizedentrancedescription()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    room: jspb.Message.getFieldWithDefault(msg, 32, ""),
+    localizedroom: (f = msg.getLocalizedroom()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    additionalticketattributes: jspb.Message.getFieldWithDefault(msg, 34, ""),
+    localizedadditionalticketattributes: (f = msg.getLocalizedadditionalticketattributes()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2757,6 +2784,127 @@ proto.event_tickets.Seat.deserializeBinaryFromReader = function(msg, reader) {
       var value = new io_common_localization_pb.LocalizedString;
       reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
       msg.setLocalizedgate(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdentifier(value);
+      break;
+    case 10:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedidentifier(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 12:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizeddescription(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
+      break;
+    case 14:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedtype(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLevel(value);
+      break;
+    case 16:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedlevel(value);
+      break;
+    case 17:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAisle(value);
+      break;
+    case 18:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedaisle(value);
+      break;
+    case 19:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDoor(value);
+      break;
+    case 20:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizeddoor(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSectioncolor(value);
+      break;
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPortalurl(value);
+      break;
+    case 23:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedportalurl(value);
+      break;
+    case 24:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVenueentrance(value);
+      break;
+    case 25:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedvenueentrance(value);
+      break;
+    case 26:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAdmissionlevel(value);
+      break;
+    case 27:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedadmissionlevel(value);
+      break;
+    case 28:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAdmissionlevelabbreviation(value);
+      break;
+    case 29:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedadmissionlevelabbreviation(value);
+      break;
+    case 30:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEntrancedescription(value);
+      break;
+    case 31:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedentrancedescription(value);
+      break;
+    case 32:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRoom(value);
+      break;
+    case 33:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedroom(value);
+      break;
+    case 34:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAdditionalticketattributes(value);
+      break;
+    case 35:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedadditionalticketattributes(value);
       break;
     default:
       reader.skipField();
@@ -2843,6 +2991,208 @@ proto.event_tickets.Seat.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeMessage(
       8,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdentifier();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getLocalizedidentifier();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
+    );
+  }
+  f = message.getLocalizeddescription();
+  if (f != null) {
+    writer.writeMessage(
+      12,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getType();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
+    );
+  }
+  f = message.getLocalizedtype();
+  if (f != null) {
+    writer.writeMessage(
+      14,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getLevel();
+  if (f.length > 0) {
+    writer.writeString(
+      15,
+      f
+    );
+  }
+  f = message.getLocalizedlevel();
+  if (f != null) {
+    writer.writeMessage(
+      16,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getAisle();
+  if (f.length > 0) {
+    writer.writeString(
+      17,
+      f
+    );
+  }
+  f = message.getLocalizedaisle();
+  if (f != null) {
+    writer.writeMessage(
+      18,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getDoor();
+  if (f.length > 0) {
+    writer.writeString(
+      19,
+      f
+    );
+  }
+  f = message.getLocalizeddoor();
+  if (f != null) {
+    writer.writeMessage(
+      20,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getSectioncolor();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
+      f
+    );
+  }
+  f = message.getPortalurl();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
+      f
+    );
+  }
+  f = message.getLocalizedportalurl();
+  if (f != null) {
+    writer.writeMessage(
+      23,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getVenueentrance();
+  if (f.length > 0) {
+    writer.writeString(
+      24,
+      f
+    );
+  }
+  f = message.getLocalizedvenueentrance();
+  if (f != null) {
+    writer.writeMessage(
+      25,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getAdmissionlevel();
+  if (f.length > 0) {
+    writer.writeString(
+      26,
+      f
+    );
+  }
+  f = message.getLocalizedadmissionlevel();
+  if (f != null) {
+    writer.writeMessage(
+      27,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getAdmissionlevelabbreviation();
+  if (f.length > 0) {
+    writer.writeString(
+      28,
+      f
+    );
+  }
+  f = message.getLocalizedadmissionlevelabbreviation();
+  if (f != null) {
+    writer.writeMessage(
+      29,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getEntrancedescription();
+  if (f.length > 0) {
+    writer.writeString(
+      30,
+      f
+    );
+  }
+  f = message.getLocalizedentrancedescription();
+  if (f != null) {
+    writer.writeMessage(
+      31,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getRoom();
+  if (f.length > 0) {
+    writer.writeString(
+      32,
+      f
+    );
+  }
+  f = message.getLocalizedroom();
+  if (f != null) {
+    writer.writeMessage(
+      33,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getAdditionalticketattributes();
+  if (f.length > 0) {
+    writer.writeString(
+      34,
+      f
+    );
+  }
+  f = message.getLocalizedadditionalticketattributes();
+  if (f != null) {
+    writer.writeMessage(
+      35,
       f,
       io_common_localization_pb.LocalizedString.serializeBinaryToWriter
     );
@@ -3067,6 +3417,739 @@ proto.event_tickets.Seat.prototype.clearLocalizedgate = function() {
  */
 proto.event_tickets.Seat.prototype.hasLocalizedgate = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional string identifier = 9;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getIdentifier = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setIdentifier = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedIdentifier = 10;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizedidentifier = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 10));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizedidentifier = function(value) {
+  return jspb.Message.setWrapperField(this, 10, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizedidentifier = function() {
+  return this.setLocalizedidentifier(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizedidentifier = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional string description = 11;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setDescription = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedDescription = 12;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizeddescription = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 12));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizeddescription = function(value) {
+  return jspb.Message.setWrapperField(this, 12, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizeddescription = function() {
+  return this.setLocalizeddescription(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizeddescription = function() {
+  return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional string type = 13;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setType = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedType = 14;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizedtype = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 14));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizedtype = function(value) {
+  return jspb.Message.setWrapperField(this, 14, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizedtype = function() {
+  return this.setLocalizedtype(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizedtype = function() {
+  return jspb.Message.getField(this, 14) != null;
+};
+
+
+/**
+ * optional string level = 15;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getLevel = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setLevel = function(value) {
+  return jspb.Message.setProto3StringField(this, 15, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedLevel = 16;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizedlevel = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 16));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizedlevel = function(value) {
+  return jspb.Message.setWrapperField(this, 16, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizedlevel = function() {
+  return this.setLocalizedlevel(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizedlevel = function() {
+  return jspb.Message.getField(this, 16) != null;
+};
+
+
+/**
+ * optional string aisle = 17;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getAisle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setAisle = function(value) {
+  return jspb.Message.setProto3StringField(this, 17, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedAisle = 18;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizedaisle = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 18));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizedaisle = function(value) {
+  return jspb.Message.setWrapperField(this, 18, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizedaisle = function() {
+  return this.setLocalizedaisle(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizedaisle = function() {
+  return jspb.Message.getField(this, 18) != null;
+};
+
+
+/**
+ * optional string door = 19;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getDoor = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setDoor = function(value) {
+  return jspb.Message.setProto3StringField(this, 19, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedDoor = 20;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizeddoor = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 20));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizeddoor = function(value) {
+  return jspb.Message.setWrapperField(this, 20, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizeddoor = function() {
+  return this.setLocalizeddoor(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizeddoor = function() {
+  return jspb.Message.getField(this, 20) != null;
+};
+
+
+/**
+ * optional string sectionColor = 21;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getSectioncolor = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setSectioncolor = function(value) {
+  return jspb.Message.setProto3StringField(this, 21, value);
+};
+
+
+/**
+ * optional string portalURL = 22;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getPortalurl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setPortalurl = function(value) {
+  return jspb.Message.setProto3StringField(this, 22, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedPortalURL = 23;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizedportalurl = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 23));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizedportalurl = function(value) {
+  return jspb.Message.setWrapperField(this, 23, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizedportalurl = function() {
+  return this.setLocalizedportalurl(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizedportalurl = function() {
+  return jspb.Message.getField(this, 23) != null;
+};
+
+
+/**
+ * optional string venueEntrance = 24;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getVenueentrance = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 24, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setVenueentrance = function(value) {
+  return jspb.Message.setProto3StringField(this, 24, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedVenueEntrance = 25;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizedvenueentrance = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 25));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizedvenueentrance = function(value) {
+  return jspb.Message.setWrapperField(this, 25, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizedvenueentrance = function() {
+  return this.setLocalizedvenueentrance(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizedvenueentrance = function() {
+  return jspb.Message.getField(this, 25) != null;
+};
+
+
+/**
+ * optional string admissionLevel = 26;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getAdmissionlevel = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 26, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setAdmissionlevel = function(value) {
+  return jspb.Message.setProto3StringField(this, 26, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedAdmissionLevel = 27;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizedadmissionlevel = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 27));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizedadmissionlevel = function(value) {
+  return jspb.Message.setWrapperField(this, 27, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizedadmissionlevel = function() {
+  return this.setLocalizedadmissionlevel(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizedadmissionlevel = function() {
+  return jspb.Message.getField(this, 27) != null;
+};
+
+
+/**
+ * optional string admissionLevelAbbreviation = 28;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getAdmissionlevelabbreviation = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 28, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setAdmissionlevelabbreviation = function(value) {
+  return jspb.Message.setProto3StringField(this, 28, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedAdmissionLevelAbbreviation = 29;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizedadmissionlevelabbreviation = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 29));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizedadmissionlevelabbreviation = function(value) {
+  return jspb.Message.setWrapperField(this, 29, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizedadmissionlevelabbreviation = function() {
+  return this.setLocalizedadmissionlevelabbreviation(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizedadmissionlevelabbreviation = function() {
+  return jspb.Message.getField(this, 29) != null;
+};
+
+
+/**
+ * optional string entranceDescription = 30;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getEntrancedescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 30, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setEntrancedescription = function(value) {
+  return jspb.Message.setProto3StringField(this, 30, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedEntranceDescription = 31;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizedentrancedescription = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 31));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizedentrancedescription = function(value) {
+  return jspb.Message.setWrapperField(this, 31, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizedentrancedescription = function() {
+  return this.setLocalizedentrancedescription(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizedentrancedescription = function() {
+  return jspb.Message.getField(this, 31) != null;
+};
+
+
+/**
+ * optional string room = 32;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getRoom = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 32, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setRoom = function(value) {
+  return jspb.Message.setProto3StringField(this, 32, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedRoom = 33;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizedroom = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 33));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizedroom = function(value) {
+  return jspb.Message.setWrapperField(this, 33, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizedroom = function() {
+  return this.setLocalizedroom(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizedroom = function() {
+  return jspb.Message.getField(this, 33) != null;
+};
+
+
+/**
+ * optional string additionalTicketAttributes = 34;
+ * @return {string}
+ */
+proto.event_tickets.Seat.prototype.getAdditionalticketattributes = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 34, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.setAdditionalticketattributes = function(value) {
+  return jspb.Message.setProto3StringField(this, 34, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedAdditionalTicketAttributes = 35;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.event_tickets.Seat.prototype.getLocalizedadditionalticketattributes = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 35));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.event_tickets.Seat} returns this
+*/
+proto.event_tickets.Seat.prototype.setLocalizedadditionalticketattributes = function(value) {
+  return jspb.Message.setWrapperField(this, 35, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.event_tickets.Seat} returns this
+ */
+proto.event_tickets.Seat.prototype.clearLocalizedadditionalticketattributes = function() {
+  return this.setLocalizedadditionalticketattributes(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.event_tickets.Seat.prototype.hasLocalizedadditionalticketattributes = function() {
+  return jspb.Message.getField(this, 35) != null;
 };
 
 

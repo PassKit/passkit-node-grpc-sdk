@@ -798,7 +798,9 @@ proto.io.ProjectStatus = {
   PROJECT_PUBLISHED: 8,
   PROJECT_PRIVATE: 16,
   PROJECT_OVER_QUOTA: 32,
-  PROJECT_DELETED: 64
+  PROJECT_DELETED: 64,
+  PROJECT_EMAIL_WARNING: 128,
+  PROJECT_EMAIL_SUSPENDED: 256
 };
 
 goog.object.extend(exports, proto.io);

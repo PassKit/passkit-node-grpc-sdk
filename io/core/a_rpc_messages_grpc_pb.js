@@ -1,6 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 var io_common_message_pb = require('../../io/common/message_pb.js');
@@ -61,7 +62,7 @@ function deserialize_io_SendMessageResponse(buffer_arg) {
 }
 
 
-var MessagesService = exports['io.Messages'] = {
+var MessagesService = exports.MessagesService = {
   getMessage: {
     path: '/io.Messages/getMessage',
     requestStream: false,
@@ -119,3 +120,4 @@ var MessagesService = exports['io.Messages'] = {
   },
 };
 
+exports.MessagesClient = grpc.makeGenericClientConstructor(MessagesService);

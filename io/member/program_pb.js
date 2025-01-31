@@ -420,10 +420,8 @@ proto.members.Program.toObject = function(includeInstance, msg) {
     passtypeidentifier: jspb.Message.getFieldWithDefault(msg, 6, ""),
     distributionsettings: (f = msg.getDistributionsettings()) && io_common_distribution_pb.DistributionSettings.toObject(includeInstance, f),
     autodeletedaysafterexpiry: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    autoreminderdaysbeforeexpiry: jspb.Message.getFieldWithDefault(msg, 9, 0),
     expirymessage: jspb.Message.getFieldWithDefault(msg, 10, ""),
     localizedexpirymessage: (f = msg.getLocalizedexpirymessage()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
-    autodeletedaysafternotinstalling: jspb.Message.getFieldWithDefault(msg, 12, 0),
     pointstype: (f = msg.getPointstype()) && proto.members.PointsType.toObject(includeInstance, f),
     secondarypointstype: (f = msg.getSecondarypointstype()) && proto.members.PointsType.toObject(includeInstance, f),
     metrics: (f = msg.getMetrics()) && io_common_metrics_pb.Metrics.toObject(includeInstance, f),
@@ -507,10 +505,6 @@ proto.members.Program.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {number} */ (reader.readUint32());
       msg.setAutodeletedaysafterexpiry(value);
       break;
-    case 9:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setAutoreminderdaysbeforeexpiry(value);
-      break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setExpirymessage(value);
@@ -519,10 +513,6 @@ proto.members.Program.deserializeBinaryFromReader = function(msg, reader) {
       var value = new io_common_localization_pb.LocalizedString;
       reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
       msg.setLocalizedexpirymessage(value);
-      break;
-    case 12:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setAutodeletedaysafternotinstalling(value);
       break;
     case 16:
       var value = new proto.members.PointsType;
@@ -660,13 +650,6 @@ proto.members.Program.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getAutoreminderdaysbeforeexpiry();
-  if (f !== 0) {
-    writer.writeUint32(
-      9,
-      f
-    );
-  }
   f = message.getExpirymessage();
   if (f.length > 0) {
     writer.writeString(
@@ -680,13 +663,6 @@ proto.members.Program.serializeBinaryToWriter = function(message, writer) {
       11,
       f,
       io_common_localization_pb.LocalizedString.serializeBinaryToWriter
-    );
-  }
-  f = message.getAutodeletedaysafternotinstalling();
-  if (f !== 0) {
-    writer.writeUint32(
-      12,
-      f
     );
   }
   f = message.getPointstype();
@@ -991,24 +967,6 @@ proto.members.Program.prototype.setAutodeletedaysafterexpiry = function(value) {
 
 
 /**
- * optional uint32 autoReminderDaysBeforeExpiry = 9;
- * @return {number}
- */
-proto.members.Program.prototype.getAutoreminderdaysbeforeexpiry = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.members.Program} returns this
- */
-proto.members.Program.prototype.setAutoreminderdaysbeforeexpiry = function(value) {
-  return jspb.Message.setProto3IntField(this, 9, value);
-};
-
-
-/**
  * optional string expiryMessage = 10;
  * @return {string}
  */
@@ -1060,24 +1018,6 @@ proto.members.Program.prototype.clearLocalizedexpirymessage = function() {
  */
 proto.members.Program.prototype.hasLocalizedexpirymessage = function() {
   return jspb.Message.getField(this, 11) != null;
-};
-
-
-/**
- * optional uint32 autoDeleteDaysAfterNotInstalling = 12;
- * @return {number}
- */
-proto.members.Program.prototype.getAutodeletedaysafternotinstalling = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.members.Program} returns this
- */
-proto.members.Program.prototype.setAutodeletedaysafternotinstalling = function(value) {
-  return jspb.Message.setProto3IntField(this, 12, value);
 };
 
 
@@ -2651,7 +2591,8 @@ proto.members.BalanceType = {
 proto.members.ProfileImageSetting = {
   PROFILE_IMAGE_NONE: 0,
   PROFILE_IMAGE_OPTIONAL: 1,
-  PROFILE_IMAGE_REQUIRED: 2
+  PROFILE_IMAGE_REQUIRED: 2,
+  PROFILE_IMAGE_RESTRICTED: 3
 };
 
 /**

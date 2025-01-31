@@ -1,6 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 var io_common_pagination_pb = require('../../io/common/pagination_pb.js');
@@ -195,7 +196,7 @@ function deserialize_io_Url(buffer_arg) {
 }
 
 
-var ImagesService = exports['io.Images'] = {
+var ImagesService = exports.ImagesService = {
   setProfileImage: {
     path: '/io.Images/setProfileImage',
     requestStream: false,
@@ -452,3 +453,4 @@ getImageBundle: {
   },
 };
 
+exports.ImagesClient = grpc.makeGenericClientConstructor(ImagesService);

@@ -1,6 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 var io_certificate_certificate_pb = require('../../io/certificate/certificate_pb.js');
@@ -107,7 +108,7 @@ function deserialize_io_PassTypeIdentifier(buffer_arg) {
 }
 
 
-var CertificatesService = exports['io.Certificates'] = {
+var CertificatesService = exports.CertificatesService = {
   getAppleCertificateData: {
     path: '/io.Certificates/getAppleCertificateData',
     requestStream: false,
@@ -209,3 +210,4 @@ var CertificatesService = exports['io.Certificates'] = {
   },
 };
 
+exports.CertificatesClient = grpc.makeGenericClientConstructor(CertificatesService);

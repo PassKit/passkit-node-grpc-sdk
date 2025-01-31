@@ -6,6 +6,7 @@
 //
 // The PassKit Analytics API lets you track the performance of Apple Wallet and Google Pay passes.
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var io_common_reporting_pb = require('../../io/common/reporting_pb.js');
 
 function serialize_io_AnalyticsRequest(arg) {
@@ -31,7 +32,7 @@ function deserialize_io_AnalyticsResponse(buffer_arg) {
 }
 
 
-var AnalyticsService = exports['analytics.Analytics'] = {
+var AnalyticsService = exports.AnalyticsService = {
   // Retrieve a daily, monthly or yearly record.
 getAnalytics: {
     path: '/analytics.Analytics/getAnalytics',
@@ -46,3 +47,4 @@ getAnalytics: {
   },
 };
 
+exports.AnalyticsClient = grpc.makeGenericClientConstructor(AnalyticsService);

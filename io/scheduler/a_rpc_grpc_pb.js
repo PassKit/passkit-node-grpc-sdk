@@ -6,6 +6,7 @@
 //
 // The PassKit Scheduler API lets you schedule a job.
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 var io_scheduler_scheduler_pb = require('../../io/scheduler/scheduler_pb.js');
@@ -78,7 +79,7 @@ function deserialize_scheduler_ListRequest(buffer_arg) {
 }
 
 
-var SchedulerService = exports['scheduler.Scheduler'] = {
+var SchedulerService = exports.SchedulerService = {
   createSchedulingJob: {
     path: '/scheduler.Scheduler/createSchedulingJob',
     requestStream: false,
@@ -158,3 +159,4 @@ var SchedulerService = exports['scheduler.Scheduler'] = {
   },
 };
 
+exports.SchedulerClient = grpc.makeGenericClientConstructor(SchedulerService);

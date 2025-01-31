@@ -1,6 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 var io_common_template_pb = require('../../io/common/template_pb.js');
@@ -142,7 +143,7 @@ function deserialize_io_PassTemplateResponse(buffer_arg) {
 }
 
 
-var TemplatesService = exports['io.Templates'] = {
+var TemplatesService = exports.TemplatesService = {
   createTemplate: {
     path: '/io.Templates/createTemplate',
     requestStream: false,
@@ -596,3 +597,4 @@ var TemplatesService = exports['io.Templates'] = {
   },
 };
 
+exports.TemplatesClient = grpc.makeGenericClientConstructor(TemplatesService);

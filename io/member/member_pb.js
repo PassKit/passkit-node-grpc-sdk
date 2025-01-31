@@ -3246,7 +3246,8 @@ proto.members.MemberCheckInOutRequest.toObject = function(includeInstance, msg) 
     externaldeviceid: jspb.Message.getFieldWithDefault(msg, 9, ""),
     externalserviceid: jspb.Message.getFieldWithDefault(msg, 10, ""),
     metadataMap: (f = msg.getMetadataMap()) ? f.toObject(includeInstance, undefined) : [],
-    notes: jspb.Message.getFieldWithDefault(msg, 12, "")
+    notes: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    externaluserid: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -3332,6 +3333,10 @@ proto.members.MemberCheckInOutRequest.deserializeBinaryFromReader = function(msg
     case 12:
       var value = /** @type {string} */ (reader.readString());
       msg.setNotes(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setExternaluserid(value);
       break;
     default:
       reader.skipField();
@@ -3440,6 +3445,13 @@ proto.members.MemberCheckInOutRequest.serializeBinaryToWriter = function(message
   if (f.length > 0) {
     writer.writeString(
       12,
+      f
+    );
+  }
+  f = message.getExternaluserid();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
       f
     );
   }
@@ -3663,6 +3675,24 @@ proto.members.MemberCheckInOutRequest.prototype.getNotes = function() {
  */
 proto.members.MemberCheckInOutRequest.prototype.setNotes = function(value) {
   return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional string externalUserId = 13;
+ * @return {string}
+ */
+proto.members.MemberCheckInOutRequest.prototype.getExternaluserid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.members.MemberCheckInOutRequest} returns this
+ */
+proto.members.MemberCheckInOutRequest.prototype.setExternaluserid = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 

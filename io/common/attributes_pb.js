@@ -21,7 +21,10 @@ var global = (function() {
   return Function('return this')();
 }.call(null));
 
+goog.exportSymbol('proto.io.Authentication', null, global);
+goog.exportSymbol('proto.io.Channel', null, global);
 goog.exportSymbol('proto.io.DeviceAttributes', null, global);
+goog.exportSymbol('proto.io.UserType', null, global);
 /**
  * @enum {number}
  */
@@ -40,6 +43,35 @@ proto.io.DeviceAttributes = {
   DESKTOP: 1024,
   TABLET: 2048,
   UNSUPPORTEDIOS: 4096
+};
+
+/**
+ * @enum {number}
+ */
+proto.io.Channel = {
+  UNKNOWNCHANNEL: 0,
+  WEB: 1,
+  API: 2,
+  APP: 3
+};
+
+/**
+ * @enum {number}
+ */
+proto.io.Authentication = {
+  UNAUTHENTICATED: 0,
+  WEBTOKEN: 1,
+  BEARERTOKEN: 2,
+  CERTIFICATE: 3
+};
+
+/**
+ * @enum {number}
+ */
+proto.io.UserType = {
+  UNKNOWNUSERTYPE: 0,
+  USER: 1,
+  TEAMMEMBER: 2
 };
 
 goog.object.extend(exports, proto.io);

@@ -6,6 +6,7 @@
 //
 // The PassKit Members API lets you manage your membership programs and passes for Apple Wallet and Google Pay.
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 var io_common_distribution_pb = require('../../io/common/distribution_pb.js');
@@ -27,6 +28,17 @@ function serialize_google_protobuf_Empty(arg) {
 
 function deserialize_google_protobuf_Empty(buffer_arg) {
   return google_protobuf_empty_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_io_BulkPassActionRequest(arg) {
+  if (!(arg instanceof io_common_common_objects_pb.BulkPassActionRequest)) {
+    throw new Error('Expected argument of type io.BulkPassActionRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_BulkPassActionRequest(buffer_arg) {
+  return io_common_common_objects_pb.BulkPassActionRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_io_Count(arg) {
@@ -305,7 +317,7 @@ function deserialize_members_UpdateExpiryRequest(buffer_arg) {
 }
 
 
-var MembersService = exports['members.Members'] = {
+var MembersService = exports.MembersService = {
   // Create a program record. Allows a user to specify program details around enrolment, renewal and cancellation processes. Optionally allows the user to set the GPS location / Beacons that will trigger a lock-screen alert.
 createProgram: {
     path: '/members.Members/createProgram',
@@ -642,6 +654,17 @@ burnPoints: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
+  bulkDeleteMembers: {
+    path: '/members.Members/bulkDeleteMembers',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_common_common_objects_pb.BulkPassActionRequest,
+    responseType: google_protobuf_empty_pb.Empty,
+    requestSerialize: serialize_io_BulkPassActionRequest,
+    requestDeserialize: deserialize_io_BulkPassActionRequest,
+    responseSerialize: serialize_google_protobuf_Empty,
+    responseDeserialize: deserialize_google_protobuf_Empty,
+  },
   countMembersDeprecated: {
     path: '/members.Members/countMembersDeprecated',
     requestStream: false,
@@ -809,3 +832,4 @@ burnPoints: {
   },
 };
 
+exports.MembersClient = grpc.makeGenericClientConstructor(MembersService);

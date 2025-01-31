@@ -83,7 +83,8 @@ proto.members.EventDetails.toObject = function(includeInstance, msg) {
     externaldeviceid: jspb.Message.getFieldWithDefault(msg, 6, ""),
     externalserviceid: jspb.Message.getFieldWithDefault(msg, 7, ""),
     metadataMap: (f = msg.getMetadataMap()) ? f.toObject(includeInstance, undefined) : [],
-    notes: jspb.Message.getFieldWithDefault(msg, 9, "")
+    notes: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    externaluserid: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -157,6 +158,10 @@ proto.members.EventDetails.deserializeBinaryFromReader = function(msg, reader) {
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setNotes(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setExternaluserid(value);
       break;
     default:
       reader.skipField();
@@ -244,6 +249,13 @@ proto.members.EventDetails.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = message.getExternaluserid();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -413,6 +425,24 @@ proto.members.EventDetails.prototype.getNotes = function() {
  */
 proto.members.EventDetails.prototype.setNotes = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional string externalUserId = 10;
+ * @return {string}
+ */
+proto.members.EventDetails.prototype.getExternaluserid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.members.EventDetails} returns this
+ */
+proto.members.EventDetails.prototype.setExternaluserid = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 

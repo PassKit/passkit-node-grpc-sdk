@@ -31,6 +31,8 @@ var io_common_project_pb = require('../../io/common/project_pb.js');
 goog.object.extend(proto, io_common_project_pb);
 var io_common_reporting_pb = require('../../io/common/reporting_pb.js');
 goog.object.extend(proto, io_common_reporting_pb);
+var io_common_semantics_pb = require('../../io/common/semantics_pb.js');
+goog.object.extend(proto, io_common_semantics_pb);
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 goog.object.extend(proto, io_common_common_objects_pb);
 goog.exportSymbol('proto.event_tickets.Production', null, global);
@@ -172,6 +174,7 @@ proto.event_tickets.Production.toObject = function(includeInstance, msg) {
     statusList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
     passtypeidentifier: jspb.Message.getFieldWithDefault(msg, 11, ""),
     distributionsettings: (f = msg.getDistributionsettings()) && io_common_distribution_pb.DistributionSettings.toObject(includeInstance, f),
+    eventtype: jspb.Message.getFieldWithDefault(msg, 15, 0),
     created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     updated: (f = msg.getUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
@@ -262,6 +265,10 @@ proto.event_tickets.Production.deserializeBinaryFromReader = function(msg, reade
       var value = new io_common_distribution_pb.DistributionSettings;
       reader.readMessage(value,io_common_distribution_pb.DistributionSettings.deserializeBinaryFromReader);
       msg.setDistributionsettings(value);
+      break;
+    case 15:
+      var value = /** @type {!proto.io.EventType} */ (reader.readEnum());
+      msg.setEventtype(value);
       break;
     case 13:
       var value = new google_protobuf_timestamp_pb.Timestamp;
@@ -387,6 +394,13 @@ proto.event_tickets.Production.serializeBinaryToWriter = function(message, write
       12,
       f,
       io_common_distribution_pb.DistributionSettings.serializeBinaryToWriter
+    );
+  }
+  f = message.getEventtype();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      15,
+      f
     );
   }
   f = message.getCreated();
@@ -697,6 +711,24 @@ proto.event_tickets.Production.prototype.clearDistributionsettings = function() 
  */
 proto.event_tickets.Production.prototype.hasDistributionsettings = function() {
   return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional io.EventType eventType = 15;
+ * @return {!proto.io.EventType}
+ */
+proto.event_tickets.Production.prototype.getEventtype = function() {
+  return /** @type {!proto.io.EventType} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
+};
+
+
+/**
+ * @param {!proto.io.EventType} value
+ * @return {!proto.event_tickets.Production} returns this
+ */
+proto.event_tickets.Production.prototype.setEventtype = function(value) {
+  return jspb.Message.setProto3EnumField(this, 15, value);
 };
 
 

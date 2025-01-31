@@ -6,6 +6,7 @@
 //
 // The PassKit Flights API lets you manage your flights and boarding passes for Apple Wallet and Google Pay.
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_flights_boarding_pass_pb = require('../../io/flights/boarding_pass_pb.js');
 var io_flights_airport_pb = require('../../io/flights/airport_pb.js');
@@ -157,7 +158,7 @@ function deserialize_google_protobuf_Empty(buffer_arg) {
 }
 
 
-var FlightsService = exports['flights.Flights'] = {
+var FlightsService = exports.FlightsService = {
   // Create an airport record. Optional method allowing the carrier to specify how the airport name is rendered in the pass and the GPS location that will trigger a lock-screen alert.
 createPort: {
     path: '/flights.Flights/createPort',
@@ -412,3 +413,4 @@ deleteBoardingPass: {
   },
 };
 
+exports.FlightsClient = grpc.makeGenericClientConstructor(FlightsService);

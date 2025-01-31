@@ -363,7 +363,12 @@ proto.io.ImageIds.toObject = function(includeInstance, msg) {
     appimage: jspb.Message.getFieldWithDefault(msg, 17, ""),
     stampedimage: jspb.Message.getFieldWithDefault(msg, 18, ""),
     unstampedimage: jspb.Message.getFieldWithDefault(msg, 19, ""),
-    stampimage: jspb.Message.getFieldWithDefault(msg, 20, "")
+    stampimage: jspb.Message.getFieldWithDefault(msg, 20, ""),
+    widelogo: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    secondarylogo: jspb.Message.getFieldWithDefault(msg, 22, ""),
+    artwork: jspb.Message.getFieldWithDefault(msg, 23, ""),
+    posterlogo: jspb.Message.getFieldWithDefault(msg, 24, ""),
+    venuemap: jspb.Message.getFieldWithDefault(msg, 25, "")
   };
 
   if (includeInstance) {
@@ -479,6 +484,26 @@ proto.io.ImageIds.deserializeBinaryFromReader = function(msg, reader) {
     case 20:
       var value = /** @type {string} */ (reader.readString());
       msg.setStampimage(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWidelogo(value);
+      break;
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSecondarylogo(value);
+      break;
+    case 23:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setArtwork(value);
+      break;
+    case 24:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosterlogo(value);
+      break;
+    case 25:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVenuemap(value);
       break;
     default:
       reader.skipField();
@@ -646,6 +671,41 @@ proto.io.ImageIds.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       20,
+      f
+    );
+  }
+  f = message.getWidelogo();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
+      f
+    );
+  }
+  f = message.getSecondarylogo();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
+      f
+    );
+  }
+  f = message.getArtwork();
+  if (f.length > 0) {
+    writer.writeString(
+      23,
+      f
+    );
+  }
+  f = message.getPosterlogo();
+  if (f.length > 0) {
+    writer.writeString(
+      24,
+      f
+    );
+  }
+  f = message.getVenuemap();
+  if (f.length > 0) {
+    writer.writeString(
+      25,
       f
     );
   }
@@ -1012,6 +1072,96 @@ proto.io.ImageIds.prototype.setStampimage = function(value) {
 };
 
 
+/**
+ * optional string wideLogo = 21;
+ * @return {string}
+ */
+proto.io.ImageIds.prototype.getWidelogo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageIds} returns this
+ */
+proto.io.ImageIds.prototype.setWidelogo = function(value) {
+  return jspb.Message.setProto3StringField(this, 21, value);
+};
+
+
+/**
+ * optional string secondaryLogo = 22;
+ * @return {string}
+ */
+proto.io.ImageIds.prototype.getSecondarylogo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageIds} returns this
+ */
+proto.io.ImageIds.prototype.setSecondarylogo = function(value) {
+  return jspb.Message.setProto3StringField(this, 22, value);
+};
+
+
+/**
+ * optional string artwork = 23;
+ * @return {string}
+ */
+proto.io.ImageIds.prototype.getArtwork = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 23, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageIds} returns this
+ */
+proto.io.ImageIds.prototype.setArtwork = function(value) {
+  return jspb.Message.setProto3StringField(this, 23, value);
+};
+
+
+/**
+ * optional string posterLogo = 24;
+ * @return {string}
+ */
+proto.io.ImageIds.prototype.getPosterlogo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 24, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageIds} returns this
+ */
+proto.io.ImageIds.prototype.setPosterlogo = function(value) {
+  return jspb.Message.setProto3StringField(this, 24, value);
+};
+
+
+/**
+ * optional string venueMap = 25;
+ * @return {string}
+ */
+proto.io.ImageIds.prototype.getVenuemap = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 25, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageIds} returns this
+ */
+proto.io.ImageIds.prototype.setVenuemap = function(value) {
+  return jspb.Message.setProto3StringField(this, 25, value);
+};
+
+
 
 
 
@@ -1064,6 +1214,11 @@ proto.io.ImageData.toObject = function(includeInstance, msg) {
     stampedimage: jspb.Message.getFieldWithDefault(msg, 18, ""),
     unstampedimage: jspb.Message.getFieldWithDefault(msg, 19, ""),
     stampconfig: (f = msg.getStampconfig()) && proto.io.StampImageConfig.toObject(includeInstance, f),
+    widelogo: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    secondarylogo: jspb.Message.getFieldWithDefault(msg, 22, ""),
+    artwork: jspb.Message.getFieldWithDefault(msg, 23, ""),
+    posterlogo: jspb.Message.getFieldWithDefault(msg, 24, ""),
+    venuemap: jspb.Message.getFieldWithDefault(msg, 25, ""),
     localizedicon: (f = msg.getLocalizedicon()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedlogo: (f = msg.getLocalizedlogo()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedapplelogo: (f = msg.getLocalizedapplelogo()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
@@ -1078,7 +1233,12 @@ proto.io.ImageData.toObject = function(includeInstance, msg) {
     localizedairlinealliance: (f = msg.getLocalizedairlinealliance()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedpersonalization: (f = msg.getLocalizedpersonalization()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedbanner: (f = msg.getLocalizedbanner()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
-    localizedmessage: (f = msg.getLocalizedmessage()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f)
+    localizedmessage: (f = msg.getLocalizedmessage()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    localizedwidelogo: (f = msg.getLocalizedwidelogo()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    localizedsecondarylogo: (f = msg.getLocalizedsecondarylogo()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    localizedartwork: (f = msg.getLocalizedartwork()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    localizedposterlogo: (f = msg.getLocalizedposterlogo()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    localizedvenuemap: (f = msg.getLocalizedvenuemap()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1196,6 +1356,26 @@ proto.io.ImageData.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.io.StampImageConfig.deserializeBinaryFromReader);
       msg.setStampconfig(value);
       break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWidelogo(value);
+      break;
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSecondarylogo(value);
+      break;
+    case 23:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setArtwork(value);
+      break;
+    case 24:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosterlogo(value);
+      break;
+    case 25:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVenuemap(value);
+      break;
     case 31:
       var value = new io_common_localization_pb.LocalizedString;
       reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
@@ -1270,6 +1450,31 @@ proto.io.ImageData.deserializeBinaryFromReader = function(msg, reader) {
       var value = new io_common_localization_pb.LocalizedString;
       reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
       msg.setLocalizedmessage(value);
+      break;
+    case 46:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedwidelogo(value);
+      break;
+    case 47:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedsecondarylogo(value);
+      break;
+    case 48:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedartwork(value);
+      break;
+    case 49:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedposterlogo(value);
+      break;
+    case 50:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedvenuemap(value);
       break;
     default:
       reader.skipField();
@@ -1441,6 +1646,41 @@ proto.io.ImageData.serializeBinaryToWriter = function(message, writer) {
       proto.io.StampImageConfig.serializeBinaryToWriter
     );
   }
+  f = message.getWidelogo();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
+      f
+    );
+  }
+  f = message.getSecondarylogo();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
+      f
+    );
+  }
+  f = message.getArtwork();
+  if (f.length > 0) {
+    writer.writeString(
+      23,
+      f
+    );
+  }
+  f = message.getPosterlogo();
+  if (f.length > 0) {
+    writer.writeString(
+      24,
+      f
+    );
+  }
+  f = message.getVenuemap();
+  if (f.length > 0) {
+    writer.writeString(
+      25,
+      f
+    );
+  }
   f = message.getLocalizedicon();
   if (f != null) {
     writer.writeMessage(
@@ -1557,6 +1797,46 @@ proto.io.ImageData.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeMessage(
       45,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getLocalizedwidelogo();
+  if (f != null) {
+    writer.writeMessage(
+      46,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getLocalizedsecondarylogo();
+  if (f != null) {
+    writer.writeMessage(
+      47,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getLocalizedartwork();
+  if (f != null) {
+    writer.writeMessage(
+      48,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getLocalizedposterlogo();
+  if (f != null) {
+    writer.writeMessage(
+      49,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getLocalizedvenuemap();
+  if (f != null) {
+    writer.writeMessage(
+      50,
       f,
       io_common_localization_pb.LocalizedString.serializeBinaryToWriter
     );
@@ -1940,6 +2220,96 @@ proto.io.ImageData.prototype.clearStampconfig = function() {
  */
 proto.io.ImageData.prototype.hasStampconfig = function() {
   return jspb.Message.getField(this, 20) != null;
+};
+
+
+/**
+ * optional string wideLogo = 21;
+ * @return {string}
+ */
+proto.io.ImageData.prototype.getWidelogo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.setWidelogo = function(value) {
+  return jspb.Message.setProto3StringField(this, 21, value);
+};
+
+
+/**
+ * optional string secondaryLogo = 22;
+ * @return {string}
+ */
+proto.io.ImageData.prototype.getSecondarylogo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.setSecondarylogo = function(value) {
+  return jspb.Message.setProto3StringField(this, 22, value);
+};
+
+
+/**
+ * optional string artwork = 23;
+ * @return {string}
+ */
+proto.io.ImageData.prototype.getArtwork = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 23, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.setArtwork = function(value) {
+  return jspb.Message.setProto3StringField(this, 23, value);
+};
+
+
+/**
+ * optional string posterLogo = 24;
+ * @return {string}
+ */
+proto.io.ImageData.prototype.getPosterlogo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 24, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.setPosterlogo = function(value) {
+  return jspb.Message.setProto3StringField(this, 24, value);
+};
+
+
+/**
+ * optional string venueMap = 25;
+ * @return {string}
+ */
+proto.io.ImageData.prototype.getVenuemap = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 25, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.setVenuemap = function(value) {
+  return jspb.Message.setProto3StringField(this, 25, value);
 };
 
 
@@ -2495,6 +2865,191 @@ proto.io.ImageData.prototype.clearLocalizedmessage = function() {
  */
 proto.io.ImageData.prototype.hasLocalizedmessage = function() {
   return jspb.Message.getField(this, 45) != null;
+};
+
+
+/**
+ * optional LocalizedString localizedWideLogo = 46;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.io.ImageData.prototype.getLocalizedwidelogo = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 46));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.io.ImageData} returns this
+*/
+proto.io.ImageData.prototype.setLocalizedwidelogo = function(value) {
+  return jspb.Message.setWrapperField(this, 46, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.clearLocalizedwidelogo = function() {
+  return this.setLocalizedwidelogo(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.ImageData.prototype.hasLocalizedwidelogo = function() {
+  return jspb.Message.getField(this, 46) != null;
+};
+
+
+/**
+ * optional LocalizedString localizedSecondaryLogo = 47;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.io.ImageData.prototype.getLocalizedsecondarylogo = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 47));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.io.ImageData} returns this
+*/
+proto.io.ImageData.prototype.setLocalizedsecondarylogo = function(value) {
+  return jspb.Message.setWrapperField(this, 47, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.clearLocalizedsecondarylogo = function() {
+  return this.setLocalizedsecondarylogo(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.ImageData.prototype.hasLocalizedsecondarylogo = function() {
+  return jspb.Message.getField(this, 47) != null;
+};
+
+
+/**
+ * optional LocalizedString localizedArtwork = 48;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.io.ImageData.prototype.getLocalizedartwork = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 48));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.io.ImageData} returns this
+*/
+proto.io.ImageData.prototype.setLocalizedartwork = function(value) {
+  return jspb.Message.setWrapperField(this, 48, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.clearLocalizedartwork = function() {
+  return this.setLocalizedartwork(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.ImageData.prototype.hasLocalizedartwork = function() {
+  return jspb.Message.getField(this, 48) != null;
+};
+
+
+/**
+ * optional LocalizedString localizedPosterLogo = 49;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.io.ImageData.prototype.getLocalizedposterlogo = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 49));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.io.ImageData} returns this
+*/
+proto.io.ImageData.prototype.setLocalizedposterlogo = function(value) {
+  return jspb.Message.setWrapperField(this, 49, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.clearLocalizedposterlogo = function() {
+  return this.setLocalizedposterlogo(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.ImageData.prototype.hasLocalizedposterlogo = function() {
+  return jspb.Message.getField(this, 49) != null;
+};
+
+
+/**
+ * optional LocalizedString localizedVenueMap = 50;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.io.ImageData.prototype.getLocalizedvenuemap = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 50));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.io.ImageData} returns this
+*/
+proto.io.ImageData.prototype.setLocalizedvenuemap = function(value) {
+  return jspb.Message.setWrapperField(this, 50, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.clearLocalizedvenuemap = function() {
+  return this.setLocalizedvenuemap(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.ImageData.prototype.hasLocalizedvenuemap = function() {
+  return jspb.Message.getField(this, 50) != null;
 };
 
 
@@ -5218,7 +5773,12 @@ proto.io.ImageUse = {
   APPIMAGE: 16,
   STAMPEDIMAGE: 18,
   UNSTAMPEDIMAGE: 19,
-  STAMPIMAGE: 20
+  STAMPIMAGE: 20,
+  WIDELOGO: 21,
+  SECONDARYLOGO: 22,
+  ARTWORK: 23,
+  POSTERLOGO: 24,
+  VENUEMAP: 25
 };
 
 goog.object.extend(exports, proto.io);

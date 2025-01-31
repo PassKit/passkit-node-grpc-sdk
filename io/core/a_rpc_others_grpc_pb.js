@@ -1,6 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 var io_common_project_pb = require('../../io/common/project_pb.js');
@@ -18,6 +19,28 @@ function serialize_google_protobuf_Empty(arg) {
 
 function deserialize_google_protobuf_Empty(buffer_arg) {
   return google_protobuf_empty_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_io_AuditLog(arg) {
+  if (!(arg instanceof io_user_user_pb.AuditLog)) {
+    throw new Error('Expected argument of type io.AuditLog');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_AuditLog(buffer_arg) {
+  return io_user_user_pb.AuditLog.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_io_AuditLogRequest(arg) {
+  if (!(arg instanceof io_user_user_pb.AuditLogRequest)) {
+    throw new Error('Expected argument of type io.AuditLogRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_AuditLogRequest(buffer_arg) {
+  return io_user_user_pb.AuditLogRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_io_Boolean(arg) {
@@ -119,6 +142,17 @@ function deserialize_io_Filters(buffer_arg) {
   return io_common_filter_pb.Filters.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_io_GetTeamMemberResponse(arg) {
+  if (!(arg instanceof io_user_user_pb.GetTeamMemberResponse)) {
+    throw new Error('Expected argument of type io.GetTeamMemberResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_GetTeamMemberResponse(buffer_arg) {
+  return io_user_user_pb.GetTeamMemberResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_io_GetUserResponse(arg) {
   if (!(arg instanceof io_user_user_pb.GetUserResponse)) {
     throw new Error('Expected argument of type io.GetUserResponse');
@@ -183,6 +217,28 @@ function serialize_io_ListRequestDeprecated(arg) {
 
 function deserialize_io_ListRequestDeprecated(buffer_arg) {
   return io_common_common_objects_pb.ListRequestDeprecated.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_io_ListTeamMembersResponse(arg) {
+  if (!(arg instanceof io_user_user_pb.ListTeamMembersResponse)) {
+    throw new Error('Expected argument of type io.ListTeamMembersResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_ListTeamMembersResponse(buffer_arg) {
+  return io_user_user_pb.ListTeamMembersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_io_NewTeamMember(arg) {
+  if (!(arg instanceof io_user_user_pb.NewTeamMember)) {
+    throw new Error('Expected argument of type io.NewTeamMember');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_NewTeamMember(buffer_arg) {
+  return io_user_user_pb.NewTeamMember.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_io_NewUser(arg) {
@@ -317,6 +373,17 @@ function deserialize_io_SubscriptionRequest(buffer_arg) {
   return io_common_integration_pb.SubscriptionRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_io_TeamMemberPermissions(arg) {
+  if (!(arg instanceof io_user_user_pb.TeamMemberPermissions)) {
+    throw new Error('Expected argument of type io.TeamMemberPermissions');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_TeamMemberPermissions(buffer_arg) {
+  return io_user_user_pb.TeamMemberPermissions.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_io_Url(arg) {
   if (!(arg instanceof io_common_common_objects_pb.Url)) {
     throw new Error('Expected argument of type io.Url');
@@ -351,7 +418,7 @@ function deserialize_io_VerifyRequest(buffer_arg) {
 }
 
 
-var UsersService = exports['io.Users'] = {
+var UsersService = exports.UsersService = {
   createUser: {
     path: '/io.Users/createUser',
     requestStream: false,
@@ -672,9 +739,99 @@ createAuthorizationResource: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
+  // Team Members
+createTeamMember: {
+    path: '/io.Users/createTeamMember',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_user_user_pb.NewTeamMember,
+    responseType: io_common_common_objects_pb.Id,
+    requestSerialize: serialize_io_NewTeamMember,
+    requestDeserialize: deserialize_io_NewTeamMember,
+    responseSerialize: serialize_io_Id,
+    responseDeserialize: deserialize_io_Id,
+  },
+  createPermissionsForTeamMember: {
+    path: '/io.Users/createPermissionsForTeamMember',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_user_user_pb.TeamMemberPermissions,
+    responseType: io_common_common_objects_pb.Id,
+    requestSerialize: serialize_io_TeamMemberPermissions,
+    requestDeserialize: deserialize_io_TeamMemberPermissions,
+    responseSerialize: serialize_io_Id,
+    responseDeserialize: deserialize_io_Id,
+  },
+  updateTeamMemberPermissions: {
+    path: '/io.Users/updateTeamMemberPermissions',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_user_user_pb.TeamMemberPermissions,
+    responseType: io_user_user_pb.TeamMemberPermissions,
+    requestSerialize: serialize_io_TeamMemberPermissions,
+    requestDeserialize: deserialize_io_TeamMemberPermissions,
+    responseSerialize: serialize_io_TeamMemberPermissions,
+    responseDeserialize: deserialize_io_TeamMemberPermissions,
+  },
+  patchTeamMemberPermissions: {
+    path: '/io.Users/patchTeamMemberPermissions',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_user_user_pb.TeamMemberPermissions,
+    responseType: io_user_user_pb.TeamMemberPermissions,
+    requestSerialize: serialize_io_TeamMemberPermissions,
+    requestDeserialize: deserialize_io_TeamMemberPermissions,
+    responseSerialize: serialize_io_TeamMemberPermissions,
+    responseDeserialize: deserialize_io_TeamMemberPermissions,
+  },
+  getTeamMember: {
+    path: '/io.Users/getTeamMember',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_common_common_objects_pb.Id,
+    responseType: io_user_user_pb.GetTeamMemberResponse,
+    requestSerialize: serialize_io_Id,
+    requestDeserialize: deserialize_io_Id,
+    responseSerialize: serialize_io_GetTeamMemberResponse,
+    responseDeserialize: deserialize_io_GetTeamMemberResponse,
+  },
+  getTeamMembers: {
+    path: '/io.Users/getTeamMembers',
+    requestStream: false,
+    responseStream: true,
+    requestType: google_protobuf_empty_pb.Empty,
+    responseType: io_user_user_pb.ListTeamMembersResponse,
+    requestSerialize: serialize_google_protobuf_Empty,
+    requestDeserialize: deserialize_google_protobuf_Empty,
+    responseSerialize: serialize_io_ListTeamMembersResponse,
+    responseDeserialize: deserialize_io_ListTeamMembersResponse,
+  },
+  deleteTeamMember: {
+    path: '/io.Users/deleteTeamMember',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_common_common_objects_pb.Id,
+    responseType: google_protobuf_empty_pb.Empty,
+    requestSerialize: serialize_io_Id,
+    requestDeserialize: deserialize_io_Id,
+    responseSerialize: serialize_google_protobuf_Empty,
+    responseDeserialize: deserialize_google_protobuf_Empty,
+  },
+  getTeamMemberLogs: {
+    path: '/io.Users/getTeamMemberLogs',
+    requestStream: false,
+    responseStream: true,
+    requestType: io_user_user_pb.AuditLogRequest,
+    responseType: io_user_user_pb.AuditLog,
+    requestSerialize: serialize_io_AuditLogRequest,
+    requestDeserialize: deserialize_io_AuditLogRequest,
+    responseSerialize: serialize_io_AuditLog,
+    responseDeserialize: deserialize_io_AuditLog,
+  },
 };
 
-var IntegrationsService = exports['io.Integrations'] = {
+exports.UsersClient = grpc.makeGenericClientConstructor(UsersService);
+var IntegrationsService = exports.IntegrationsService = {
   createIntegrations: {
     path: '/io.Integrations/createIntegrations',
     requestStream: false,
@@ -809,3 +966,4 @@ var IntegrationsService = exports['io.Integrations'] = {
   },
 };
 
+exports.IntegrationsClient = grpc.makeGenericClientConstructor(IntegrationsService);
