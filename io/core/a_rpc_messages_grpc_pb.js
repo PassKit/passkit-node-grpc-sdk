@@ -120,4 +120,4 @@ var MessagesService = exports.MessagesService = {
   },
 };
 
-exports.MessagesClient = grpc.makeGenericClientConstructor(MessagesService);
+exports.MessagesClient = grpc.makeGenericClientConstructor(MessagesService, 'Messages');

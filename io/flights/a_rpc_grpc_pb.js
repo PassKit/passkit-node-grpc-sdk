@@ -413,4 +413,4 @@ deleteBoardingPass: {
   },
 };
 
-exports.FlightsClient = grpc.makeGenericClientConstructor(FlightsService);
+exports.FlightsClient = grpc.makeGenericClientConstructor(FlightsService, 'Flights');

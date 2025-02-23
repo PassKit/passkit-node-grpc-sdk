@@ -210,4 +210,4 @@ var CertificatesService = exports.CertificatesService = {
   },
 };
 
-exports.CertificatesClient = grpc.makeGenericClientConstructor(CertificatesService);
+exports.CertificatesClient = grpc.makeGenericClientConstructor(CertificatesService, 'Certificates');

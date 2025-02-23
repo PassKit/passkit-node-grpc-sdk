@@ -175,4 +175,4 @@ var DistributionService = exports.DistributionService = {
   },
 };
 
-exports.DistributionClient = grpc.makeGenericClientConstructor(DistributionService);
+exports.DistributionClient = grpc.makeGenericClientConstructor(DistributionService, 'Distribution');

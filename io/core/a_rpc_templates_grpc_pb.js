@@ -597,4 +597,4 @@ var TemplatesService = exports.TemplatesService = {
   },
 };
 
-exports.TemplatesClient = grpc.makeGenericClientConstructor(TemplatesService);
+exports.TemplatesClient = grpc.makeGenericClientConstructor(TemplatesService, 'Templates');

@@ -246,4 +246,4 @@ var RawService = exports.RawService = {
   },
 };
 
-exports.RawClient = grpc.makeGenericClientConstructor(RawService);
+exports.RawClient = grpc.makeGenericClientConstructor(RawService, 'Raw');

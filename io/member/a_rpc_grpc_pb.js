@@ -832,4 +832,4 @@ burnPoints: {
   },
 };
 
-exports.MembersClient = grpc.makeGenericClientConstructor(MembersService);
+exports.MembersClient = grpc.makeGenericClientConstructor(MembersService, 'Members');

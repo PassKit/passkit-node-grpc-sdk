@@ -569,4 +569,4 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
   },
 };
 
-exports.SingleUseCouponsClient = grpc.makeGenericClientConstructor(SingleUseCouponsService);
+exports.SingleUseCouponsClient = grpc.makeGenericClientConstructor(SingleUseCouponsService, 'SingleUseCoupons');

@@ -453,4 +453,4 @@ getImageBundle: {
   },
 };
 
-exports.ImagesClient = grpc.makeGenericClientConstructor(ImagesService);
+exports.ImagesClient = grpc.makeGenericClientConstructor(ImagesService, 'Images');

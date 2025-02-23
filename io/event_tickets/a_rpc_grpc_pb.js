@@ -877,4 +877,4 @@ var EventTicketsService = exports.EventTicketsService = {
   },
 };
 
-exports.EventTicketsClient = grpc.makeGenericClientConstructor(EventTicketsService);
+exports.EventTicketsClient = grpc.makeGenericClientConstructor(EventTicketsService, 'EventTickets');

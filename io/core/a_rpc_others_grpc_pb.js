@@ -830,7 +830,7 @@ createTeamMember: {
   },
 };
 
-exports.UsersClient = grpc.makeGenericClientConstructor(UsersService);
+exports.UsersClient = grpc.makeGenericClientConstructor(UsersService, 'Users');
 var IntegrationsService = exports.IntegrationsService = {
   createIntegrations: {
     path: '/io.Integrations/createIntegrations',
@@ -966,4 +966,4 @@ var IntegrationsService = exports.IntegrationsService = {
   },
 };
 
-exports.IntegrationsClient = grpc.makeGenericClientConstructor(IntegrationsService);
+exports.IntegrationsClient = grpc.makeGenericClientConstructor(IntegrationsService, 'Integrations');

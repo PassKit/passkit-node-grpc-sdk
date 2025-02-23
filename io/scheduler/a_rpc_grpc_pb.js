@@ -159,4 +159,4 @@ var SchedulerService = exports.SchedulerService = {
   },
 };
 
-exports.SchedulerClient = grpc.makeGenericClientConstructor(SchedulerService);
+exports.SchedulerClient = grpc.makeGenericClientConstructor(SchedulerService, 'Scheduler');

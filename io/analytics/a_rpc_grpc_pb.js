@@ -47,4 +47,4 @@ getAnalytics: {
   },
 };
 
-exports.AnalyticsClient = grpc.makeGenericClientConstructor(AnalyticsService);
+exports.AnalyticsClient = grpc.makeGenericClientConstructor(AnalyticsService, 'Analytics');
