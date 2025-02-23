@@ -1020,7 +1020,10 @@ proto.io.EmailTemplate.toObject = function(includeInstance, msg) {
     darkmodebuttontextcolor: jspb.Message.getFieldWithDefault(msg, 19, ""),
     darkmodebuttonbackgroundcolor: jspb.Message.getFieldWithDefault(msg, 20, ""),
     darkmodepagebackgroundcolor: jspb.Message.getFieldWithDefault(msg, 21, ""),
-    darkmodecontentbackgroundcolor: jspb.Message.getFieldWithDefault(msg, 22, "")
+    darkmodecontentbackgroundcolor: jspb.Message.getFieldWithDefault(msg, 22, ""),
+    headerlabel: jspb.Message.getFieldWithDefault(msg, 23, ""),
+    localizedheaderlabel: (f = msg.getLocalizedheaderlabel()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    headervalue: jspb.Message.getFieldWithDefault(msg, 25, "")
   };
 
   if (includeInstance) {
@@ -1150,6 +1153,19 @@ proto.io.EmailTemplate.deserializeBinaryFromReader = function(msg, reader) {
     case 22:
       var value = /** @type {string} */ (reader.readString());
       msg.setDarkmodecontentbackgroundcolor(value);
+      break;
+    case 23:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setHeaderlabel(value);
+      break;
+    case 24:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedheaderlabel(value);
+      break;
+    case 25:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setHeadervalue(value);
       break;
     default:
       reader.skipField();
@@ -1337,6 +1353,28 @@ proto.io.EmailTemplate.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       22,
+      f
+    );
+  }
+  f = message.getHeaderlabel();
+  if (f.length > 0) {
+    writer.writeString(
+      23,
+      f
+    );
+  }
+  f = message.getLocalizedheaderlabel();
+  if (f != null) {
+    writer.writeMessage(
+      24,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getHeadervalue();
+  if (f.length > 0) {
+    writer.writeString(
+      25,
       f
     );
   }
@@ -1850,6 +1888,79 @@ proto.io.EmailTemplate.prototype.getDarkmodecontentbackgroundcolor = function() 
  */
 proto.io.EmailTemplate.prototype.setDarkmodecontentbackgroundcolor = function(value) {
   return jspb.Message.setProto3StringField(this, 22, value);
+};
+
+
+/**
+ * optional string headerLabel = 23;
+ * @return {string}
+ */
+proto.io.EmailTemplate.prototype.getHeaderlabel = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 23, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.EmailTemplate} returns this
+ */
+proto.io.EmailTemplate.prototype.setHeaderlabel = function(value) {
+  return jspb.Message.setProto3StringField(this, 23, value);
+};
+
+
+/**
+ * optional LocalizedString localizedHeaderLabel = 24;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.io.EmailTemplate.prototype.getLocalizedheaderlabel = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 24));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.io.EmailTemplate} returns this
+*/
+proto.io.EmailTemplate.prototype.setLocalizedheaderlabel = function(value) {
+  return jspb.Message.setWrapperField(this, 24, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.EmailTemplate} returns this
+ */
+proto.io.EmailTemplate.prototype.clearLocalizedheaderlabel = function() {
+  return this.setLocalizedheaderlabel(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.EmailTemplate.prototype.hasLocalizedheaderlabel = function() {
+  return jspb.Message.getField(this, 24) != null;
+};
+
+
+/**
+ * optional string headerValue = 25;
+ * @return {string}
+ */
+proto.io.EmailTemplate.prototype.getHeadervalue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 25, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.EmailTemplate} returns this
+ */
+proto.io.EmailTemplate.prototype.setHeadervalue = function(value) {
+  return jspb.Message.setProto3StringField(this, 25, value);
 };
 
 

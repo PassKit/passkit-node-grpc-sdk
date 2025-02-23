@@ -2223,7 +2223,8 @@ proto.io.GetUserResponse.toObject = function(includeInstance, msg) {
     expiresat: (f = msg.getExpiresat()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     regionid: jspb.Message.getFieldWithDefault(msg, 8, ""),
     userstatus: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    userpermissions: jspb.Message.getFieldWithDefault(msg, 10, 0)
+    userpermissions: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    userid: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
 
   if (includeInstance) {
@@ -2301,6 +2302,10 @@ proto.io.GetUserResponse.deserializeBinaryFromReader = function(msg, reader) {
     case 10:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setUserpermissions(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUserid(value);
       break;
     default:
       reader.skipField();
@@ -2400,6 +2405,13 @@ proto.io.GetUserResponse.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeUint64(
       10,
+      f
+    );
+  }
+  f = message.getUserid();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
       f
     );
   }
@@ -2621,6 +2633,24 @@ proto.io.GetUserResponse.prototype.getUserpermissions = function() {
  */
 proto.io.GetUserResponse.prototype.setUserpermissions = function(value) {
   return jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional string userId = 11;
+ * @return {string}
+ */
+proto.io.GetUserResponse.prototype.getUserid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.GetUserResponse} returns this
+ */
+proto.io.GetUserResponse.prototype.setUserid = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
 };
 
 

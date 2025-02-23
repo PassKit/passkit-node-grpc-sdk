@@ -75,6 +75,7 @@ goog.exportSymbol('proto.io.PasswordType', null, global);
 goog.exportSymbol('proto.io.PersonalizationDetails', null, global);
 goog.exportSymbol('proto.io.PersonalizedDataField', null, global);
 goog.exportSymbol('proto.io.PositionSettings', null, global);
+goog.exportSymbol('proto.io.ScreenshotEligibility', null, global);
 goog.exportSymbol('proto.io.SelectOption', null, global);
 goog.exportSymbol('proto.io.Sharing', null, global);
 goog.exportSymbol('proto.io.StandardFields', null, global);
@@ -3547,7 +3548,8 @@ proto.io.GooglePaySettings.toObject = function(includeInstance, msg) {
     webapp: (f = msg.getWebapp()) && proto.io.GooglePayApp.toObject(includeInstance, f),
     classtemplateinfo: jspb.Message.getFieldWithDefault(msg, 5, ""),
     backgroundcolor: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    languageoverridesList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
+    languageoverridesList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+    screenshoteligibility: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -3616,6 +3618,10 @@ proto.io.GooglePaySettings.deserializeBinaryFromReader = function(msg, reader) {
       for (var i = 0; i < values.length; i++) {
         msg.addLanguageoverrides(values[i]);
       }
+      break;
+    case 8:
+      var value = /** @type {!proto.io.ScreenshotEligibility} */ (reader.readEnum());
+      msg.setScreenshoteligibility(value);
       break;
     default:
       reader.skipField();
@@ -3695,6 +3701,13 @@ proto.io.GooglePaySettings.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writePackedEnum(
       7,
+      f
+    );
+  }
+  f = message.getScreenshoteligibility();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      8,
       f
     );
   }
@@ -3900,6 +3913,24 @@ proto.io.GooglePaySettings.prototype.addLanguageoverrides = function(value, opt_
  */
 proto.io.GooglePaySettings.prototype.clearLanguageoverridesList = function() {
   return this.setLanguageoverridesList([]);
+};
+
+
+/**
+ * optional ScreenshotEligibility screenshotEligibility = 8;
+ * @return {!proto.io.ScreenshotEligibility}
+ */
+proto.io.GooglePaySettings.prototype.getScreenshoteligibility = function() {
+  return /** @type {!proto.io.ScreenshotEligibility} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {!proto.io.ScreenshotEligibility} value
+ * @return {!proto.io.GooglePaySettings} returns this
+ */
+proto.io.GooglePaySettings.prototype.setScreenshoteligibility = function(value) {
+  return jspb.Message.setProto3EnumField(this, 8, value);
 };
 
 
@@ -11122,6 +11153,15 @@ proto.io.PersonalizedDataField = {
   PERSONALIZE_EMAIL_ADDRESS: 2,
   PERSONALIZE_PHONE_NUMBER: 4,
   PERSONALIZE_POSTAL_CODE: 8
+};
+
+/**
+ * @enum {number}
+ */
+proto.io.ScreenshotEligibility = {
+  SCREENSHOT_ELIGIBILITY_UNSPECIFIED: 0,
+  ELIGIBLE: 1,
+  INELIGIBLE: 2
 };
 
 goog.object.extend(exports, proto.io);
