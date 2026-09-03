@@ -27,10 +27,12 @@ var io_common_pagination_pb = require('../../io/common/pagination_pb.js');
 goog.object.extend(proto, io_common_pagination_pb);
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 goog.object.extend(proto, io_common_common_objects_pb);
-var io_image_image_pb = require('../../io/image/image_pb.js');
-goog.object.extend(proto, io_image_image_pb);
+var io_common_filter_pb = require('../../io/common/filter_pb.js');
+goog.object.extend(proto, io_common_filter_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
+var io_common_protocols_pb = require('../../io/common/protocols_pb.js');
+goog.object.extend(proto, io_common_protocols_pb);
 goog.exportSymbol('proto.io.GetMessageHistoryResponse', null, global);
 goog.exportSymbol('proto.io.GetMessageResponse', null, global);
 goog.exportSymbol('proto.io.GetMessagesForProtocolRequest', null, global);
@@ -50,7 +52,7 @@ goog.exportSymbol('proto.io.SendMessageResponse', null, global);
  * @constructor
  */
 proto.io.Message = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.io.Message.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.io.Message, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -166,13 +168,6 @@ if (goog.DEBUG && !COMPILED) {
   proto.io.SendMessageResponse.displayName = 'proto.io.SendMessageResponse';
 }
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.io.Message.repeatedFields_ = [8];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -205,18 +200,22 @@ proto.io.Message.prototype.toObject = function(opt_includeInstance) {
 proto.io.Message.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    title: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    classid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    protocol: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    status: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    filters: (f = msg.getFilters()) && io_common_filter_pb.Filters.toObject(includeInstance, f),
+    title: jspb.Message.getFieldWithDefault(msg, 6, ""),
     localizedtitle: (f = msg.getLocalizedtitle()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
-    plaintextcontent: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    localizedplaintextcontent: (f = msg.getLocalizedplaintextcontent()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
-    richtextcontent: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    localizedrichtextcontent: (f = msg.getLocalizedrichtextcontent()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
-    urlsList: jspb.Message.toObjectList(msg.getUrlsList(),
-    io_common_common_objects_pb.Url.toObject, includeInstance),
-    images: (f = msg.getImages()) && io_image_image_pb.ImageIds.toObject(includeInstance, f),
-    priority: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    displayfrom: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    displayuntil: jspb.Message.getFieldWithDefault(msg, 12, "")
+    body: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    localizedbody: (f = msg.getLocalizedbody()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    displayfrom: (f = msg.getDisplayfrom()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    displayuntil: (f = msg.getDisplayuntil()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    recipients: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    createdby: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    lastupdatedby: jspb.Message.getFieldWithDefault(msg, 14, ""),
+    timezone: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    updated: (f = msg.getUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -259,52 +258,74 @@ proto.io.Message.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTitle(value);
+      msg.setClassid(value);
       break;
     case 3:
-      var value = new io_common_localization_pb.LocalizedString;
-      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
-      msg.setLocalizedtitle(value);
+      var value = /** @type {!proto.io.PassProtocol} */ (reader.readEnum());
+      msg.setProtocol(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPlaintextcontent(value);
+      var value = /** @type {!proto.io.MessageStatus} */ (reader.readEnum());
+      msg.setStatus(value);
       break;
     case 5:
-      var value = new io_common_localization_pb.LocalizedString;
-      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
-      msg.setLocalizedplaintextcontent(value);
+      var value = new io_common_filter_pb.Filters;
+      reader.readMessage(value,io_common_filter_pb.Filters.deserializeBinaryFromReader);
+      msg.setFilters(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRichtextcontent(value);
+      msg.setTitle(value);
       break;
     case 7:
       var value = new io_common_localization_pb.LocalizedString;
       reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
-      msg.setLocalizedrichtextcontent(value);
+      msg.setLocalizedtitle(value);
       break;
     case 8:
-      var value = new io_common_common_objects_pb.Url;
-      reader.readMessage(value,io_common_common_objects_pb.Url.deserializeBinaryFromReader);
-      msg.addUrls(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBody(value);
       break;
     case 9:
-      var value = new io_image_image_pb.ImageIds;
-      reader.readMessage(value,io_image_image_pb.ImageIds.deserializeBinaryFromReader);
-      msg.setImages(value);
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedbody(value);
       break;
     case 10:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPriority(value);
-      break;
-    case 11:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setDisplayfrom(value);
       break;
-    case 12:
-      var value = /** @type {string} */ (reader.readString());
+    case 11:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setDisplayuntil(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRecipients(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCreatedby(value);
+      break;
+    case 14:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLastupdatedby(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTimezone(value);
+      break;
+    case 16:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreated(value);
+      break;
+    case 17:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setUpdated(value);
       break;
     default:
       reader.skipField();
@@ -342,44 +363,43 @@ proto.io.Message.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTitle();
+  f = message.getClassid();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getLocalizedtitle();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getProtocol();
+  if (f !== 0.0) {
+    writer.writeEnum(
       3,
-      f,
-      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getPlaintextcontent();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getStatus();
+  if (f !== 0.0) {
+    writer.writeEnum(
       4,
       f
     );
   }
-  f = message.getLocalizedplaintextcontent();
+  f = message.getFilters();
   if (f != null) {
     writer.writeMessage(
       5,
       f,
-      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+      io_common_filter_pb.Filters.serializeBinaryToWriter
     );
   }
-  f = message.getRichtextcontent();
+  f = message.getTitle();
   if (f.length > 0) {
     writer.writeString(
       6,
       f
     );
   }
-  f = message.getLocalizedrichtextcontent();
+  f = message.getLocalizedtitle();
   if (f != null) {
     writer.writeMessage(
       7,
@@ -387,41 +407,79 @@ proto.io.Message.serializeBinaryToWriter = function(message, writer) {
       io_common_localization_pb.LocalizedString.serializeBinaryToWriter
     );
   }
-  f = message.getUrlsList();
+  f = message.getBody();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(
+    writer.writeString(
       8,
-      f,
-      io_common_common_objects_pb.Url.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getImages();
+  f = message.getLocalizedbody();
   if (f != null) {
     writer.writeMessage(
       9,
       f,
-      io_image_image_pb.ImageIds.serializeBinaryToWriter
-    );
-  }
-  f = message.getPriority();
-  if (f !== 0) {
-    writer.writeUint32(
-      10,
-      f
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
     );
   }
   f = message.getDisplayfrom();
-  if (f.length > 0) {
-    writer.writeString(
-      11,
-      f
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
   f = message.getDisplayuntil();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getRecipients();
+  if (f !== 0) {
+    writer.writeInt32(
       12,
       f
+    );
+  }
+  f = message.getCreatedby();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
+    );
+  }
+  f = message.getLastupdatedby();
+  if (f.length > 0) {
+    writer.writeString(
+      14,
+      f
+    );
+  }
+  f = message.getTimezone();
+  if (f.length > 0) {
+    writer.writeString(
+      15,
+      f
+    );
+  }
+  f = message.getCreated();
+  if (f != null) {
+    writer.writeMessage(
+      16,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpdated();
+  if (f != null) {
+    writer.writeMessage(
+      17,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -446,10 +504,10 @@ proto.io.Message.prototype.setId = function(value) {
 
 
 /**
- * optional string title = 2;
+ * optional string classId = 2;
  * @return {string}
  */
-proto.io.Message.prototype.getTitle = function() {
+proto.io.Message.prototype.getClassid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -458,18 +516,109 @@ proto.io.Message.prototype.getTitle = function() {
  * @param {string} value
  * @return {!proto.io.Message} returns this
  */
-proto.io.Message.prototype.setTitle = function(value) {
+proto.io.Message.prototype.setClassid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional LocalizedString localizedTitle = 3;
+ * optional PassProtocol protocol = 3;
+ * @return {!proto.io.PassProtocol}
+ */
+proto.io.Message.prototype.getProtocol = function() {
+  return /** @type {!proto.io.PassProtocol} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.io.PassProtocol} value
+ * @return {!proto.io.Message} returns this
+ */
+proto.io.Message.prototype.setProtocol = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional MessageStatus status = 4;
+ * @return {!proto.io.MessageStatus}
+ */
+proto.io.Message.prototype.getStatus = function() {
+  return /** @type {!proto.io.MessageStatus} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.io.MessageStatus} value
+ * @return {!proto.io.Message} returns this
+ */
+proto.io.Message.prototype.setStatus = function(value) {
+  return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
+/**
+ * optional Filters filters = 5;
+ * @return {?proto.io.Filters}
+ */
+proto.io.Message.prototype.getFilters = function() {
+  return /** @type{?proto.io.Filters} */ (
+    jspb.Message.getWrapperField(this, io_common_filter_pb.Filters, 5));
+};
+
+
+/**
+ * @param {?proto.io.Filters|undefined} value
+ * @return {!proto.io.Message} returns this
+*/
+proto.io.Message.prototype.setFilters = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.Message} returns this
+ */
+proto.io.Message.prototype.clearFilters = function() {
+  return this.setFilters(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.Message.prototype.hasFilters = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional string title = 6;
+ * @return {string}
+ */
+proto.io.Message.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.Message} returns this
+ */
+proto.io.Message.prototype.setTitle = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional LocalizedString localizedTitle = 7;
  * @return {?proto.io.LocalizedString}
  */
 proto.io.Message.prototype.getLocalizedtitle = function() {
   return /** @type{?proto.io.LocalizedString} */ (
-    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 3));
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 7));
 };
 
 
@@ -478,7 +627,7 @@ proto.io.Message.prototype.getLocalizedtitle = function() {
  * @return {!proto.io.Message} returns this
 */
 proto.io.Message.prototype.setLocalizedtitle = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -496,173 +645,43 @@ proto.io.Message.prototype.clearLocalizedtitle = function() {
  * @return {boolean}
  */
 proto.io.Message.prototype.hasLocalizedtitle = function() {
-  return jspb.Message.getField(this, 3) != null;
-};
-
-
-/**
- * optional string plainTextContent = 4;
- * @return {string}
- */
-proto.io.Message.prototype.getPlaintextcontent = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.io.Message} returns this
- */
-proto.io.Message.prototype.setPlaintextcontent = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
-};
-
-
-/**
- * optional LocalizedString localizedPlainTextContent = 5;
- * @return {?proto.io.LocalizedString}
- */
-proto.io.Message.prototype.getLocalizedplaintextcontent = function() {
-  return /** @type{?proto.io.LocalizedString} */ (
-    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 5));
-};
-
-
-/**
- * @param {?proto.io.LocalizedString|undefined} value
- * @return {!proto.io.Message} returns this
-*/
-proto.io.Message.prototype.setLocalizedplaintextcontent = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.io.Message} returns this
- */
-proto.io.Message.prototype.clearLocalizedplaintextcontent = function() {
-  return this.setLocalizedplaintextcontent(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.io.Message.prototype.hasLocalizedplaintextcontent = function() {
-  return jspb.Message.getField(this, 5) != null;
-};
-
-
-/**
- * optional string richTextContent = 6;
- * @return {string}
- */
-proto.io.Message.prototype.getRichtextcontent = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.io.Message} returns this
- */
-proto.io.Message.prototype.setRichtextcontent = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
-};
-
-
-/**
- * optional LocalizedString localizedRichTextContent = 7;
- * @return {?proto.io.LocalizedString}
- */
-proto.io.Message.prototype.getLocalizedrichtextcontent = function() {
-  return /** @type{?proto.io.LocalizedString} */ (
-    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 7));
-};
-
-
-/**
- * @param {?proto.io.LocalizedString|undefined} value
- * @return {!proto.io.Message} returns this
-*/
-proto.io.Message.prototype.setLocalizedrichtextcontent = function(value) {
-  return jspb.Message.setWrapperField(this, 7, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.io.Message} returns this
- */
-proto.io.Message.prototype.clearLocalizedrichtextcontent = function() {
-  return this.setLocalizedrichtextcontent(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.io.Message.prototype.hasLocalizedrichtextcontent = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * repeated Url urls = 8;
- * @return {!Array<!proto.io.Url>}
+ * optional string body = 8;
+ * @return {string}
  */
-proto.io.Message.prototype.getUrlsList = function() {
-  return /** @type{!Array<!proto.io.Url>} */ (
-    jspb.Message.getRepeatedWrapperField(this, io_common_common_objects_pb.Url, 8));
+proto.io.Message.prototype.getBody = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 
 /**
- * @param {!Array<!proto.io.Url>} value
+ * @param {string} value
+ * @return {!proto.io.Message} returns this
+ */
+proto.io.Message.prototype.setBody = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional LocalizedString localizedBody = 9;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.io.Message.prototype.getLocalizedbody = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 9));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
  * @return {!proto.io.Message} returns this
 */
-proto.io.Message.prototype.setUrlsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 8, value);
-};
-
-
-/**
- * @param {!proto.io.Url=} opt_value
- * @param {number=} opt_index
- * @return {!proto.io.Url}
- */
-proto.io.Message.prototype.addUrls = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 8, opt_value, proto.io.Url, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.io.Message} returns this
- */
-proto.io.Message.prototype.clearUrlsList = function() {
-  return this.setUrlsList([]);
-};
-
-
-/**
- * optional ImageIds images = 9;
- * @return {?proto.io.ImageIds}
- */
-proto.io.Message.prototype.getImages = function() {
-  return /** @type{?proto.io.ImageIds} */ (
-    jspb.Message.getWrapperField(this, io_image_image_pb.ImageIds, 9));
-};
-
-
-/**
- * @param {?proto.io.ImageIds|undefined} value
- * @return {!proto.io.Message} returns this
-*/
-proto.io.Message.prototype.setImages = function(value) {
+proto.io.Message.prototype.setLocalizedbody = function(value) {
   return jspb.Message.setWrapperField(this, 9, value);
 };
 
@@ -671,8 +690,8 @@ proto.io.Message.prototype.setImages = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.io.Message} returns this
  */
-proto.io.Message.prototype.clearImages = function() {
-  return this.setImages(undefined);
+proto.io.Message.prototype.clearLocalizedbody = function() {
+  return this.setLocalizedbody(undefined);
 };
 
 
@@ -680,17 +699,91 @@ proto.io.Message.prototype.clearImages = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.io.Message.prototype.hasImages = function() {
+proto.io.Message.prototype.hasLocalizedbody = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional uint32 priority = 10;
+ * optional google.protobuf.Timestamp displayFrom = 10;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.io.Message.prototype.getDisplayfrom = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 10));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.io.Message} returns this
+*/
+proto.io.Message.prototype.setDisplayfrom = function(value) {
+  return jspb.Message.setWrapperField(this, 10, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.Message} returns this
+ */
+proto.io.Message.prototype.clearDisplayfrom = function() {
+  return this.setDisplayfrom(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.Message.prototype.hasDisplayfrom = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp displayUntil = 11;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.io.Message.prototype.getDisplayuntil = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 11));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.io.Message} returns this
+*/
+proto.io.Message.prototype.setDisplayuntil = function(value) {
+  return jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.Message} returns this
+ */
+proto.io.Message.prototype.clearDisplayuntil = function() {
+  return this.setDisplayuntil(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.Message.prototype.hasDisplayuntil = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional int32 recipients = 12;
  * @return {number}
  */
-proto.io.Message.prototype.getPriority = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+proto.io.Message.prototype.getRecipients = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
 };
 
 
@@ -698,17 +791,17 @@ proto.io.Message.prototype.getPriority = function() {
  * @param {number} value
  * @return {!proto.io.Message} returns this
  */
-proto.io.Message.prototype.setPriority = function(value) {
-  return jspb.Message.setProto3IntField(this, 10, value);
+proto.io.Message.prototype.setRecipients = function(value) {
+  return jspb.Message.setProto3IntField(this, 12, value);
 };
 
 
 /**
- * optional string displayFrom = 11;
+ * optional string createdBy = 13;
  * @return {string}
  */
-proto.io.Message.prototype.getDisplayfrom = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+proto.io.Message.prototype.getCreatedby = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
 
 
@@ -716,17 +809,17 @@ proto.io.Message.prototype.getDisplayfrom = function() {
  * @param {string} value
  * @return {!proto.io.Message} returns this
  */
-proto.io.Message.prototype.setDisplayfrom = function(value) {
-  return jspb.Message.setProto3StringField(this, 11, value);
+proto.io.Message.prototype.setCreatedby = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
 /**
- * optional string displayUntil = 12;
+ * optional string lastUpdatedBy = 14;
  * @return {string}
  */
-proto.io.Message.prototype.getDisplayuntil = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+proto.io.Message.prototype.getLastupdatedby = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
 };
 
 
@@ -734,8 +827,100 @@ proto.io.Message.prototype.getDisplayuntil = function() {
  * @param {string} value
  * @return {!proto.io.Message} returns this
  */
-proto.io.Message.prototype.setDisplayuntil = function(value) {
-  return jspb.Message.setProto3StringField(this, 12, value);
+proto.io.Message.prototype.setLastupdatedby = function(value) {
+  return jspb.Message.setProto3StringField(this, 14, value);
+};
+
+
+/**
+ * optional string timezone = 15;
+ * @return {string}
+ */
+proto.io.Message.prototype.getTimezone = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.Message} returns this
+ */
+proto.io.Message.prototype.setTimezone = function(value) {
+  return jspb.Message.setProto3StringField(this, 15, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created = 16;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.io.Message.prototype.getCreated = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 16));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.io.Message} returns this
+*/
+proto.io.Message.prototype.setCreated = function(value) {
+  return jspb.Message.setWrapperField(this, 16, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.Message} returns this
+ */
+proto.io.Message.prototype.clearCreated = function() {
+  return this.setCreated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.Message.prototype.hasCreated = function() {
+  return jspb.Message.getField(this, 16) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp updated = 17;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.io.Message.prototype.getUpdated = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 17));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.io.Message} returns this
+*/
+proto.io.Message.prototype.setUpdated = function(value) {
+  return jspb.Message.setWrapperField(this, 17, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.Message} returns this
+ */
+proto.io.Message.prototype.clearUpdated = function() {
+  return this.setUpdated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.Message.prototype.hasUpdated = function() {
+  return jspb.Message.getField(this, 17) != null;
 };
 
 
@@ -1920,8 +2105,9 @@ proto.io.MessageStatus = {
   MESSAGE_STATUS_DO_NOT_USE: 0,
   SCHEDULED: 1,
   ACTIVE: 2,
-  EXPIRED: 3,
-  CANCELLED: 4
+  COMPLETED: 3,
+  CANCELLED: 4,
+  ARCHIVED: 5
 };
 
 goog.object.extend(exports, proto.io);

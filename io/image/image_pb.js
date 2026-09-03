@@ -348,6 +348,7 @@ proto.io.ImageIds.toObject = function(includeInstance, msg) {
     logo: jspb.Message.getFieldWithDefault(msg, 2, ""),
     applelogo: jspb.Message.getFieldWithDefault(msg, 3, ""),
     hero: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    richhero: jspb.Message.getFieldWithDefault(msg, 26, ""),
     eventstrip: jspb.Message.getFieldWithDefault(msg, 5, ""),
     strip: jspb.Message.getFieldWithDefault(msg, 6, ""),
     thumbnail: jspb.Message.getFieldWithDefault(msg, 7, ""),
@@ -367,7 +368,7 @@ proto.io.ImageIds.toObject = function(includeInstance, msg) {
     widelogo: jspb.Message.getFieldWithDefault(msg, 21, ""),
     secondarylogo: jspb.Message.getFieldWithDefault(msg, 22, ""),
     artwork: jspb.Message.getFieldWithDefault(msg, 23, ""),
-    posterlogo: jspb.Message.getFieldWithDefault(msg, 24, ""),
+    primarylogo: jspb.Message.getFieldWithDefault(msg, 24, ""),
     venuemap: jspb.Message.getFieldWithDefault(msg, 25, "")
   };
 
@@ -420,6 +421,10 @@ proto.io.ImageIds.deserializeBinaryFromReader = function(msg, reader) {
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setHero(value);
+      break;
+    case 26:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRichhero(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -499,7 +504,7 @@ proto.io.ImageIds.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 24:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPosterlogo(value);
+      msg.setPrimarylogo(value);
       break;
     case 25:
       var value = /** @type {string} */ (reader.readString());
@@ -559,6 +564,13 @@ proto.io.ImageIds.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getRichhero();
+  if (f.length > 0) {
+    writer.writeString(
+      26,
       f
     );
   }
@@ -695,7 +707,7 @@ proto.io.ImageIds.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getPosterlogo();
+  f = message.getPrimarylogo();
   if (f.length > 0) {
     writer.writeString(
       24,
@@ -781,6 +793,24 @@ proto.io.ImageIds.prototype.getHero = function() {
  */
 proto.io.ImageIds.prototype.setHero = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string richHero = 26;
+ * @return {string}
+ */
+proto.io.ImageIds.prototype.getRichhero = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 26, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageIds} returns this
+ */
+proto.io.ImageIds.prototype.setRichhero = function(value) {
+  return jspb.Message.setProto3StringField(this, 26, value);
 };
 
 
@@ -1127,10 +1157,10 @@ proto.io.ImageIds.prototype.setArtwork = function(value) {
 
 
 /**
- * optional string posterLogo = 24;
+ * optional string primaryLogo = 24;
  * @return {string}
  */
-proto.io.ImageIds.prototype.getPosterlogo = function() {
+proto.io.ImageIds.prototype.getPrimarylogo = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 24, ""));
 };
 
@@ -1139,7 +1169,7 @@ proto.io.ImageIds.prototype.getPosterlogo = function() {
  * @param {string} value
  * @return {!proto.io.ImageIds} returns this
  */
-proto.io.ImageIds.prototype.setPosterlogo = function(value) {
+proto.io.ImageIds.prototype.setPrimarylogo = function(value) {
   return jspb.Message.setProto3StringField(this, 24, value);
 };
 
@@ -1198,6 +1228,7 @@ proto.io.ImageData.toObject = function(includeInstance, msg) {
     logo: jspb.Message.getFieldWithDefault(msg, 2, ""),
     applelogo: jspb.Message.getFieldWithDefault(msg, 3, ""),
     hero: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    richhero: jspb.Message.getFieldWithDefault(msg, 26, ""),
     eventstrip: jspb.Message.getFieldWithDefault(msg, 5, ""),
     strip: jspb.Message.getFieldWithDefault(msg, 6, ""),
     thumbnail: jspb.Message.getFieldWithDefault(msg, 7, ""),
@@ -1217,12 +1248,13 @@ proto.io.ImageData.toObject = function(includeInstance, msg) {
     widelogo: jspb.Message.getFieldWithDefault(msg, 21, ""),
     secondarylogo: jspb.Message.getFieldWithDefault(msg, 22, ""),
     artwork: jspb.Message.getFieldWithDefault(msg, 23, ""),
-    posterlogo: jspb.Message.getFieldWithDefault(msg, 24, ""),
+    primarylogo: jspb.Message.getFieldWithDefault(msg, 24, ""),
     venuemap: jspb.Message.getFieldWithDefault(msg, 25, ""),
     localizedicon: (f = msg.getLocalizedicon()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedlogo: (f = msg.getLocalizedlogo()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedapplelogo: (f = msg.getLocalizedapplelogo()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedhero: (f = msg.getLocalizedhero()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    localizedrichhero: (f = msg.getLocalizedrichhero()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedeventstrip: (f = msg.getLocalizedeventstrip()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedstrip: (f = msg.getLocalizedstrip()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedthumbnail: (f = msg.getLocalizedthumbnail()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
@@ -1237,7 +1269,7 @@ proto.io.ImageData.toObject = function(includeInstance, msg) {
     localizedwidelogo: (f = msg.getLocalizedwidelogo()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedsecondarylogo: (f = msg.getLocalizedsecondarylogo()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedartwork: (f = msg.getLocalizedartwork()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
-    localizedposterlogo: (f = msg.getLocalizedposterlogo()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    localizedprimarylogo: (f = msg.getLocalizedprimarylogo()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     localizedvenuemap: (f = msg.getLocalizedvenuemap()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f)
   };
 
@@ -1290,6 +1322,10 @@ proto.io.ImageData.deserializeBinaryFromReader = function(msg, reader) {
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setHero(value);
+      break;
+    case 26:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRichhero(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -1370,7 +1406,7 @@ proto.io.ImageData.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 24:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPosterlogo(value);
+      msg.setPrimarylogo(value);
       break;
     case 25:
       var value = /** @type {string} */ (reader.readString());
@@ -1395,6 +1431,11 @@ proto.io.ImageData.deserializeBinaryFromReader = function(msg, reader) {
       var value = new io_common_localization_pb.LocalizedString;
       reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
       msg.setLocalizedhero(value);
+      break;
+    case 51:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizedrichhero(value);
       break;
     case 35:
       var value = new io_common_localization_pb.LocalizedString;
@@ -1469,7 +1510,7 @@ proto.io.ImageData.deserializeBinaryFromReader = function(msg, reader) {
     case 49:
       var value = new io_common_localization_pb.LocalizedString;
       reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
-      msg.setLocalizedposterlogo(value);
+      msg.setLocalizedprimarylogo(value);
       break;
     case 50:
       var value = new io_common_localization_pb.LocalizedString;
@@ -1530,6 +1571,13 @@ proto.io.ImageData.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getRichhero();
+  if (f.length > 0) {
+    writer.writeString(
+      26,
       f
     );
   }
@@ -1667,7 +1715,7 @@ proto.io.ImageData.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getPosterlogo();
+  f = message.getPrimarylogo();
   if (f.length > 0) {
     writer.writeString(
       24,
@@ -1709,6 +1757,14 @@ proto.io.ImageData.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeMessage(
       34,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getLocalizedrichhero();
+  if (f != null) {
+    writer.writeMessage(
+      51,
       f,
       io_common_localization_pb.LocalizedString.serializeBinaryToWriter
     );
@@ -1825,7 +1881,7 @@ proto.io.ImageData.serializeBinaryToWriter = function(message, writer) {
       io_common_localization_pb.LocalizedString.serializeBinaryToWriter
     );
   }
-  f = message.getLocalizedposterlogo();
+  f = message.getLocalizedprimarylogo();
   if (f != null) {
     writer.writeMessage(
       49,
@@ -1913,6 +1969,24 @@ proto.io.ImageData.prototype.getHero = function() {
  */
 proto.io.ImageData.prototype.setHero = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string richHero = 26;
+ * @return {string}
+ */
+proto.io.ImageData.prototype.getRichhero = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 26, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.setRichhero = function(value) {
+  return jspb.Message.setProto3StringField(this, 26, value);
 };
 
 
@@ -2278,10 +2352,10 @@ proto.io.ImageData.prototype.setArtwork = function(value) {
 
 
 /**
- * optional string posterLogo = 24;
+ * optional string primaryLogo = 24;
  * @return {string}
  */
-proto.io.ImageData.prototype.getPosterlogo = function() {
+proto.io.ImageData.prototype.getPrimarylogo = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 24, ""));
 };
 
@@ -2290,7 +2364,7 @@ proto.io.ImageData.prototype.getPosterlogo = function() {
  * @param {string} value
  * @return {!proto.io.ImageData} returns this
  */
-proto.io.ImageData.prototype.setPosterlogo = function(value) {
+proto.io.ImageData.prototype.setPrimarylogo = function(value) {
   return jspb.Message.setProto3StringField(this, 24, value);
 };
 
@@ -2458,6 +2532,43 @@ proto.io.ImageData.prototype.clearLocalizedhero = function() {
  */
 proto.io.ImageData.prototype.hasLocalizedhero = function() {
   return jspb.Message.getField(this, 34) != null;
+};
+
+
+/**
+ * optional LocalizedString localizedRichHero = 51;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.io.ImageData.prototype.getLocalizedrichhero = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 51));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.io.ImageData} returns this
+*/
+proto.io.ImageData.prototype.setLocalizedrichhero = function(value) {
+  return jspb.Message.setWrapperField(this, 51, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.ImageData} returns this
+ */
+proto.io.ImageData.prototype.clearLocalizedrichhero = function() {
+  return this.setLocalizedrichhero(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.ImageData.prototype.hasLocalizedrichhero = function() {
+  return jspb.Message.getField(this, 51) != null;
 };
 
 
@@ -2980,10 +3091,10 @@ proto.io.ImageData.prototype.hasLocalizedartwork = function() {
 
 
 /**
- * optional LocalizedString localizedPosterLogo = 49;
+ * optional LocalizedString localizedPrimaryLogo = 49;
  * @return {?proto.io.LocalizedString}
  */
-proto.io.ImageData.prototype.getLocalizedposterlogo = function() {
+proto.io.ImageData.prototype.getLocalizedprimarylogo = function() {
   return /** @type{?proto.io.LocalizedString} */ (
     jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 49));
 };
@@ -2993,7 +3104,7 @@ proto.io.ImageData.prototype.getLocalizedposterlogo = function() {
  * @param {?proto.io.LocalizedString|undefined} value
  * @return {!proto.io.ImageData} returns this
 */
-proto.io.ImageData.prototype.setLocalizedposterlogo = function(value) {
+proto.io.ImageData.prototype.setLocalizedprimarylogo = function(value) {
   return jspb.Message.setWrapperField(this, 49, value);
 };
 
@@ -3002,8 +3113,8 @@ proto.io.ImageData.prototype.setLocalizedposterlogo = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.io.ImageData} returns this
  */
-proto.io.ImageData.prototype.clearLocalizedposterlogo = function() {
-  return this.setLocalizedposterlogo(undefined);
+proto.io.ImageData.prototype.clearLocalizedprimarylogo = function() {
+  return this.setLocalizedprimarylogo(undefined);
 };
 
 
@@ -3011,7 +3122,7 @@ proto.io.ImageData.prototype.clearLocalizedposterlogo = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.io.ImageData.prototype.hasLocalizedposterlogo = function() {
+proto.io.ImageData.prototype.hasLocalizedprimarylogo = function() {
   return jspb.Message.getField(this, 49) != null;
 };
 
@@ -5758,6 +5869,7 @@ proto.io.ImageUse = {
   LOGO: 1,
   APPLELOGO: 2,
   HERO: 3,
+  RICHHERO: 26,
   EVENTSTRIP: 4,
   STRIP: 5,
   THUMBNAIL: 6,
@@ -5777,7 +5889,7 @@ proto.io.ImageUse = {
   WIDELOGO: 21,
   SECONDARYLOGO: 22,
   ARTWORK: 23,
-  POSTERLOGO: 24,
+  PRIMARYLOGO: 24,
   VENUEMAP: 25
 };
 

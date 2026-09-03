@@ -5,6 +5,7 @@ var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 var io_common_distribution_pb = require('../../io/common/distribution_pb.js');
+var io_common_message_pb = require('../../io/common/message_pb.js');
 
 function serialize_google_protobuf_Empty(arg) {
   if (!(arg instanceof google_protobuf_empty_pb.Empty)) {
@@ -50,6 +51,17 @@ function deserialize_io_EmailDistributionRequest(buffer_arg) {
   return io_common_distribution_pb.EmailDistributionRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_io_Id(arg) {
+  if (!(arg instanceof io_common_common_objects_pb.Id)) {
+    throw new Error('Expected argument of type io.Id');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_Id(buffer_arg) {
+  return io_common_common_objects_pb.Id.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_io_ImportProtocolRequest(arg) {
   if (!(arg instanceof io_common_distribution_pb.ImportProtocolRequest)) {
     throw new Error('Expected argument of type io.ImportProtocolRequest');
@@ -59,6 +71,17 @@ function serialize_io_ImportProtocolRequest(arg) {
 
 function deserialize_io_ImportProtocolRequest(buffer_arg) {
   return io_common_distribution_pb.ImportProtocolRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_io_Message(arg) {
+  if (!(arg instanceof io_common_message_pb.Message)) {
+    throw new Error('Expected argument of type io.Message');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_Message(buffer_arg) {
+  return io_common_message_pb.Message.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_io_Payload(arg) {
@@ -106,8 +129,10 @@ function deserialize_io_Url(buffer_arg) {
 }
 
 
+// The PassKit Distribution API allows you to create SmartPass links and manage the distribution of digital passes to your customers via email.
 var DistributionService = exports.DistributionService = {
-  sendWelcomeEmail: {
+  // Sends a welcome email to a single recipient using a valid pass protocol (e.g., membership, coupon, ticket). Required Fields: passId or externalId, classId, protocol.
+sendWelcomeEmail: {
     path: '/io.Distribution/sendWelcomeEmail',
     requestStream: false,
     responseStream: false,
@@ -118,7 +143,8 @@ var DistributionService = exports.DistributionService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  getSmartPassLink: {
+  // Generates and returns an encrypted SmartPass link for a member, coupon, or event ticket based on the request payload. Required Fields: passId or externalId, classId.
+getSmartPassLink: {
     path: '/io.Distribution/getSmartPassLink',
     requestStream: false,
     responseStream: false,
@@ -129,7 +155,8 @@ var DistributionService = exports.DistributionService = {
     responseSerialize: serialize_io_Url,
     responseDeserialize: deserialize_io_Url,
   },
-  getDataCollectionPageFields: {
+  // Returns a list of fields to be displayed on the data collection page. For the Member protocol, classId is required. Required Fields: classId (only for MEMBERSHIP protocol)
+getDataCollectionPageFields: {
     path: '/io.Distribution/getDataCollectionPageFields',
     requestStream: false,
     responseStream: false,
@@ -140,7 +167,8 @@ var DistributionService = exports.DistributionService = {
     responseSerialize: serialize_io_DataCollectionFields,
     responseDeserialize: deserialize_io_DataCollectionFields,
   },
-  uploadSmartPassCsv: {
+  // Accepts a CSV file containing user data and a project short code, processes SmartPass creation, and sends results to the user via email. Required Fields: shortCode, csv contents.
+uploadSmartPassCsv: {
     path: '/io.Distribution/uploadSmartPassCsv',
     requestStream: false,
     responseStream: false,
@@ -151,7 +179,8 @@ var DistributionService = exports.DistributionService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  importProtocolCsv: {
+  // Imports and processes a formatted CSV file for a given protocol (e.g., member, coupon) and creates billable records. Required: classId, protocol, and valid csv contents.
+importProtocolCsv: {
     path: '/io.Distribution/importProtocolCsv',
     requestStream: false,
     responseStream: false,
@@ -162,7 +191,8 @@ var DistributionService = exports.DistributionService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  validateBarcode: {
+  // Validates a time-based one-time password (TOTP) barcode string in the format {{payload}}||{{key}}||{{timestamp}}||{{totp}}. If valid, returns the cleaned payload without TOTP metadata. Required Fields: payload.
+validateBarcode: {
     path: '/io.Distribution/validateBarcode',
     requestStream: false,
     responseStream: false,
@@ -172,6 +202,61 @@ var DistributionService = exports.DistributionService = {
     requestDeserialize: deserialize_io_Payload,
     responseSerialize: serialize_io_Payload,
     responseDeserialize: deserialize_io_Payload,
+  },
+  addMessage: {
+    path: '/io.Distribution/addMessage',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_common_message_pb.Message,
+    responseType: google_protobuf_empty_pb.Empty,
+    requestSerialize: serialize_io_Message,
+    requestDeserialize: deserialize_io_Message,
+    responseSerialize: serialize_google_protobuf_Empty,
+    responseDeserialize: deserialize_google_protobuf_Empty,
+  },
+  getMessage: {
+    path: '/io.Distribution/getMessage',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_common_common_objects_pb.Id,
+    responseType: io_common_message_pb.Message,
+    requestSerialize: serialize_io_Id,
+    requestDeserialize: deserialize_io_Id,
+    responseSerialize: serialize_io_Message,
+    responseDeserialize: deserialize_io_Message,
+  },
+  getMessages: {
+    path: '/io.Distribution/getMessages',
+    requestStream: false,
+    responseStream: true,
+    requestType: google_protobuf_empty_pb.Empty,
+    responseType: io_common_message_pb.Message,
+    requestSerialize: serialize_google_protobuf_Empty,
+    requestDeserialize: deserialize_google_protobuf_Empty,
+    responseSerialize: serialize_io_Message,
+    responseDeserialize: deserialize_io_Message,
+  },
+  updateMessage: {
+    path: '/io.Distribution/updateMessage',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_common_message_pb.Message,
+    responseType: google_protobuf_empty_pb.Empty,
+    requestSerialize: serialize_io_Message,
+    requestDeserialize: deserialize_io_Message,
+    responseSerialize: serialize_google_protobuf_Empty,
+    responseDeserialize: deserialize_google_protobuf_Empty,
+  },
+  cancelMessage: {
+    path: '/io.Distribution/cancelMessage',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_common_common_objects_pb.Id,
+    responseType: google_protobuf_empty_pb.Empty,
+    requestSerialize: serialize_io_Id,
+    requestDeserialize: deserialize_io_Id,
+    responseSerialize: serialize_google_protobuf_Empty,
+    responseDeserialize: deserialize_google_protobuf_Empty,
   },
 };
 

@@ -2,7 +2,7 @@
 
 // Original file comments:
 // *
-// Events Protocol is designed to get your Digital Event Tickets into Apple Wallet and Google Pay, from theatre and cinema, to sport events and concerts.
+// Events Protocol is designed to get your Digital Event Tickets into Apple Wallet and Google Wallet, from theatre and cinema, to sport events and concerts.
 'use strict';
 var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
@@ -390,8 +390,10 @@ function deserialize_io_PassBundles(buffer_arg) {
 }
 
 
+// Manages event-ticket productions, venues, events, ticket types, tickets, validation, and redemption. Ticket types belong to a production; issued tickets are associated with an event and ticket type.
 var EventTicketsService = exports.EventTicketsService = {
-  createProduction: {
+  // Creates a new Production record. Required fields: name.
+createProduction: {
     path: '/event_tickets.EventTickets/createProduction',
     requestStream: false,
     responseStream: false,
@@ -402,7 +404,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  patchProduction: {
+  // Partially updates an existing Production. Required fields: id and fields to update. Note: changes will update and affect all existing Events & Tickets related to this Production.
+patchProduction: {
     path: '/event_tickets.EventTickets/patchProduction',
     requestStream: false,
     responseStream: false,
@@ -413,7 +416,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Production,
     responseDeserialize: deserialize_event_tickets_Production,
   },
-  updateProduction: {
+  // Fully updates an existing Production. Required fields: id and all required fields are required. Note: changes will update and affect all existing Events & Tickets related to this Production.
+updateProduction: {
     path: '/event_tickets.EventTickets/updateProduction',
     requestStream: false,
     responseStream: false,
@@ -424,7 +428,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Production,
     responseDeserialize: deserialize_event_tickets_Production,
   },
-  getProduction: {
+  // Retrieves a Production by ID. Required fields: id.
+getProduction: {
     path: '/event_tickets.EventTickets/getProduction',
     requestStream: false,
     responseStream: false,
@@ -435,7 +440,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Production,
     responseDeserialize: deserialize_event_tickets_Production,
   },
-  deleteProduction: {
+  // Deletes a Production and all associated Events and Tickets. Required fields: id. Use with caution, as this action is irreversible.
+deleteProduction: {
     path: '/event_tickets.EventTickets/deleteProduction',
     requestStream: false,
     responseStream: false,
@@ -446,7 +452,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  listProductions: {
+  // Lists all Productions for the authenticated user. Supports filtering options to narrow down the results based on specific criteria.
+listProductions: {
     path: '/event_tickets.EventTickets/listProductions',
     requestStream: false,
     responseStream: true,
@@ -457,7 +464,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Production,
     responseDeserialize: deserialize_event_tickets_Production,
   },
-  getAnalytics: {
+  // Retrieves analytics for a specific Production. Required fields: classId and protocol.
+getAnalytics: {
     path: '/event_tickets.EventTickets/getAnalytics',
     requestStream: false,
     responseStream: false,
@@ -468,7 +476,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_ProductionAnalyticsResponse,
     responseDeserialize: deserialize_event_tickets_ProductionAnalyticsResponse,
   },
-  copyProduction: {
+  // Creates a copy of an existing Production. Required fields: id.
+copyProduction: {
     path: '/event_tickets.EventTickets/copyProduction',
     requestStream: false,
     responseStream: false,
@@ -479,7 +488,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  createVenue: {
+  // Creates a new Venue record. Required fields: name and address.
+createVenue: {
     path: '/event_tickets.EventTickets/createVenue',
     requestStream: false,
     responseStream: false,
@@ -490,7 +500,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateVenue: {
+  // Fully updates an existing Venue. Required fields: id and all required fields are required. Note: changes will update and affect all existing Events & Tickets related to this Venue.
+updateVenue: {
     path: '/event_tickets.EventTickets/updateVenue',
     requestStream: false,
     responseStream: false,
@@ -501,7 +512,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Venue,
     responseDeserialize: deserialize_event_tickets_Venue,
   },
-  patchVenue: {
+  // Partially updates an existing Venue. Required fields: id and fields to update. Note: changes will update and affect all existing Events & Tickets related to this Venue.
+patchVenue: {
     path: '/event_tickets.EventTickets/patchVenue',
     requestStream: false,
     responseStream: false,
@@ -512,7 +524,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Venue,
     responseDeserialize: deserialize_event_tickets_Venue,
   },
-  getVenueById: {
+  // Retrieves a Venue by ID. Required fields: id.
+getVenueById: {
     path: '/event_tickets.EventTickets/getVenueById',
     requestStream: false,
     responseStream: false,
@@ -523,7 +536,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Venue,
     responseDeserialize: deserialize_event_tickets_Venue,
   },
-  deleteVenue: {
+  // Deletes a Venue and all associated Events and Tickets. Required fields: id. Use with caution, as this action is irreversible.
+deleteVenue: {
     path: '/event_tickets.EventTickets/deleteVenue',
     requestStream: false,
     responseStream: false,
@@ -534,7 +548,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  listVenues: {
+  // Lists all Venues for the authenticated user. Supports filtering options to narrow down the results based on specific criteria.
+listVenues: {
     path: '/event_tickets.EventTickets/listVenues',
     requestStream: false,
     responseStream: true,
@@ -545,7 +560,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Venue,
     responseDeserialize: deserialize_event_tickets_Venue,
   },
-  createEvent: {
+  // Creates an event for a production at a venue. Required fields: production and venue.
+createEvent: {
     path: '/event_tickets.EventTickets/createEvent',
     requestStream: false,
     responseStream: false,
@@ -556,7 +572,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateEvent: {
+  // Fully updates an existing Event. Required fields: id and all required fields are required. Note: changes will update & affect all existing tickets related to this event. Production and Venue cannot be changed from this endpoint.
+updateEvent: {
     path: '/event_tickets.EventTickets/updateEvent',
     requestStream: false,
     responseStream: false,
@@ -567,7 +584,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Event,
     responseDeserialize: deserialize_event_tickets_Event,
   },
-  patchEvent: {
+  // Partially updates an existing Event. Required fields: id and fields to update. Note: changes will update & affect all existing tickets related to this event. Production and Venue cannot be changed from this endpoint.
+patchEvent: {
     path: '/event_tickets.EventTickets/patchEvent',
     requestStream: false,
     responseStream: false,
@@ -578,7 +596,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Event,
     responseDeserialize: deserialize_event_tickets_Event,
   },
-  getEventById: {
+  // Retrieves an Event by ID. Required fields: id.
+getEventById: {
     path: '/event_tickets.EventTickets/getEventById',
     requestStream: false,
     responseStream: false,
@@ -589,7 +608,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Event,
     responseDeserialize: deserialize_event_tickets_Event,
   },
-  getEventByStartDateAndVenue: {
+  // Retrieves an Event by start date and venue. Required fields: productionId, venueId, startDate.
+getEventByStartDateAndVenue: {
     path: '/event_tickets.EventTickets/getEventByStartDateAndVenue',
     requestStream: false,
     responseStream: false,
@@ -600,7 +620,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Event,
     responseDeserialize: deserialize_event_tickets_Event,
   },
-  deleteEvent: {
+  // Deletes an Event and all associated Tickets. Required fields: id. Use with caution, as this action is irreversible.
+deleteEvent: {
     path: '/event_tickets.EventTickets/deleteEvent',
     requestStream: false,
     responseStream: false,
@@ -611,7 +632,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  listEvents: {
+  // Lists Events for a Production. Required fields: productionId. Supports filtering options to narrow down the results based on specific criteria.
+listEvents: {
     path: '/event_tickets.EventTickets/listEvents',
     requestStream: false,
     responseStream: true,
@@ -622,7 +644,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_EventListResponse,
     responseDeserialize: deserialize_event_tickets_EventListResponse,
   },
-  createTicketType: {
+  // Creates a new Ticket Type. Required fields: name, productionId and beforeRedeemPassTemplateId.
+createTicketType: {
     path: '/event_tickets.EventTickets/createTicketType',
     requestStream: false,
     responseStream: false,
@@ -633,7 +656,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateTicketType: {
+  // Fully updates an existing Ticket Type. Required fields: name, productionId, beforeRedeemPassTemplateId and all required fields are required. Note: changes will update & affect all existing Tickets related to this Ticket Type.
+updateTicketType: {
     path: '/event_tickets.EventTickets/updateTicketType',
     requestStream: false,
     responseStream: false,
@@ -644,7 +668,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_TicketType,
     responseDeserialize: deserialize_event_tickets_TicketType,
   },
-  patchTicketType: {
+  // Partially updates an existing Ticket Type. Required fields: name, productionId, beforeRedeemPassTemplateId fields to update. Note: changes will update & affect all existing Tickets related to this Ticket Type.
+patchTicketType: {
     path: '/event_tickets.EventTickets/patchTicketType',
     requestStream: false,
     responseStream: false,
@@ -655,7 +680,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_TicketType,
     responseDeserialize: deserialize_event_tickets_TicketType,
   },
-  getTicketTypeById: {
+  // Retrieves a Ticket Type by ID. Required fields: id.
+getTicketTypeById: {
     path: '/event_tickets.EventTickets/getTicketTypeById',
     requestStream: false,
     responseStream: false,
@@ -666,7 +692,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_TicketType,
     responseDeserialize: deserialize_event_tickets_TicketType,
   },
-  getTicketTypeByUserDefinedId: {
+  // Retrieves a Ticket Type by User Defined ID. Required fields: productionId, uid.
+getTicketTypeByUserDefinedId: {
     path: '/event_tickets.EventTickets/getTicketTypeByUserDefinedId',
     requestStream: false,
     responseStream: false,
@@ -677,7 +704,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_TicketType,
     responseDeserialize: deserialize_event_tickets_TicketType,
   },
-  deleteTicketType: {
+  // Deletes a Ticket Type and all associated Tickets. Required fields: id, or productionId and uid. Use with caution, as this action is irreversible.
+deleteTicketType: {
     path: '/event_tickets.EventTickets/deleteTicketType',
     requestStream: false,
     responseStream: false,
@@ -688,7 +716,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  listTicketTypes: {
+  // Lists all Ticket Types for a Production. Required fields: productionId. Supports filtering options to narrow down the results based on specific criteria.
+listTicketTypes: {
     path: '/event_tickets.EventTickets/listTicketTypes',
     requestStream: false,
     responseStream: true,
@@ -699,7 +728,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_TicketType,
     responseDeserialize: deserialize_event_tickets_TicketType,
   },
-  issueTicket: {
+  // Issues a ticket using PassKit IDs for its ticket type and event. Required fields: ticketTypeId, eventId, ticketNumber, person.name.
+issueTicket: {
     path: '/event_tickets.EventTickets/issueTicket',
     requestStream: false,
     responseStream: false,
@@ -710,7 +740,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  issueTicketById: {
+  // Issues a new Ticket by User Defined IDs. Required fields: productionUid, venueUid, ticketTypeUid, event.startDate and ticket.ticketNumber.
+issueTicketById: {
     path: '/event_tickets.EventTickets/issueTicketById',
     requestStream: false,
     responseStream: false,
@@ -721,7 +752,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_IssueTicketResponseIds,
     responseDeserialize: deserialize_event_tickets_IssueTicketResponseIds,
   },
-  updateTicket: {
+  // Updates an existing Ticket. Required fields: id or (ticketNumber + productionId).
+updateTicket: {
     path: '/event_tickets.EventTickets/updateTicket',
     requestStream: false,
     responseStream: false,
@@ -732,7 +764,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  patchPerson: {
+  // Updates personal information for a ticket holder. Required fields: ticketId or (ticketNumber + productionId), person.
+patchPerson: {
     path: '/event_tickets.EventTickets/patchPerson',
     requestStream: false,
     responseStream: false,
@@ -743,7 +776,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  validateTicket: {
+  // Validates a ticket without redeeming it. Required fields: id or ticketNumber with productionId.
+validateTicket: {
     path: '/event_tickets.EventTickets/validateTicket',
     requestStream: false,
     responseStream: false,
@@ -754,7 +788,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_ValidateTicketResponse,
     responseDeserialize: deserialize_event_tickets_ValidateTicketResponse,
   },
-  redeemTicket: {
+  // Redeems a ticket and records the redemption. Required fields: id or ticketNumber with productionId.
+redeemTicket: {
     path: '/event_tickets.EventTickets/redeemTicket',
     requestStream: false,
     responseStream: false,
@@ -765,7 +800,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  redeemTicketsByOrderNumber: {
+  // Redeems multiple Tickets by order number. Required fields: productionid or productionUid, and orderNumber.
+redeemTicketsByOrderNumber: {
     path: '/event_tickets.EventTickets/redeemTicketsByOrderNumber',
     requestStream: false,
     responseStream: false,
@@ -776,7 +812,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_io_Ids,
     responseDeserialize: deserialize_io_Ids,
   },
-  getTicketById: {
+  // Retrieves a Ticket by ID. Required fields: id.
+getTicketById: {
     path: '/event_tickets.EventTickets/getTicketById',
     requestStream: false,
     responseStream: false,
@@ -787,7 +824,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Ticket,
     responseDeserialize: deserialize_event_tickets_Ticket,
   },
-  getTicketByTicketNumber: {
+  // Retrieves a Ticket by ticket number. Required fields: productionId and ticketNumber.
+getTicketByTicketNumber: {
     path: '/event_tickets.EventTickets/getTicketByTicketNumber',
     requestStream: false,
     responseStream: false,
@@ -798,7 +836,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Ticket,
     responseDeserialize: deserialize_event_tickets_Ticket,
   },
-  getTicketsByOrderNumber: {
+  // Retrieves Tickets by order number. Required fields: productionId and orderNumber.
+getTicketsByOrderNumber: {
     path: '/event_tickets.EventTickets/getTicketsByOrderNumber',
     requestStream: false,
     responseStream: false,
@@ -809,7 +848,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_Tickets,
     responseDeserialize: deserialize_event_tickets_Tickets,
   },
-  getEventTicketPass: {
+  // Retrieves the digital pass bundle for a ticket. Required fields: ticketId, or productionId with ticketNumber or orderNumber.
+getEventTicketPass: {
     path: '/event_tickets.EventTickets/getEventTicketPass',
     requestStream: false,
     responseStream: false,
@@ -820,7 +860,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_io_PassBundles,
     responseDeserialize: deserialize_io_PassBundles,
   },
-  deleteTicket: {
+  // Deletes a Ticket. Required fields: id or (ticketNumber + productionId).
+deleteTicket: {
     path: '/event_tickets.EventTickets/deleteTicket',
     requestStream: false,
     responseStream: false,
@@ -831,7 +872,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  bulkDeleteTickets: {
+  // Deletes multiple Tickets using a filter. Required fields: classId, protocol and filters.
+bulkDeleteTickets: {
     path: '/event_tickets.EventTickets/bulkDeleteTickets',
     requestStream: false,
     responseStream: false,
@@ -842,7 +884,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  deleteTicketsByOrderNumber: {
+  // Deletes Tickets by order number. Required fields: productionId or productionUid and orderNumber.
+deleteTicketsByOrderNumber: {
     path: '/event_tickets.EventTickets/deleteTicketsByOrderNumber',
     requestStream: false,
     responseStream: false,
@@ -853,7 +896,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  listTickets: {
+  // Lists all Tickets for a Production. Required fields: productionId + ticketTypeId + eventId.
+listTickets: {
     path: '/event_tickets.EventTickets/listTickets',
     requestStream: false,
     responseStream: true,
@@ -864,7 +908,8 @@ var EventTicketsService = exports.EventTicketsService = {
     responseSerialize: serialize_event_tickets_TicketLimitedFields,
     responseDeserialize: deserialize_event_tickets_TicketLimitedFields,
   },
-  countTickets: {
+  // Counts the number of Tickets matching the filter. Required fields: productionId + ticketTypeId + eventId.
+countTickets: {
     path: '/event_tickets.EventTickets/countTickets',
     requestStream: false,
     responseStream: false,

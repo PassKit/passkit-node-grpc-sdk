@@ -54,6 +54,17 @@ function deserialize_io_Boolean(buffer_arg) {
   return io_common_common_objects_pb.Boolean.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_io_ChangeOwnPasswordInput(arg) {
+  if (!(arg instanceof io_user_user_pb.ChangeOwnPasswordInput)) {
+    throw new Error('Expected argument of type io.ChangeOwnPasswordInput');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_ChangeOwnPasswordInput(buffer_arg) {
+  return io_user_user_pb.ChangeOwnPasswordInput.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_io_CompanyName(arg) {
   if (!(arg instanceof io_user_user_pb.CompanyName)) {
     throw new Error('Expected argument of type io.CompanyName');
@@ -419,7 +430,8 @@ function deserialize_io_VerifyRequest(buffer_arg) {
 
 
 var UsersService = exports.UsersService = {
-  createUser: {
+  // Creates a user and issues a verification email. Required Fields: email, password, name, companyName.
+createUser: {
     path: '/io.Users/createUser',
     requestStream: false,
     responseStream: false,
@@ -430,7 +442,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_NewUserResponse,
     responseDeserialize: deserialize_io_NewUserResponse,
   },
-  newUser: {
+  // Creates a new user and returns a JWT token. Required Fields: email, password, name, companyName.
+newUser: {
     path: '/io.Users/newUser',
     requestStream: false,
     responseStream: false,
@@ -441,7 +454,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_JWT,
     responseDeserialize: deserialize_io_JWT,
   },
-  verify: {
+  // Verifies the user with the email verification code. Required Fields: code.
+verify: {
     path: '/io.Users/verify',
     requestStream: false,
     responseStream: false,
@@ -452,7 +466,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_Boolean,
     responseDeserialize: deserialize_io_Boolean,
   },
-  resendVerificationEmail: {
+  // Resends the verification email.
+resendVerificationEmail: {
     path: '/io.Users/resendVerificationEmail',
     requestStream: false,
     responseStream: false,
@@ -463,7 +478,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_Boolean,
     responseDeserialize: deserialize_io_Boolean,
   },
-  getUser: {
+  // Retrieves the authenticated user's profile.
+getUser: {
     path: '/io.Users/getUser',
     requestStream: false,
     responseStream: false,
@@ -474,7 +490,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_GetUserResponse,
     responseDeserialize: deserialize_io_GetUserResponse,
   },
-  login: {
+  // Authenticates the user and returns a JWT token. Required Fields: username, password.
+login: {
     path: '/io.Users/login',
     requestStream: false,
     responseStream: false,
@@ -485,7 +502,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_JWT,
     responseDeserialize: deserialize_io_JWT,
   },
-  get2faBarcode: {
+  // Returns the barcode image URL for 2FA setup.
+get2faBarcode: {
     path: '/io.Users/get2faBarcode',
     requestStream: false,
     responseStream: false,
@@ -496,7 +514,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_Url,
     responseDeserialize: deserialize_io_Url,
   },
-  resetPassword: {
+  // Resets the user's password if a reset code is already obtained. Required Fields: username, password, code.
+resetPassword: {
     path: '/io.Users/resetPassword',
     requestStream: false,
     responseStream: false,
@@ -507,7 +526,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  sendPasswordResetLink: {
+  // Sends a password reset link to the user's email. Required Fields: username.
+sendPasswordResetLink: {
     path: '/io.Users/sendPasswordResetLink',
     requestStream: false,
     responseStream: false,
@@ -518,7 +538,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  changePassword: {
+  // Changes the user's password using a reset token. Required Fields: token, password.
+changePassword: {
     path: '/io.Users/changePassword',
     requestStream: false,
     responseStream: false,
@@ -529,7 +550,20 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  changeEmail: {
+  // Changes the currently authenticated user's password. Requires a valid auth token and the current password. Required Fields: currentPassword, newPassword, confirmNewPassword.
+changeOwnPassword: {
+    path: '/io.Users/changeOwnPassword',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_user_user_pb.ChangeOwnPasswordInput,
+    responseType: io_user_user_pb.JWT,
+    requestSerialize: serialize_io_ChangeOwnPasswordInput,
+    requestDeserialize: deserialize_io_ChangeOwnPasswordInput,
+    responseSerialize: serialize_io_JWT,
+    responseDeserialize: deserialize_io_JWT,
+  },
+  // Initiates email change. Verification email is sent to new address. Required Fields: email.
+changeEmail: {
     path: '/io.Users/changeEmail',
     requestStream: false,
     responseStream: false,
@@ -540,7 +574,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  confirmEmailChange: {
+  // Confirms and finalizes the email change. Required Fields: email, code.
+confirmEmailChange: {
     path: '/io.Users/confirmEmailChange',
     requestStream: false,
     responseStream: false,
@@ -551,7 +586,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  updateCompanyName: {
+  // Updates the company name associated with the account. Required Fields: name.
+updateCompanyName: {
     path: '/io.Users/updateCompanyName',
     requestStream: false,
     responseStream: false,
@@ -562,7 +598,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  getProjectsForUserQueryDeprecated: {
+  // [DEPRECATED] Retrieves user’s projects using pagination. Required Fields: pagination.
+getProjectsForUserQueryDeprecated: {
     path: '/io.Users/getProjectsForUserQueryDeprecated',
     requestStream: false,
     responseStream: true,
@@ -573,7 +610,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_Project,
     responseDeserialize: deserialize_io_Project,
   },
-  getProjectsQueryDeprecated: {
+  // [DEPRECATED] Retrieves all company projects using pagination. Required Fields: pagination.
+getProjectsQueryDeprecated: {
     path: '/io.Users/getProjectsQueryDeprecated',
     requestStream: false,
     responseStream: true,
@@ -584,7 +622,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_Project,
     responseDeserialize: deserialize_io_Project,
   },
-  getProjectsForUserQuery: {
+  // Retrieves user’s projects using filters. Required Fields: filters.
+getProjectsForUserQuery: {
     path: '/io.Users/getProjectsForUserQuery',
     requestStream: false,
     responseStream: true,
@@ -595,7 +634,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_Project,
     responseDeserialize: deserialize_io_Project,
   },
-  getProjectsQuery: {
+  // Retrieves all company projects using filters. Required Fields: filters.
+getProjectsQuery: {
     path: '/io.Users/getProjectsQuery',
     requestStream: false,
     responseStream: true,
@@ -606,7 +646,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_Project,
     responseDeserialize: deserialize_io_Project,
   },
-  getProjectByUuid: {
+  // Retrieves a project by its UUID. Required Fields: id.
+getProjectByUuid: {
     path: '/io.Users/getProjectByUuid',
     requestStream: false,
     responseStream: false,
@@ -617,7 +658,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_Project,
     responseDeserialize: deserialize_io_Project,
   },
-  getProjectAndTemplateByShortCode: {
+  // Retrieves a project and template using short code. Required Fields: id.
+getProjectAndTemplateByShortCode: {
     path: '/io.Users/getProjectAndTemplateByShortCode',
     requestStream: false,
     responseStream: false,
@@ -628,7 +670,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_ProjectByShortCodeResult,
     responseDeserialize: deserialize_io_ProjectByShortCodeResult,
   },
-  getProjectsForUser: {
+  // Retrieves projects belonging to a user by status. Required Fields: status.
+getProjectsForUser: {
     path: '/io.Users/getProjectsForUser',
     requestStream: false,
     responseStream: true,
@@ -639,7 +682,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_Project,
     responseDeserialize: deserialize_io_Project,
   },
-  getProjects: {
+  // Retrieves all company projects by status. Required Fields: status.
+getProjects: {
     path: '/io.Users/getProjects',
     requestStream: false,
     responseStream: true,
@@ -650,7 +694,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_Project,
     responseDeserialize: deserialize_io_Project,
   },
-  getScannerConfig: {
+  // Retrieves the scanner configuration for the user.
+getScannerConfig: {
     path: '/io.Users/getScannerConfig',
     requestStream: false,
     responseStream: false,
@@ -661,7 +706,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_io_ScannerConfiguration,
     responseDeserialize: deserialize_io_ScannerConfiguration,
   },
-  createScannerConfig: {
+  // Creates a new scanner configuration. Required Fields: ScannerConfiguration fields.
+createScannerConfig: {
     path: '/io.Users/createScannerConfig',
     requestStream: false,
     responseStream: false,
@@ -672,7 +718,8 @@ var UsersService = exports.UsersService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  updateScannerConfig: {
+  // Updates the existing scanner configuration. Required Fields: ScannerConfiguration fields.
+updateScannerConfig: {
     path: '/io.Users/updateScannerConfig',
     requestStream: false,
     responseStream: false,
@@ -695,7 +742,8 @@ createAuthorizationResource: {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  deleteAuthorizationResource: {
+  // Deletes an OAuth2 authorization resource. Required Fields: id.
+deleteAuthorizationResource: {
     path: '/io.Users/deleteAuthorizationResource',
     requestStream: false,
     responseStream: false,
@@ -706,7 +754,8 @@ createAuthorizationResource: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  refreshApiSecret: {
+  // Refreshes the API secret key for the current user.
+refreshApiSecret: {
     path: '/io.Users/refreshApiSecret',
     requestStream: false,
     responseStream: false,
@@ -717,7 +766,8 @@ createAuthorizationResource: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  deleteAccount: {
+  // Permanently deletes the user's account and all associated data. Required Fields: password.
+deleteAccount: {
     path: '/io.Users/deleteAccount',
     requestStream: false,
     responseStream: false,
@@ -728,7 +778,8 @@ createAuthorizationResource: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  revokeLegacyCredentials: {
+  // Immediately revokes any old gRPC credentials.
+revokeLegacyCredentials: {
     path: '/io.Users/revokeLegacyCredentials',
     requestStream: false,
     responseStream: false,
@@ -739,7 +790,7 @@ createAuthorizationResource: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  // Team Members
+  // Creates a new sub-user account for the company. Required Fields: email, name, password.
 createTeamMember: {
     path: '/io.Users/createTeamMember',
     requestStream: false,
@@ -751,7 +802,8 @@ createTeamMember: {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  createPermissionsForTeamMember: {
+  // Assigns permissions to a new team member. Required Fields: userId, permissions.
+createPermissionsForTeamMember: {
     path: '/io.Users/createPermissionsForTeamMember',
     requestStream: false,
     responseStream: false,
@@ -762,7 +814,8 @@ createTeamMember: {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateTeamMemberPermissions: {
+  // Updates the entire permissions object for a team member. Required Fields: userId, permissions.
+updateTeamMemberPermissions: {
     path: '/io.Users/updateTeamMemberPermissions',
     requestStream: false,
     responseStream: false,
@@ -773,7 +826,8 @@ createTeamMember: {
     responseSerialize: serialize_io_TeamMemberPermissions,
     responseDeserialize: deserialize_io_TeamMemberPermissions,
   },
-  patchTeamMemberPermissions: {
+  // Updates partial permissions for a team member. Required Fields: userId, permissions.
+patchTeamMemberPermissions: {
     path: '/io.Users/patchTeamMemberPermissions',
     requestStream: false,
     responseStream: false,
@@ -784,7 +838,8 @@ createTeamMember: {
     responseSerialize: serialize_io_TeamMemberPermissions,
     responseDeserialize: deserialize_io_TeamMemberPermissions,
   },
-  getTeamMember: {
+  // Retrieves a team member by ID. Required Fields: id.
+getTeamMember: {
     path: '/io.Users/getTeamMember',
     requestStream: false,
     responseStream: false,
@@ -795,7 +850,8 @@ createTeamMember: {
     responseSerialize: serialize_io_GetTeamMemberResponse,
     responseDeserialize: deserialize_io_GetTeamMemberResponse,
   },
-  getTeamMembers: {
+  // Retrieves all team members.
+getTeamMembers: {
     path: '/io.Users/getTeamMembers',
     requestStream: false,
     responseStream: true,
@@ -806,7 +862,8 @@ createTeamMember: {
     responseSerialize: serialize_io_ListTeamMembersResponse,
     responseDeserialize: deserialize_io_ListTeamMembersResponse,
   },
-  deleteTeamMember: {
+  // Deletes a team member. Required Fields: id.
+deleteTeamMember: {
     path: '/io.Users/deleteTeamMember',
     requestStream: false,
     responseStream: false,
@@ -817,7 +874,8 @@ createTeamMember: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  getTeamMemberLogs: {
+  // Retrieves access logs for a company or user. Required Fields: protocol, classId, userId, dateRange.
+getTeamMemberLogs: {
     path: '/io.Users/getTeamMemberLogs',
     requestStream: false,
     responseStream: true,
@@ -832,7 +890,8 @@ createTeamMember: {
 
 exports.UsersClient = grpc.makeGenericClientConstructor(UsersService, 'Users');
 var IntegrationsService = exports.IntegrationsService = {
-  createIntegrations: {
+  // Creates integration configurations for a pass type. Required Fields: protocol, classId, integrations.
+createIntegrations: {
     path: '/io.Integrations/createIntegrations',
     requestStream: false,
     responseStream: false,
@@ -843,7 +902,8 @@ var IntegrationsService = exports.IntegrationsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  getIntegrations: {
+  // Retrieves integration configurations for a protocol and class. Required Fields: protocol, classId.
+getIntegrations: {
     path: '/io.Integrations/getIntegrations',
     requestStream: false,
     responseStream: false,
@@ -854,7 +914,8 @@ var IntegrationsService = exports.IntegrationsService = {
     responseSerialize: serialize_io_IntegrationConfigs,
     responseDeserialize: deserialize_io_IntegrationConfigs,
   },
-  updateIntegrations: {
+  // Updates integration configurations for a pass type. Required Fields: protocol, classId, integrations.
+updateIntegrations: {
     path: '/io.Integrations/updateIntegrations',
     requestStream: false,
     responseStream: false,
@@ -865,7 +926,8 @@ var IntegrationsService = exports.IntegrationsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  deleteIntegrations: {
+  // Deletes integration configurations for a protocol and class. Required Fields: protocol, classId.
+deleteIntegrations: {
     path: '/io.Integrations/deleteIntegrations',
     requestStream: false,
     responseStream: false,
@@ -876,7 +938,8 @@ var IntegrationsService = exports.IntegrationsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  createSinkSubscription: {
+  // Creates a sink subscription to receive webhook callbacks after specific events. Required Fields: protocol, classId, event, url.
+createSinkSubscription: {
     path: '/io.Integrations/createSinkSubscription',
     requestStream: false,
     responseStream: false,
@@ -887,7 +950,8 @@ var IntegrationsService = exports.IntegrationsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  getSinkSubscription: {
+  // Retrieves a sink subscription configuration. Required Fields: protocol, subscriptionId.
+getSinkSubscription: {
     path: '/io.Integrations/getSinkSubscription',
     requestStream: false,
     responseStream: false,
@@ -898,7 +962,8 @@ var IntegrationsService = exports.IntegrationsService = {
     responseSerialize: serialize_io_SinkSubscription,
     responseDeserialize: deserialize_io_SinkSubscription,
   },
-  listSinkSubscriptionsDeprecated: {
+  // [DEPRECATED] Lists sink subscriptions by segment with optional pagination. Required Fields: pagination.
+listSinkSubscriptionsDeprecated: {
     path: '/io.Integrations/listSinkSubscriptionsDeprecated',
     requestStream: false,
     responseStream: true,
@@ -909,7 +974,8 @@ var IntegrationsService = exports.IntegrationsService = {
     responseSerialize: serialize_io_SinkSubscription,
     responseDeserialize: deserialize_io_SinkSubscription,
   },
-  listSinkSubscriptions: {
+  // Lists all sink subscriptions by segment with optional pagination. Required Fields: filters.
+listSinkSubscriptions: {
     path: '/io.Integrations/listSinkSubscriptions',
     requestStream: false,
     responseStream: true,
@@ -920,7 +986,8 @@ var IntegrationsService = exports.IntegrationsService = {
     responseSerialize: serialize_io_SinkSubscription,
     responseDeserialize: deserialize_io_SinkSubscription,
   },
-  updateSinkSubscription: {
+  // Updates a sink subscription configuration. Required Fields: protocol, classId, event, url.
+updateSinkSubscription: {
     path: '/io.Integrations/updateSinkSubscription',
     requestStream: false,
     responseStream: false,
@@ -931,7 +998,8 @@ var IntegrationsService = exports.IntegrationsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  deleteSinkSubscription: {
+  // Deletes a sink subscription configuration. Required Fields: protocol, subscriptionId.
+deleteSinkSubscription: {
     path: '/io.Integrations/deleteSinkSubscription',
     requestStream: false,
     responseStream: false,
@@ -942,7 +1010,8 @@ var IntegrationsService = exports.IntegrationsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  getSampleSubscriptionEvent: {
+  // Returns a sample sink subscription payload. Required Fields: id.
+getSampleSubscriptionEvent: {
     path: '/io.Integrations/getSampleSubscriptionEvent',
     requestStream: false,
     responseStream: false,
@@ -953,7 +1022,8 @@ var IntegrationsService = exports.IntegrationsService = {
     responseSerialize: serialize_io_SinkSubscription,
     responseDeserialize: deserialize_io_SinkSubscription,
   },
-  callDynamicApi: {
+  // Dynamically calls an external API using configured credentials. Required Fields: url, method, headers, body (depending on the API).
+callDynamicApi: {
     path: '/io.Integrations/callDynamicApi',
     requestStream: false,
     responseStream: false,

@@ -4,7 +4,7 @@
 // *
 // Flights RPC
 //
-// The PassKit Flights API lets you manage your flights and boarding passes for Apple Wallet and Google Pay.
+// The PassKit Flights API lets you manage your flights and boarding passes for Apple Wallet and Google Wallet.
 'use strict';
 var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
@@ -158,8 +158,9 @@ function deserialize_google_protobuf_Empty(buffer_arg) {
 }
 
 
+// Manages carriers, flight designators, flights, and digital boarding passes. Carrier and flight-designator records provide data used when creating flights and boarding passes.
 var FlightsService = exports.FlightsService = {
-  // Create an airport record. Optional method allowing the carrier to specify how the airport name is rendered in the pass and the GPS location that will trigger a lock-screen alert.
+  // Create an airport record. Optional method allowing the carrier to specify how the airport name is rendered in the pass and the GPS location that will trigger a lock-screen alert. Required Fields: airportCode, cityName, airportName, countryCode, timezone.
 createPort: {
     path: '/flights.Flights/createPort',
     requestStream: false,
@@ -171,7 +172,7 @@ createPort: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  // Retrieve an airport record. The AirportCode is the three character IATA code or 4 character ICAO code.
+  // Retrieve an airport record. The AirportCode is the three character IATA code or 4 character ICAO code. Required Fields: airportCode.
 getPort: {
     path: '/flights.Flights/getPort',
     requestStream: false,
@@ -183,7 +184,7 @@ getPort: {
     responseSerialize: serialize_flights_Port,
     responseDeserialize: deserialize_flights_Port,
   },
-  // Update an airport record.
+  // Update an airport record. Required Fields: airportCode.
 updatePort: {
     path: '/flights.Flights/updatePort',
     requestStream: false,
@@ -195,7 +196,7 @@ updatePort: {
     responseSerialize: serialize_flights_Port,
     responseDeserialize: deserialize_flights_Port,
   },
-  // Delete an airport record. Deleting a record will remove any custom data provided. A new Airport record may be automatically created for a flight departing, arriving or transiting an airport which does not have a record, using publicly available data.
+  // Delete an airport record. Deleting a record will remove any custom data provided. A new Airport record may be automatically created for a flight departing, arriving or transiting an airport which does not have a record, using publicly available data. Required Fields: airportCode.
 deletePort: {
     path: '/flights.Flights/deletePort',
     requestStream: false,
@@ -207,7 +208,7 @@ deletePort: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  // Create a carrier record. All Flight Designations and Flights must have a carrier record.
+  // Create a carrier record. All Flight Designators and Flights must have a carrier record. Required Fields: carrierCode, airlineName, passTypeIdentifier.
 createCarrier: {
     path: '/flights.Flights/createCarrier',
     requestStream: false,
@@ -219,7 +220,7 @@ createCarrier: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  // Retrieve a carrier record.
+  // Retrieve a carrier record. Required Fields: carrierCode.
 getCarrier: {
     path: '/flights.Flights/getCarrier',
     requestStream: false,
@@ -231,7 +232,7 @@ getCarrier: {
     responseSerialize: serialize_flights_Carrier,
     responseDeserialize: deserialize_flights_Carrier,
   },
-  // Update a carrier record
+  // Update a carrier record. Required Fields: carrierCode.
 updateCarrier: {
     path: '/flights.Flights/updateCarrier',
     requestStream: false,
@@ -243,7 +244,7 @@ updateCarrier: {
     responseSerialize: serialize_flights_Carrier,
     responseDeserialize: deserialize_flights_Carrier,
   },
-  // Delete a carrier record.
+  // Delete a carrier record. Required Fields: carrierCode.
 deleteCarrier: {
     path: '/flights.Flights/deleteCarrier',
     requestStream: false,
@@ -255,7 +256,7 @@ deleteCarrier: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  // Create a flight designator record. As much default information as possible should be provided to facilitate the automatic generation of flight records.
+  // Create a flight designator record. As much default information as possible should be provided to facilitate the automatic generation of flight records. Required Fields: carrierCode, flightNumber, revision, schedule, origin, destination.
 createFlightDesignator: {
     path: '/flights.Flights/createFlightDesignator',
     requestStream: false,
@@ -267,7 +268,7 @@ createFlightDesignator: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  // Retrieve a flight designation record.
+  // Retrieve a flight designator record. Required Fields: carrierCode, flightNumber, revision.
 getFlightDesignator: {
     path: '/flights.Flights/getFlightDesignator',
     requestStream: false,
@@ -279,7 +280,7 @@ getFlightDesignator: {
     responseSerialize: serialize_flights_FlightDesignator,
     responseDeserialize: deserialize_flights_FlightDesignator,
   },
-  // Update a flight designation record.
+  // Update a flight designator record. Required Fields: carrierCode, flightNumber, revision.
 updateFlightDesignator: {
     path: '/flights.Flights/updateFlightDesignator',
     requestStream: false,
@@ -291,7 +292,7 @@ updateFlightDesignator: {
     responseSerialize: serialize_flights_FlightDesignator,
     responseDeserialize: deserialize_flights_FlightDesignator,
   },
-  // Delete a flight designation record.
+  // Delete a flight designator record. Required Fields: carrierCode, flightNumber, revision.
 deleteFlightDesignator: {
     path: '/flights.Flights/deleteFlightDesignator',
     requestStream: false,
@@ -303,7 +304,7 @@ deleteFlightDesignator: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  // Create a flight record. In practice, this method is not often used, since flight records can be automatically generated. Any information in the flight record will override information in the carrier and flight designation records.
+  // Creates a flight record. Flight records can be generated automatically; values on this record override carrier and flight-designator data. Required fields: carrierCode, flightNumber, departureDate, boardingPoint, deplaningPoint.
 createFlight: {
     path: '/flights.Flights/createFlight',
     requestStream: false,
@@ -315,7 +316,7 @@ createFlight: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  // Retrieve a flight record.
+  // Retrieve a flight record. Required Fields: carrierCode, flightNumber, departureDate, boardingPoint, deplaningPoint.
 getFlight: {
     path: '/flights.Flights/getFlight',
     requestStream: false,
@@ -327,7 +328,7 @@ getFlight: {
     responseSerialize: serialize_flights_Flight,
     responseDeserialize: deserialize_flights_Flight,
   },
-  // Update a flight record.
+  // Update a flight record. Required Fields: carrierCode, flightNumber, departureDate, boardingPoint, deplaningPoint.
 updateFlight: {
     path: '/flights.Flights/updateFlight',
     requestStream: false,
@@ -339,7 +340,7 @@ updateFlight: {
     responseSerialize: serialize_flights_Flight,
     responseDeserialize: deserialize_flights_Flight,
   },
-  // Delete a flight record.
+  // Delete a flight record. Required Fields: carrierCode, flightNumber, departureDate, boardingPoint, deplaningPoint.
 deleteFlight: {
     path: '/flights.Flights/deleteFlight',
     requestStream: false,
@@ -351,7 +352,7 @@ deleteFlight: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  // Create a boarding pass record. Flight related information not present in the boarding pass record will be populated from the flight, flight designator or carrier records.
+  // Creates a boarding-pass record. Missing flight data is populated from the related flight, flight designator, or carrier records. Required fields: operatingCarrierPNR, boardingPoint, deplaningPoint, carrierCode, flightNumber, departureDate, passenger, sequenceNumber.
 createBoardingPass: {
     path: '/flights.Flights/createBoardingPass',
     requestStream: false,
@@ -363,7 +364,7 @@ createBoardingPass: {
     responseSerialize: serialize_flights_BoardingPassesResponse,
     responseDeserialize: deserialize_flights_BoardingPassesResponse,
   },
-  // Retrieve a boarding pass record.
+  // Retrieve a boarding pass record. Required Fields: ticketNumber or index or passId.
 getBoardingPassRecord: {
     path: '/flights.Flights/getBoardingPassRecord',
     requestStream: false,
@@ -375,7 +376,7 @@ getBoardingPassRecord: {
     responseSerialize: serialize_flights_BoardingPassRecord,
     responseDeserialize: deserialize_flights_BoardingPassRecord,
   },
-  // Retrieve digital boarding pass(es) in the requested format by ticket number, index, PNR or id.
+  // Retrieves digital boarding passes in the requested format by ticket number, index, PNR, or pass ID. Required fields: ticketNumber, index, or passId.
 getBoardingPass: {
     path: '/flights.Flights/getBoardingPass',
     requestStream: false,
@@ -387,7 +388,7 @@ getBoardingPass: {
     responseSerialize: serialize_flights_BoardingPassesResponse,
     responseDeserialize: deserialize_flights_BoardingPassesResponse,
   },
-  // Update a boarding pass record.
+  // Update a boarding pass record. Required Fields: operatingCarrierPNR, boardingPoint, deplaningPoint, carrierCode, flightNumber, departureDate, passenger, sequenceNumber.
 updateBoardingPass: {
     path: '/flights.Flights/updateBoardingPass',
     requestStream: false,
@@ -399,7 +400,7 @@ updateBoardingPass: {
     responseSerialize: serialize_flights_BoardingPassRecord,
     responseDeserialize: deserialize_flights_BoardingPassRecord,
   },
-  // Delete a boarding pass record.
+  // Delete a boarding pass record. Required Fields: ticketNumber or index or passId
 deleteBoardingPass: {
     path: '/flights.Flights/deleteBoardingPass',
     requestStream: false,

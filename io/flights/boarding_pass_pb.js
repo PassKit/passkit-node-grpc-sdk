@@ -197,7 +197,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.flights.BoardingPassRecord.repeatedFields_ = [3,21,30,31,32];
+proto.flights.BoardingPassRecord.repeatedFields_ = [3,21,30,31,32,38,39];
 
 
 
@@ -265,8 +265,12 @@ proto.flights.BoardingPassRecord.toObject = function(includeInstance, msg) {
     linksList: jspb.Message.toObjectList(msg.getLinksList(),
     io_common_links_pb.Link.toObject, includeInstance),
     barcodeadditionaldata: jspb.Message.getFieldWithDefault(msg, 33, ""),
-    infantpassid: jspb.Message.getFieldWithDefault(msg, 34, ""),
     additionaldataitems: (f = msg.getAdditionaldataitems()) && io_common_common_objects_pb.DataItems.toObject(includeInstance, f),
+    urls: (f = msg.getUrls()) && io_flights_barcode_pb.FlightURLs.toObject(includeInstance, f),
+    capabilitiesList: (f = jspb.Message.getRepeatedField(msg, 38)) == null ? undefined : f,
+    securityprogramsList: (f = jspb.Message.getRepeatedField(msg, 39)) == null ? undefined : f,
+    prioritystatus: jspb.Message.getFieldWithDefault(msg, 40, ""),
+    infantpassid: jspb.Message.getFieldWithDefault(msg, 34, ""),
     metadata: (f = msg.getMetadata()) && io_common_metrics_pb.Metadata.toObject(includeInstance, f)
   };
 
@@ -438,14 +442,35 @@ proto.flights.BoardingPassRecord.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {string} */ (reader.readString());
       msg.setBarcodeadditionaldata(value);
       break;
-    case 34:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setInfantpassid(value);
-      break;
     case 35:
       var value = new io_common_common_objects_pb.DataItems;
       reader.readMessage(value,io_common_common_objects_pb.DataItems.deserializeBinaryFromReader);
       msg.setAdditionaldataitems(value);
+      break;
+    case 37:
+      var value = new io_flights_barcode_pb.FlightURLs;
+      reader.readMessage(value,io_flights_barcode_pb.FlightURLs.deserializeBinaryFromReader);
+      msg.setUrls(value);
+      break;
+    case 38:
+      var values = /** @type {!Array<!proto.flights.PassengerCapabilities>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addCapabilities(values[i]);
+      }
+      break;
+    case 39:
+      var values = /** @type {!Array<!proto.flights.AirportSecurityPrograms>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addSecurityprograms(values[i]);
+      }
+      break;
+    case 40:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPrioritystatus(value);
+      break;
+    case 34:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInfantpassid(value);
       break;
     case 36:
       var value = new io_common_metrics_pb.Metadata;
@@ -711,19 +736,48 @@ proto.flights.BoardingPassRecord.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getInfantpassid();
-  if (f.length > 0) {
-    writer.writeString(
-      34,
-      f
-    );
-  }
   f = message.getAdditionaldataitems();
   if (f != null) {
     writer.writeMessage(
       35,
       f,
       io_common_common_objects_pb.DataItems.serializeBinaryToWriter
+    );
+  }
+  f = message.getUrls();
+  if (f != null) {
+    writer.writeMessage(
+      37,
+      f,
+      io_flights_barcode_pb.FlightURLs.serializeBinaryToWriter
+    );
+  }
+  f = message.getCapabilitiesList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      38,
+      f
+    );
+  }
+  f = message.getSecurityprogramsList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      39,
+      f
+    );
+  }
+  f = message.getPrioritystatus();
+  if (f.length > 0) {
+    writer.writeString(
+      40,
+      f
+    );
+  }
+  f = message.getInfantpassid();
+  if (f.length > 0) {
+    writer.writeString(
+      34,
+      f
     );
   }
   f = message.getMetadata();
@@ -1469,24 +1523,6 @@ proto.flights.BoardingPassRecord.prototype.setBarcodeadditionaldata = function(v
 
 
 /**
- * optional string infantPassId = 34;
- * @return {string}
- */
-proto.flights.BoardingPassRecord.prototype.getInfantpassid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 34, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.flights.BoardingPassRecord} returns this
- */
-proto.flights.BoardingPassRecord.prototype.setInfantpassid = function(value) {
-  return jspb.Message.setProto3StringField(this, 34, value);
-};
-
-
-/**
  * optional io.DataItems additionalDataItems = 35;
  * @return {?proto.io.DataItems}
  */
@@ -1520,6 +1556,153 @@ proto.flights.BoardingPassRecord.prototype.clearAdditionaldataitems = function()
  */
 proto.flights.BoardingPassRecord.prototype.hasAdditionaldataitems = function() {
   return jspb.Message.getField(this, 35) != null;
+};
+
+
+/**
+ * optional FlightURLs urls = 37;
+ * @return {?proto.flights.FlightURLs}
+ */
+proto.flights.BoardingPassRecord.prototype.getUrls = function() {
+  return /** @type{?proto.flights.FlightURLs} */ (
+    jspb.Message.getWrapperField(this, io_flights_barcode_pb.FlightURLs, 37));
+};
+
+
+/**
+ * @param {?proto.flights.FlightURLs|undefined} value
+ * @return {!proto.flights.BoardingPassRecord} returns this
+*/
+proto.flights.BoardingPassRecord.prototype.setUrls = function(value) {
+  return jspb.Message.setWrapperField(this, 37, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.flights.BoardingPassRecord} returns this
+ */
+proto.flights.BoardingPassRecord.prototype.clearUrls = function() {
+  return this.setUrls(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.flights.BoardingPassRecord.prototype.hasUrls = function() {
+  return jspb.Message.getField(this, 37) != null;
+};
+
+
+/**
+ * repeated PassengerCapabilities capabilities = 38;
+ * @return {!Array<!proto.flights.PassengerCapabilities>}
+ */
+proto.flights.BoardingPassRecord.prototype.getCapabilitiesList = function() {
+  return /** @type {!Array<!proto.flights.PassengerCapabilities>} */ (jspb.Message.getRepeatedField(this, 38));
+};
+
+
+/**
+ * @param {!Array<!proto.flights.PassengerCapabilities>} value
+ * @return {!proto.flights.BoardingPassRecord} returns this
+ */
+proto.flights.BoardingPassRecord.prototype.setCapabilitiesList = function(value) {
+  return jspb.Message.setField(this, 38, value || []);
+};
+
+
+/**
+ * @param {!proto.flights.PassengerCapabilities} value
+ * @param {number=} opt_index
+ * @return {!proto.flights.BoardingPassRecord} returns this
+ */
+proto.flights.BoardingPassRecord.prototype.addCapabilities = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 38, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.flights.BoardingPassRecord} returns this
+ */
+proto.flights.BoardingPassRecord.prototype.clearCapabilitiesList = function() {
+  return this.setCapabilitiesList([]);
+};
+
+
+/**
+ * repeated AirportSecurityPrograms securityPrograms = 39;
+ * @return {!Array<!proto.flights.AirportSecurityPrograms>}
+ */
+proto.flights.BoardingPassRecord.prototype.getSecurityprogramsList = function() {
+  return /** @type {!Array<!proto.flights.AirportSecurityPrograms>} */ (jspb.Message.getRepeatedField(this, 39));
+};
+
+
+/**
+ * @param {!Array<!proto.flights.AirportSecurityPrograms>} value
+ * @return {!proto.flights.BoardingPassRecord} returns this
+ */
+proto.flights.BoardingPassRecord.prototype.setSecurityprogramsList = function(value) {
+  return jspb.Message.setField(this, 39, value || []);
+};
+
+
+/**
+ * @param {!proto.flights.AirportSecurityPrograms} value
+ * @param {number=} opt_index
+ * @return {!proto.flights.BoardingPassRecord} returns this
+ */
+proto.flights.BoardingPassRecord.prototype.addSecurityprograms = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 39, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.flights.BoardingPassRecord} returns this
+ */
+proto.flights.BoardingPassRecord.prototype.clearSecurityprogramsList = function() {
+  return this.setSecurityprogramsList([]);
+};
+
+
+/**
+ * optional string PriorityStatus = 40;
+ * @return {string}
+ */
+proto.flights.BoardingPassRecord.prototype.getPrioritystatus = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 40, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.flights.BoardingPassRecord} returns this
+ */
+proto.flights.BoardingPassRecord.prototype.setPrioritystatus = function(value) {
+  return jspb.Message.setProto3StringField(this, 40, value);
+};
+
+
+/**
+ * optional string infantPassId = 34;
+ * @return {string}
+ */
+proto.flights.BoardingPassRecord.prototype.getInfantpassid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 34, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.flights.BoardingPassRecord} returns this
+ */
+proto.flights.BoardingPassRecord.prototype.setInfantpassid = function(value) {
+  return jspb.Message.setProto3StringField(this, 34, value);
 };
 
 

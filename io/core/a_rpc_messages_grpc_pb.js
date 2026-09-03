@@ -63,7 +63,8 @@ function deserialize_io_SendMessageResponse(buffer_arg) {
 
 
 var MessagesService = exports.MessagesService = {
-  getMessage: {
+  // Retrieves a single message by its ID. Required Fields: id.
+getMessage: {
     path: '/io.Messages/getMessage',
     requestStream: false,
     responseStream: false,
@@ -74,7 +75,8 @@ var MessagesService = exports.MessagesService = {
     responseSerialize: serialize_io_Message,
     responseDeserialize: deserialize_io_Message,
   },
-  createMessage: {
+  // Creates a new message that can be linked to a pass or class. Required Fields: id.
+createMessage: {
     path: '/io.Messages/createMessage',
     requestStream: false,
     responseStream: false,
@@ -85,7 +87,8 @@ var MessagesService = exports.MessagesService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateMessage: {
+  // Updates an existing message by ID. Required Fields: id.
+updateMessage: {
     path: '/io.Messages/updateMessage',
     requestStream: false,
     responseStream: false,
@@ -96,7 +99,8 @@ var MessagesService = exports.MessagesService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  deleteMessage: {
+  // Deletes a message by its ID. Required Fields: id. Note: Deleting a message removes it from all linked passes.
+deleteMessage: {
     path: '/io.Messages/deleteMessage',
     requestStream: false,
     responseStream: false,
@@ -107,7 +111,8 @@ var MessagesService = exports.MessagesService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  sendMessage: {
+  // Sends a message to specified pass IDs or to all passes in a class. Required: passId, protocol.
+sendMessage: {
     path: '/io.Messages/sendMessage',
     requestStream: false,
     responseStream: false,

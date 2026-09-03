@@ -106,7 +106,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.flights.Infant = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.flights.Infant.repeatedFields_, null);
 };
 goog.inherits(proto.flights.Infant, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1104,6 +1104,13 @@ proto.flights.IdentityDetails.prototype.hasExpirydate = function() {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.flights.Infant.repeatedFields_ = [9,10,11];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1142,7 +1149,12 @@ proto.flights.Infant.toObject = function(includeInstance, msg) {
     barcodeadditionaldata: jspb.Message.getFieldWithDefault(msg, 5, ""),
     securityimage: jspb.Message.getFieldWithDefault(msg, 6, ""),
     privilegeimage: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    footerimage: jspb.Message.getFieldWithDefault(msg, 8, "")
+    footerimage: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    ssrcodesList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
+    capabilitiesList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
+    securityprogramsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
+    freebaggageallowance: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    carryonallowance: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -1213,6 +1225,30 @@ proto.flights.Infant.deserializeBinaryFromReader = function(msg, reader) {
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setFooterimage(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addSsrcodes(value);
+      break;
+    case 10:
+      var values = /** @type {!Array<!proto.flights.PassengerCapabilities>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addCapabilities(values[i]);
+      }
+      break;
+    case 11:
+      var values = /** @type {!Array<!proto.flights.AirportSecurityPrograms>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addSecurityprograms(values[i]);
+      }
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFreebaggageallowance(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCarryonallowance(value);
       break;
     default:
       reader.skipField();
@@ -1299,6 +1335,41 @@ proto.flights.Infant.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       8,
+      f
+    );
+  }
+  f = message.getSsrcodesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      9,
+      f
+    );
+  }
+  f = message.getCapabilitiesList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      10,
+      f
+    );
+  }
+  f = message.getSecurityprogramsList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      11,
+      f
+    );
+  }
+  f = message.getFreebaggageallowance();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
+  f = message.getCarryonallowance();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
       f
     );
   }
@@ -1503,6 +1574,153 @@ proto.flights.Infant.prototype.getFooterimage = function() {
  */
 proto.flights.Infant.prototype.setFooterimage = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * repeated string ssrCodes = 9;
+ * @return {!Array<string>}
+ */
+proto.flights.Infant.prototype.getSsrcodesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 9));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.flights.Infant} returns this
+ */
+proto.flights.Infant.prototype.setSsrcodesList = function(value) {
+  return jspb.Message.setField(this, 9, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.flights.Infant} returns this
+ */
+proto.flights.Infant.prototype.addSsrcodes = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 9, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.flights.Infant} returns this
+ */
+proto.flights.Infant.prototype.clearSsrcodesList = function() {
+  return this.setSsrcodesList([]);
+};
+
+
+/**
+ * repeated PassengerCapabilities capabilities = 10;
+ * @return {!Array<!proto.flights.PassengerCapabilities>}
+ */
+proto.flights.Infant.prototype.getCapabilitiesList = function() {
+  return /** @type {!Array<!proto.flights.PassengerCapabilities>} */ (jspb.Message.getRepeatedField(this, 10));
+};
+
+
+/**
+ * @param {!Array<!proto.flights.PassengerCapabilities>} value
+ * @return {!proto.flights.Infant} returns this
+ */
+proto.flights.Infant.prototype.setCapabilitiesList = function(value) {
+  return jspb.Message.setField(this, 10, value || []);
+};
+
+
+/**
+ * @param {!proto.flights.PassengerCapabilities} value
+ * @param {number=} opt_index
+ * @return {!proto.flights.Infant} returns this
+ */
+proto.flights.Infant.prototype.addCapabilities = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 10, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.flights.Infant} returns this
+ */
+proto.flights.Infant.prototype.clearCapabilitiesList = function() {
+  return this.setCapabilitiesList([]);
+};
+
+
+/**
+ * repeated AirportSecurityPrograms securityPrograms = 11;
+ * @return {!Array<!proto.flights.AirportSecurityPrograms>}
+ */
+proto.flights.Infant.prototype.getSecurityprogramsList = function() {
+  return /** @type {!Array<!proto.flights.AirportSecurityPrograms>} */ (jspb.Message.getRepeatedField(this, 11));
+};
+
+
+/**
+ * @param {!Array<!proto.flights.AirportSecurityPrograms>} value
+ * @return {!proto.flights.Infant} returns this
+ */
+proto.flights.Infant.prototype.setSecurityprogramsList = function(value) {
+  return jspb.Message.setField(this, 11, value || []);
+};
+
+
+/**
+ * @param {!proto.flights.AirportSecurityPrograms} value
+ * @param {number=} opt_index
+ * @return {!proto.flights.Infant} returns this
+ */
+proto.flights.Infant.prototype.addSecurityprograms = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 11, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.flights.Infant} returns this
+ */
+proto.flights.Infant.prototype.clearSecurityprogramsList = function() {
+  return this.setSecurityprogramsList([]);
+};
+
+
+/**
+ * optional string freeBaggageAllowance = 12;
+ * @return {string}
+ */
+proto.flights.Infant.prototype.getFreebaggageallowance = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.flights.Infant} returns this
+ */
+proto.flights.Infant.prototype.setFreebaggageallowance = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional string carryOnAllowance = 13;
+ * @return {string}
+ */
+proto.flights.Infant.prototype.getCarryonallowance = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.flights.Infant} returns this
+ */
+proto.flights.Infant.prototype.setCarryonallowance = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 

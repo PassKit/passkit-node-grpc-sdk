@@ -79,8 +79,10 @@ function deserialize_scheduler_ListRequest(buffer_arg) {
 }
 
 
+// The PassKit Scheduler API allows you to automate tasks within your PassKit programs. This API allows you to schedule one-time or recurring jobs that interact with other PassKit APIs.
 var SchedulerService = exports.SchedulerService = {
-  createSchedulingJob: {
+  // Creates a scheduling job. Required Fields: scheduleType, protocol, classId, jobName, scheduledTime, timezone.
+createSchedulingJob: {
     path: '/scheduler.Scheduler/createSchedulingJob',
     requestStream: false,
     responseStream: false,
@@ -91,7 +93,8 @@ var SchedulerService = exports.SchedulerService = {
     responseSerialize: serialize_ct_SchedulingJobResponse,
     responseDeserialize: deserialize_ct_SchedulingJobResponse,
   },
-  getSchedulingJob: {
+  // Retrieves a scheduling job by its ID. If the job has been deleted, only history logs will be returned. Required Fields: id.
+getSchedulingJob: {
     path: '/scheduler.Scheduler/getSchedulingJob',
     requestStream: false,
     responseStream: false,
@@ -102,7 +105,8 @@ var SchedulerService = exports.SchedulerService = {
     responseSerialize: serialize_ct_SchedulingJob,
     responseDeserialize: deserialize_ct_SchedulingJob,
   },
-  updateSchedulingJob: {
+  // Updates an existing scheduling job. The full SchedulingJob object must be supplied. Empty/null fields will overwrite existing data. Required Fields: id, scheduleType, protocol, classId, jobName, scheduledTime, timezone.
+updateSchedulingJob: {
     path: '/scheduler.Scheduler/updateSchedulingJob',
     requestStream: false,
     responseStream: false,
@@ -113,7 +117,8 @@ var SchedulerService = exports.SchedulerService = {
     responseSerialize: serialize_ct_SchedulingJobResponse,
     responseDeserialize: deserialize_ct_SchedulingJobResponse,
   },
-  patchSchedulingJob: {
+  // Patch updates a scheduling job. Only supplied fields will be updated. Required Fields: id.
+patchSchedulingJob: {
     path: '/scheduler.Scheduler/patchSchedulingJob',
     requestStream: false,
     responseStream: false,
@@ -124,7 +129,8 @@ var SchedulerService = exports.SchedulerService = {
     responseSerialize: serialize_ct_SchedulingJobResponse,
     responseDeserialize: deserialize_ct_SchedulingJobResponse,
   },
-  deleteSchedulingJob: {
+  // Deletes a scheduling job by ID. History logs remain available after deletion. Required Fields: id.
+deleteSchedulingJob: {
     path: '/scheduler.Scheduler/deleteSchedulingJob',
     requestStream: false,
     responseStream: false,
@@ -135,7 +141,8 @@ var SchedulerService = exports.SchedulerService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  getSchedulingJobHistory: {
+  // Retrieves a specific scheduling job history log by ID. Required Fields: id.
+getSchedulingJobHistory: {
     path: '/scheduler.Scheduler/getSchedulingJobHistory',
     requestStream: false,
     responseStream: false,
@@ -146,7 +153,8 @@ var SchedulerService = exports.SchedulerService = {
     responseSerialize: serialize_ct_JobHistory,
     responseDeserialize: deserialize_ct_JobHistory,
   },
-  listSchedulingJobHistories: {
+  // Lists all history logs for a given scheduling job. Required Fields: jobId.
+listSchedulingJobHistories: {
     path: '/scheduler.Scheduler/listSchedulingJobHistories',
     requestStream: false,
     responseStream: true,

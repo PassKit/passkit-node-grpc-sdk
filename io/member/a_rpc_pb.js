@@ -25,6 +25,8 @@ var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb
 goog.object.extend(proto, google_protobuf_empty_pb);
 var io_common_common_objects_pb = require('../../io/common/common_objects_pb.js');
 goog.object.extend(proto, io_common_common_objects_pb);
+var io_common_batch_update_pb = require('../../io/common/batch_update_pb.js');
+goog.object.extend(proto, io_common_batch_update_pb);
 var io_common_distribution_pb = require('../../io/common/distribution_pb.js');
 goog.object.extend(proto, io_common_distribution_pb);
 var io_common_message_pb = require('../../io/common/message_pb.js');

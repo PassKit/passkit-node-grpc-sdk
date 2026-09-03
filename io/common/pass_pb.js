@@ -33,6 +33,8 @@ var io_common_protocols_pb = require('../../io/common/protocols_pb.js');
 goog.object.extend(proto, io_common_protocols_pb);
 var io_common_proximity_pb = require('../../io/common/proximity_pb.js');
 goog.object.extend(proto, io_common_proximity_pb);
+var io_common_featured_actions_pb = require('../../io/common/featured_actions_pb.js');
+goog.object.extend(proto, io_common_featured_actions_pb);
 var io_common_template_pb = require('../../io/common/template_pb.js');
 goog.object.extend(proto, io_common_template_pb);
 goog.exportSymbol('proto.io.Pass', null, global);
@@ -107,7 +109,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.io.PassOverrides.repeatedFields_ = [3,4,5,7,8];
+proto.io.PassOverrides.repeatedFields_ = [3,4,5,7,8,9];
 
 
 
@@ -149,7 +151,9 @@ proto.io.PassOverrides.toObject = function(includeInstance, msg) {
     io_common_links_pb.Link.toObject, includeInstance),
     colors: (f = msg.getColors()) && io_common_template_pb.Colors.toObject(includeInstance, f),
     associatedstoreidentifiersList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
-    appstoreidentifiersList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
+    appstoreidentifiersList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
+    featuredactionsList: jspb.Message.toObjectList(msg.getFeaturedactionsList(),
+    io_common_featured_actions_pb.FeaturedAction.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -222,6 +226,11 @@ proto.io.PassOverrides.deserializeBinaryFromReader = function(msg, reader) {
       for (var i = 0; i < values.length; i++) {
         msg.addAppstoreidentifiers(values[i]);
       }
+      break;
+    case 9:
+      var value = new io_common_featured_actions_pb.FeaturedAction;
+      reader.readMessage(value,io_common_featured_actions_pb.FeaturedAction.deserializeBinaryFromReader);
+      msg.addFeaturedactions(value);
       break;
     default:
       reader.skipField();
@@ -304,6 +313,14 @@ proto.io.PassOverrides.serializeBinaryToWriter = function(message, writer) {
     writer.writePackedUint64(
       8,
       f
+    );
+  }
+  f = message.getFeaturedactionsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      9,
+      f,
+      io_common_featured_actions_pb.FeaturedAction.serializeBinaryToWriter
     );
   }
 };
@@ -568,6 +585,44 @@ proto.io.PassOverrides.prototype.addAppstoreidentifiers = function(value, opt_in
  */
 proto.io.PassOverrides.prototype.clearAppstoreidentifiersList = function() {
   return this.setAppstoreidentifiersList([]);
+};
+
+
+/**
+ * repeated FeaturedAction featuredActions = 9;
+ * @return {!Array<!proto.io.FeaturedAction>}
+ */
+proto.io.PassOverrides.prototype.getFeaturedactionsList = function() {
+  return /** @type{!Array<!proto.io.FeaturedAction>} */ (
+    jspb.Message.getRepeatedWrapperField(this, io_common_featured_actions_pb.FeaturedAction, 9));
+};
+
+
+/**
+ * @param {!Array<!proto.io.FeaturedAction>} value
+ * @return {!proto.io.PassOverrides} returns this
+*/
+proto.io.PassOverrides.prototype.setFeaturedactionsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 9, value);
+};
+
+
+/**
+ * @param {!proto.io.FeaturedAction=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.io.FeaturedAction}
+ */
+proto.io.PassOverrides.prototype.addFeaturedactions = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 9, opt_value, proto.io.FeaturedAction, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.io.PassOverrides} returns this
+ */
+proto.io.PassOverrides.prototype.clearFeaturedactionsList = function() {
+  return this.setFeaturedactionsList([]);
 };
 
 

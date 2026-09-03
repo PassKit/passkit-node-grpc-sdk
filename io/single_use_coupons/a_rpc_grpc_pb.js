@@ -2,7 +2,7 @@
 
 // Original file comments:
 // *
-// Single Use Coupon Protocol is suit for cases where the user requires a clean and simple single use coupon for short term coupon campaigns in Apple Wallet and Google Pay.
+// Single Use Coupon Protocol is suit for cases where the user requires a clean and simple single use coupon for short term coupon campaigns in Apple Wallet and Google Wallet.
 'use strict';
 var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
@@ -236,8 +236,10 @@ function deserialize_single_use_coupons_ListRequestDeprecated(buffer_arg) {
 }
 
 
+// Manages coupon campaigns, offers, coupon issuance, redemption, and voiding. Create a campaign and offer before issuing coupons.
 var SingleUseCouponsService = exports.SingleUseCouponsService = {
-  createCouponCampaign: {
+  // Creates a new single-use coupon campaign with design, rules, and configuration settings. Required fields: name and status.
+createCouponCampaign: {
     path: '/single_use_coupons.SingleUseCoupons/createCouponCampaign',
     requestStream: false,
     responseStream: false,
@@ -248,7 +250,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateCouponCampaign: {
+  // Updates the configuration of an existing coupon campaign. Required fields: campaignId.
+updateCouponCampaign: {
     path: '/single_use_coupons.SingleUseCoupons/updateCouponCampaign',
     requestStream: false,
     responseStream: false,
@@ -259,7 +262,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_CouponCampaign,
     responseDeserialize: deserialize_single_use_coupons_CouponCampaign,
   },
-  getCouponCampaign: {
+  // Retrieves the details of a specific coupon campaign by id. Required fields: campaignId.
+getCouponCampaign: {
     path: '/single_use_coupons.SingleUseCoupons/getCouponCampaign',
     requestStream: false,
     responseStream: false,
@@ -270,7 +274,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_CouponCampaign,
     responseDeserialize: deserialize_single_use_coupons_CouponCampaign,
   },
-  deleteCouponCampaign: {
+  // Deletes a coupon campaign by id. This also deletes its associated offer and voids all related coupons. Required fields: campaignId. Use with caution, as this action is irreversible.
+deleteCouponCampaign: {
     path: '/single_use_coupons.SingleUseCoupons/deleteCouponCampaign',
     requestStream: false,
     responseStream: false,
@@ -281,7 +286,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  listCouponCampaignsDeprecated: {
+  // Lists all coupon campaigns using basic pagination. This version uses the legacy request format and is maintained for backward compatibility. New integrations should use the updated listCouponCampaigns call instead  as OR operator is not supported.
+listCouponCampaignsDeprecated: {
     path: '/single_use_coupons.SingleUseCoupons/listCouponCampaignsDeprecated',
     requestStream: false,
     responseStream: true,
@@ -292,7 +298,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_CouponCampaign,
     responseDeserialize: deserialize_single_use_coupons_CouponCampaign,
   },
-  listCouponCampaigns: {
+  // Lists coupon campaigns with support for filters, sorting, and pagination.
+listCouponCampaigns: {
     path: '/single_use_coupons.SingleUseCoupons/listCouponCampaigns',
     requestStream: false,
     responseStream: true,
@@ -303,7 +310,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_CouponCampaign,
     responseDeserialize: deserialize_single_use_coupons_CouponCampaign,
   },
-  getAnalytics: {
+  // Returns analytics data (e.g., redemptions, activations) for a given coupon campaign. Required fields: classId (e.g. campaignId) and protocol (query parameter).
+getAnalytics: {
     path: '/single_use_coupons.SingleUseCoupons/getAnalytics',
     requestStream: false,
     responseStream: false,
@@ -314,7 +322,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_CouponCampaignAnalyticsResponse,
     responseDeserialize: deserialize_single_use_coupons_CouponCampaignAnalyticsResponse,
   },
-  createCouponOffer: {
+  // Creates an offer within a coupon campaign, including its pass design and redemption rules. Required fields: campaignId, offerTitle, offerDetails, beforeRedeemPassTemplateId.
+createCouponOffer: {
     path: '/single_use_coupons.SingleUseCoupons/createCouponOffer',
     requestStream: false,
     responseStream: false,
@@ -325,7 +334,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateCouponOffer: {
+  // Updates an existing coupon offer’s settings, visuals, or redemption configuration. Required fields: campaignId, offerTitle, offerDetails, beforeRedeemPassTemplateId.
+updateCouponOffer: {
     path: '/single_use_coupons.SingleUseCoupons/updateCouponOffer',
     requestStream: false,
     responseStream: false,
@@ -336,7 +346,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_CouponOffer,
     responseDeserialize: deserialize_single_use_coupons_CouponOffer,
   },
-  getCouponOffer: {
+  // Retrieves the full configuration of a coupon offer by ID. Required fields: offerId.
+getCouponOffer: {
     path: '/single_use_coupons.SingleUseCoupons/getCouponOffer',
     requestStream: false,
     responseStream: false,
@@ -347,7 +358,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_CouponOffer,
     responseDeserialize: deserialize_single_use_coupons_CouponOffer,
   },
-  deleteCouponOffer: {
+  // Deletes a coupon offer and invalidates all associated coupons. Required fields: offerId. Use with caution, as this action is irreversible.
+deleteCouponOffer: {
     path: '/single_use_coupons.SingleUseCoupons/deleteCouponOffer',
     requestStream: false,
     responseStream: false,
@@ -358,7 +370,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  listCouponOffersDeprecated: {
+  // Lists all coupon offers using basic filters. This version uses the legacy request format and is maintained for backward compatibility. New integrations should use the updated listCouponOffers call instead as OR operator is not supported.
+listCouponOffersDeprecated: {
     path: '/single_use_coupons.SingleUseCoupons/listCouponOffersDeprecated',
     requestStream: false,
     responseStream: true,
@@ -369,7 +382,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_CouponOffer,
     responseDeserialize: deserialize_single_use_coupons_CouponOffer,
   },
-  listCouponOffers: {
+  // Lists coupon offers with support for filters, sorting, and pagination. Required fields: campaignId.
+listCouponOffers: {
     path: '/single_use_coupons.SingleUseCoupons/listCouponOffers',
     requestStream: false,
     responseStream: true,
@@ -380,7 +394,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_CouponOffer,
     responseDeserialize: deserialize_single_use_coupons_CouponOffer,
   },
-  createCoupon: {
+  // Issues a unique coupon for an offer in a campaign. Required fields: campaignId, offerId, pass data.
+createCoupon: {
     path: '/single_use_coupons.SingleUseCoupons/createCoupon',
     requestStream: false,
     responseStream: false,
@@ -391,7 +406,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateCoupon: {
+  // Updates an existing coupon’s metadata or personalisation. Required fields: coupon id ,or externalId, offerId and campaignId.
+updateCoupon: {
     path: '/single_use_coupons.SingleUseCoupons/updateCoupon',
     requestStream: false,
     responseStream: false,
@@ -402,7 +418,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  streamCouponUpdates: {
+  // Streams updates for multiple coupons for batch processing.
+streamCouponUpdates: {
     path: '/single_use_coupons.SingleUseCoupons/streamCouponUpdates',
     requestStream: true,
     responseStream: true,
@@ -413,7 +430,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  redeemCoupon: {
+  // Marks a coupon as redeemed and applies its redemption-specific design. Required fields: coupon ID, or externalId with offerId and campaignId.
+redeemCoupon: {
     path: '/single_use_coupons.SingleUseCoupons/redeemCoupon',
     requestStream: false,
     responseStream: false,
@@ -424,7 +442,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateCouponExternalId: {
+  // Updates the external ID of an existing coupon. Required fields: coupon id , or externalId, newExternalId and campaignId.
+updateCouponExternalId: {
     path: '/single_use_coupons.SingleUseCoupons/updateCouponExternalId',
     requestStream: false,
     responseStream: false,
@@ -435,7 +454,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  streamCouponRedemptions: {
+  // Streams coupon redemptions for batch processing.
+streamCouponRedemptions: {
     path: '/single_use_coupons.SingleUseCoupons/streamCouponRedemptions',
     requestStream: true,
     responseStream: true,
@@ -446,7 +466,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  getCouponById: {
+  // Retrieves a coupon by its PassKit ID. Required fields: couponId.
+getCouponById: {
     path: '/single_use_coupons.SingleUseCoupons/getCouponById',
     requestStream: false,
     responseStream: false,
@@ -457,7 +478,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_Coupon,
     responseDeserialize: deserialize_single_use_coupons_Coupon,
   },
-  getCouponByExternalId: {
+  // Retrieves a coupon using an external ID and campaign ID. Required fields: externalId and couponCampaignId.
+getCouponByExternalId: {
     path: '/single_use_coupons.SingleUseCoupons/getCouponByExternalId',
     requestStream: false,
     responseStream: false,
@@ -468,7 +490,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_Coupon,
     responseDeserialize: deserialize_single_use_coupons_Coupon,
   },
-  voidCoupon: {
+  // Voids a coupon and invalidates it in the customer’s wallet. Required fields: coupon ID, or externalId with offerId and campaignId. This action is irreversible.
+voidCoupon: {
     path: '/single_use_coupons.SingleUseCoupons/voidCoupon',
     requestStream: false,
     responseStream: false,
@@ -479,7 +502,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  bulkVoidCoupons: {
+  // Voids multiple coupons matching the given filters. All affected passes are invalidated. Required fields: classId, protocol and filters. Use with caution, as this action is irreversible.
+bulkVoidCoupons: {
     path: '/single_use_coupons.SingleUseCoupons/bulkVoidCoupons',
     requestStream: false,
     responseStream: false,
@@ -490,7 +514,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  listCouponsByCouponCampaignDeprecated: {
+  // Lists all coupons for a campaign using basic pagination. This version uses the legacy request format and is maintained for backward compatibility. New integrations should use the updated listCouponsByCouponCampaign call instead as OR operator is not supported.
+listCouponsByCouponCampaignDeprecated: {
     path: '/single_use_coupons.SingleUseCoupons/listCouponsByCouponCampaignDeprecated',
     requestStream: false,
     responseStream: true,
@@ -501,7 +526,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_Coupon,
     responseDeserialize: deserialize_single_use_coupons_Coupon,
   },
-  listCouponsByCouponCampaign: {
+  // Lists all coupons for a campaign using filters and pagination. Required fields: couponCampaignId.
+listCouponsByCouponCampaign: {
     path: '/single_use_coupons.SingleUseCoupons/listCouponsByCouponCampaign',
     requestStream: false,
     responseStream: true,
@@ -512,7 +538,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_single_use_coupons_Coupon,
     responseDeserialize: deserialize_single_use_coupons_Coupon,
   },
-  countCouponsByCouponCampaignDeprecated: {
+  // Counts all coupons for a campaign. This version uses the legacy request format and is maintained for backward compatibility. New integrations should use the updated countCouponsByCouponCampaign call instead as OR operator is not supported.
+countCouponsByCouponCampaignDeprecated: {
     path: '/single_use_coupons.SingleUseCoupons/countCouponsByCouponCampaignDeprecated',
     requestStream: false,
     responseStream: false,
@@ -523,7 +550,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  countCouponsByCouponCampaign: {
+  // Counts all coupons for a campaign using advanced filters. Required fields: couponCampaignId.
+countCouponsByCouponCampaign: {
     path: '/single_use_coupons.SingleUseCoupons/countCouponsByCouponCampaign',
     requestStream: false,
     responseStream: false,
@@ -534,7 +562,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  patchPerson: {
+  // Updates the personal information of the coupon holder (e.g., name, email). Required fields: couponId, or externalId + classId.
+patchPerson: {
     path: '/single_use_coupons.SingleUseCoupons/patchPerson',
     requestStream: false,
     responseStream: false,
@@ -545,7 +574,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  copyCouponCampaign: {
+  // Creates a copy of an existing coupon campaign. Required fields: campaignId.
+copyCouponCampaign: {
     path: '/single_use_coupons.SingleUseCoupons/copyCouponCampaign',
     requestStream: false,
     responseStream: false,
@@ -556,7 +586,8 @@ var SingleUseCouponsService = exports.SingleUseCouponsService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  getMetaKeysForCampaign: {
+  // Retrieves meta keys (custom fields) for a specific campaign. Required fields: campaignId.
+getMetaKeysForCampaign: {
     path: '/single_use_coupons.SingleUseCoupons/getMetaKeysForCampaign',
     requestStream: false,
     responseStream: false,

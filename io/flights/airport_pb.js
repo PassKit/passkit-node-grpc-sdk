@@ -23,6 +23,8 @@ var global = (function() {
 
 var io_common_localization_pb = require('../../io/common/localization_pb.js');
 goog.object.extend(proto, io_common_localization_pb);
+var io_flights_barcode_pb = require('../../io/flights/barcode_pb.js');
+goog.object.extend(proto, io_flights_barcode_pb);
 goog.exportSymbol('proto.flights.AirportCode', null, global);
 goog.exportSymbol('proto.flights.Port', null, global);
 /**
@@ -36,7 +38,7 @@ goog.exportSymbol('proto.flights.Port', null, global);
  * @constructor
  */
 proto.flights.Port = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.flights.Port.repeatedFields_, null);
 };
 goog.inherits(proto.flights.Port, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -67,6 +69,13 @@ if (goog.DEBUG && !COMPILED) {
    */
   proto.flights.AirportCode.displayName = 'proto.flights.AirportCode';
 }
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.flights.Port.repeatedFields_ = [9,13];
 
 
 
@@ -106,7 +115,11 @@ proto.flights.Port.toObject = function(includeInstance, msg) {
     airportname: jspb.Message.getFieldWithDefault(msg, 5, ""),
     localizedairportname: (f = msg.getLocalizedairportname()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
     countrycode: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    timezone: jspb.Message.getFieldWithDefault(msg, 8, "")
+    timezone: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    securityprogramsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
+    documentsverifiedtext: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    localizeddocumentsverifiedtext: (f = msg.getLocalizeddocumentsverifiedtext()) && io_common_localization_pb.LocalizedString.toObject(includeInstance, f),
+    loungeidsList: (f = jspb.Message.getRepeatedField(msg, 13)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -176,6 +189,25 @@ proto.flights.Port.deserializeBinaryFromReader = function(msg, reader) {
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setTimezone(value);
+      break;
+    case 9:
+      var values = /** @type {!Array<!proto.flights.AirportSecurityPrograms>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addSecurityprograms(values[i]);
+      }
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDocumentsverifiedtext(value);
+      break;
+    case 11:
+      var value = new io_common_localization_pb.LocalizedString;
+      reader.readMessage(value,io_common_localization_pb.LocalizedString.deserializeBinaryFromReader);
+      msg.setLocalizeddocumentsverifiedtext(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addLoungeids(value);
       break;
     default:
       reader.skipField();
@@ -261,6 +293,35 @@ proto.flights.Port.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       8,
+      f
+    );
+  }
+  f = message.getSecurityprogramsList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      9,
+      f
+    );
+  }
+  f = message.getDocumentsverifiedtext();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getLocalizeddocumentsverifiedtext();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      io_common_localization_pb.LocalizedString.serializeBinaryToWriter
+    );
+  }
+  f = message.getLoungeidsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      13,
       f
     );
   }
@@ -446,6 +507,135 @@ proto.flights.Port.prototype.getTimezone = function() {
  */
 proto.flights.Port.prototype.setTimezone = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * repeated AirportSecurityPrograms securityPrograms = 9;
+ * @return {!Array<!proto.flights.AirportSecurityPrograms>}
+ */
+proto.flights.Port.prototype.getSecurityprogramsList = function() {
+  return /** @type {!Array<!proto.flights.AirportSecurityPrograms>} */ (jspb.Message.getRepeatedField(this, 9));
+};
+
+
+/**
+ * @param {!Array<!proto.flights.AirportSecurityPrograms>} value
+ * @return {!proto.flights.Port} returns this
+ */
+proto.flights.Port.prototype.setSecurityprogramsList = function(value) {
+  return jspb.Message.setField(this, 9, value || []);
+};
+
+
+/**
+ * @param {!proto.flights.AirportSecurityPrograms} value
+ * @param {number=} opt_index
+ * @return {!proto.flights.Port} returns this
+ */
+proto.flights.Port.prototype.addSecurityprograms = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 9, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.flights.Port} returns this
+ */
+proto.flights.Port.prototype.clearSecurityprogramsList = function() {
+  return this.setSecurityprogramsList([]);
+};
+
+
+/**
+ * optional string documentsVerifiedText = 10;
+ * @return {string}
+ */
+proto.flights.Port.prototype.getDocumentsverifiedtext = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.flights.Port} returns this
+ */
+proto.flights.Port.prototype.setDocumentsverifiedtext = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional io.LocalizedString localizedDocumentsVerifiedText = 11;
+ * @return {?proto.io.LocalizedString}
+ */
+proto.flights.Port.prototype.getLocalizeddocumentsverifiedtext = function() {
+  return /** @type{?proto.io.LocalizedString} */ (
+    jspb.Message.getWrapperField(this, io_common_localization_pb.LocalizedString, 11));
+};
+
+
+/**
+ * @param {?proto.io.LocalizedString|undefined} value
+ * @return {!proto.flights.Port} returns this
+*/
+proto.flights.Port.prototype.setLocalizeddocumentsverifiedtext = function(value) {
+  return jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.flights.Port} returns this
+ */
+proto.flights.Port.prototype.clearLocalizeddocumentsverifiedtext = function() {
+  return this.setLocalizeddocumentsverifiedtext(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.flights.Port.prototype.hasLocalizeddocumentsverifiedtext = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * repeated string loungeIds = 13;
+ * @return {!Array<string>}
+ */
+proto.flights.Port.prototype.getLoungeidsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 13));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.flights.Port} returns this
+ */
+proto.flights.Port.prototype.setLoungeidsList = function(value) {
+  return jspb.Message.setField(this, 13, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.flights.Port} returns this
+ */
+proto.flights.Port.prototype.addLoungeids = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 13, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.flights.Port} returns this
+ */
+proto.flights.Port.prototype.clearLoungeidsList = function() {
+  return this.setLoungeidsList([]);
 };
 
 

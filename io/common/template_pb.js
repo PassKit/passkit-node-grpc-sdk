@@ -31,6 +31,8 @@ var io_common_proximity_pb = require('../../io/common/proximity_pb.js');
 goog.object.extend(proto, io_common_proximity_pb);
 var io_common_links_pb = require('../../io/common/links_pb.js');
 goog.object.extend(proto, io_common_links_pb);
+var io_common_featured_actions_pb = require('../../io/common/featured_actions_pb.js');
+goog.object.extend(proto, io_common_featured_actions_pb);
 var io_common_tracking_pb = require('../../io/common/tracking_pb.js');
 goog.object.extend(proto, io_common_tracking_pb);
 var io_image_image_pb = require('../../io/image/image_pb.js');
@@ -2652,7 +2654,7 @@ proto.io.PassTemplate.prototype.hasLandingpagesettings = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.io.AppleWalletSettings.repeatedFields_ = [4,6,10];
+proto.io.AppleWalletSettings.repeatedFields_ = [4,6,10,20];
 
 
 
@@ -2695,11 +2697,17 @@ proto.io.AppleWalletSettings.toObject = function(includeInstance, msg) {
     groupingidentifier: jspb.Message.getFieldWithDefault(msg, 8, ""),
     personalizationdetails: (f = msg.getPersonalizationdetails()) && proto.io.PersonalizationDetails.toObject(includeInstance, f),
     appstoreidentifiersList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
+    semanticboardingpass: jspb.Message.getBooleanFieldWithDefault(msg, 16, false),
+    allowliveflightupdates: jspb.Message.getBooleanFieldWithDefault(msg, 17, false),
+    displaygateclosingtime: jspb.Message.getBooleanFieldWithDefault(msg, 18, false),
     posterticketstyle: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+    postergenericstyle: jspb.Message.getBooleanFieldWithDefault(msg, 19, false),
     suppressheaderdarkening: jspb.Message.getBooleanFieldWithDefault(msg, 12, false),
     useautomaticcolors: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
     logotext: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    ignoretimecomponents: jspb.Message.getBooleanFieldWithDefault(msg, 15, false)
+    ignoretimecomponents: jspb.Message.getBooleanFieldWithDefault(msg, 15, false),
+    featuredactionsList: jspb.Message.toObjectList(msg.getFeaturedactionsList(),
+    io_common_featured_actions_pb.FeaturedAction.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -2781,9 +2789,25 @@ proto.io.AppleWalletSettings.deserializeBinaryFromReader = function(msg, reader)
         msg.addAppstoreidentifiers(values[i]);
       }
       break;
+    case 16:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSemanticboardingpass(value);
+      break;
+    case 17:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAllowliveflightupdates(value);
+      break;
+    case 18:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDisplaygateclosingtime(value);
+      break;
     case 11:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setPosterticketstyle(value);
+      break;
+    case 19:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setPostergenericstyle(value);
       break;
     case 12:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -2800,6 +2824,11 @@ proto.io.AppleWalletSettings.deserializeBinaryFromReader = function(msg, reader)
     case 15:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIgnoretimecomponents(value);
+      break;
+    case 20:
+      var value = new io_common_featured_actions_pb.FeaturedAction;
+      reader.readMessage(value,io_common_featured_actions_pb.FeaturedAction.deserializeBinaryFromReader);
+      msg.addFeaturedactions(value);
       break;
     default:
       reader.skipField();
@@ -2901,10 +2930,38 @@ proto.io.AppleWalletSettings.serializeBinaryToWriter = function(message, writer)
       f
     );
   }
+  f = message.getSemanticboardingpass();
+  if (f) {
+    writer.writeBool(
+      16,
+      f
+    );
+  }
+  f = message.getAllowliveflightupdates();
+  if (f) {
+    writer.writeBool(
+      17,
+      f
+    );
+  }
+  f = message.getDisplaygateclosingtime();
+  if (f) {
+    writer.writeBool(
+      18,
+      f
+    );
+  }
   f = message.getPosterticketstyle();
   if (f) {
     writer.writeBool(
       11,
+      f
+    );
+  }
+  f = message.getPostergenericstyle();
+  if (f) {
+    writer.writeBool(
+      19,
       f
     );
   }
@@ -2934,6 +2991,14 @@ proto.io.AppleWalletSettings.serializeBinaryToWriter = function(message, writer)
     writer.writeBool(
       15,
       f
+    );
+  }
+  f = message.getFeaturedactionsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      20,
+      f,
+      io_common_featured_actions_pb.FeaturedAction.serializeBinaryToWriter
     );
   }
 };
@@ -3196,6 +3261,60 @@ proto.io.AppleWalletSettings.prototype.clearAppstoreidentifiersList = function()
 
 
 /**
+ * optional bool semanticBoardingPass = 16;
+ * @return {boolean}
+ */
+proto.io.AppleWalletSettings.prototype.getSemanticboardingpass = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 16, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.io.AppleWalletSettings} returns this
+ */
+proto.io.AppleWalletSettings.prototype.setSemanticboardingpass = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 16, value);
+};
+
+
+/**
+ * optional bool allowLiveFlightUpdates = 17;
+ * @return {boolean}
+ */
+proto.io.AppleWalletSettings.prototype.getAllowliveflightupdates = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 17, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.io.AppleWalletSettings} returns this
+ */
+proto.io.AppleWalletSettings.prototype.setAllowliveflightupdates = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 17, value);
+};
+
+
+/**
+ * optional bool displayGateClosingTime = 18;
+ * @return {boolean}
+ */
+proto.io.AppleWalletSettings.prototype.getDisplaygateclosingtime = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 18, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.io.AppleWalletSettings} returns this
+ */
+proto.io.AppleWalletSettings.prototype.setDisplaygateclosingtime = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 18, value);
+};
+
+
+/**
  * optional bool posterTicketStyle = 11;
  * @return {boolean}
  */
@@ -3210,6 +3329,24 @@ proto.io.AppleWalletSettings.prototype.getPosterticketstyle = function() {
  */
 proto.io.AppleWalletSettings.prototype.setPosterticketstyle = function(value) {
   return jspb.Message.setProto3BooleanField(this, 11, value);
+};
+
+
+/**
+ * optional bool posterGenericStyle = 19;
+ * @return {boolean}
+ */
+proto.io.AppleWalletSettings.prototype.getPostergenericstyle = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 19, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.io.AppleWalletSettings} returns this
+ */
+proto.io.AppleWalletSettings.prototype.setPostergenericstyle = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 19, value);
 };
 
 
@@ -3282,6 +3419,44 @@ proto.io.AppleWalletSettings.prototype.getIgnoretimecomponents = function() {
  */
 proto.io.AppleWalletSettings.prototype.setIgnoretimecomponents = function(value) {
   return jspb.Message.setProto3BooleanField(this, 15, value);
+};
+
+
+/**
+ * repeated FeaturedAction featuredActions = 20;
+ * @return {!Array<!proto.io.FeaturedAction>}
+ */
+proto.io.AppleWalletSettings.prototype.getFeaturedactionsList = function() {
+  return /** @type{!Array<!proto.io.FeaturedAction>} */ (
+    jspb.Message.getRepeatedWrapperField(this, io_common_featured_actions_pb.FeaturedAction, 20));
+};
+
+
+/**
+ * @param {!Array<!proto.io.FeaturedAction>} value
+ * @return {!proto.io.AppleWalletSettings} returns this
+*/
+proto.io.AppleWalletSettings.prototype.setFeaturedactionsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 20, value);
+};
+
+
+/**
+ * @param {!proto.io.FeaturedAction=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.io.FeaturedAction}
+ */
+proto.io.AppleWalletSettings.prototype.addFeaturedactions = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 20, opt_value, proto.io.FeaturedAction, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.io.AppleWalletSettings} returns this
+ */
+proto.io.AppleWalletSettings.prototype.clearFeaturedactionsList = function() {
+  return this.setFeaturedactionsList([]);
 };
 
 
@@ -3549,7 +3724,8 @@ proto.io.GooglePaySettings.toObject = function(includeInstance, msg) {
     classtemplateinfo: jspb.Message.getFieldWithDefault(msg, 5, ""),
     backgroundcolor: jspb.Message.getFieldWithDefault(msg, 6, ""),
     languageoverridesList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
-    screenshoteligibility: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    screenshoteligibility: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    enablemerchantlocations: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
   };
 
   if (includeInstance) {
@@ -3622,6 +3798,10 @@ proto.io.GooglePaySettings.deserializeBinaryFromReader = function(msg, reader) {
     case 8:
       var value = /** @type {!proto.io.ScreenshotEligibility} */ (reader.readEnum());
       msg.setScreenshoteligibility(value);
+      break;
+    case 9:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setEnablemerchantlocations(value);
       break;
     default:
       reader.skipField();
@@ -3708,6 +3888,13 @@ proto.io.GooglePaySettings.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0.0) {
     writer.writeEnum(
       8,
+      f
+    );
+  }
+  f = message.getEnablemerchantlocations();
+  if (f) {
+    writer.writeBool(
+      9,
       f
     );
   }
@@ -3931,6 +4118,24 @@ proto.io.GooglePaySettings.prototype.getScreenshoteligibility = function() {
  */
 proto.io.GooglePaySettings.prototype.setScreenshoteligibility = function(value) {
   return jspb.Message.setProto3EnumField(this, 8, value);
+};
+
+
+/**
+ * optional bool EnableMerchantLocations = 9;
+ * @return {boolean}
+ */
+proto.io.GooglePaySettings.prototype.getEnablemerchantlocations = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.io.GooglePaySettings} returns this
+ */
+proto.io.GooglePaySettings.prototype.setEnablemerchantlocations = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 
@@ -9071,7 +9276,8 @@ proto.io.DataCollectionFieldRenderOptions.toObject = function(includeInstance, m
     addressrenderoptions: (f = msg.getAddressrenderoptions()) && proto.io.AddressRenderOptions.toObject(includeInstance, f),
     localizedyearplaceholder: jspb.Message.getFieldWithDefault(msg, 10, ""),
     localizedmonthplaceholder: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    localizeddayplaceholder: jspb.Message.getFieldWithDefault(msg, 12, "")
+    localizeddayplaceholder: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    collectiondatatype: jspb.Message.getFieldWithDefault(msg, 13, 0)
   };
 
   if (includeInstance) {
@@ -9155,6 +9361,10 @@ proto.io.DataCollectionFieldRenderOptions.deserializeBinaryFromReader = function
     case 12:
       var value = /** @type {string} */ (reader.readString());
       msg.setLocalizeddayplaceholder(value);
+      break;
+    case 13:
+      var value = /** @type {!proto.io.DataType} */ (reader.readEnum());
+      msg.setCollectiondatatype(value);
       break;
     default:
       reader.skipField();
@@ -9263,6 +9473,13 @@ proto.io.DataCollectionFieldRenderOptions.serializeBinaryToWriter = function(mes
   if (f.length > 0) {
     writer.writeString(
       12,
+      f
+    );
+  }
+  f = message.getCollectiondatatype();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      13,
       f
     );
   }
@@ -9541,6 +9758,24 @@ proto.io.DataCollectionFieldRenderOptions.prototype.getLocalizeddayplaceholder =
  */
 proto.io.DataCollectionFieldRenderOptions.prototype.setLocalizeddayplaceholder = function(value) {
   return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional DataType collectionDataType = 13;
+ * @return {!proto.io.DataType}
+ */
+proto.io.DataCollectionFieldRenderOptions.prototype.getCollectiondatatype = function() {
+  return /** @type {!proto.io.DataType} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+};
+
+
+/**
+ * @param {!proto.io.DataType} value
+ * @return {!proto.io.DataCollectionFieldRenderOptions} returns this
+ */
+proto.io.DataCollectionFieldRenderOptions.prototype.setCollectiondatatype = function(value) {
+  return jspb.Message.setProto3EnumField(this, 13, value);
 };
 
 
@@ -10889,6 +11124,10 @@ proto.io.BarcodeType = {
   AZTEC: 2,
   PDF417: 3,
   CODE128: 4,
+  EAN13: 6,
+  CODABAR: 7,
+  CODE39: 8,
+  ITF: 9,
   NONE: 5
 };
 
@@ -11029,7 +11268,8 @@ proto.io.FieldSection = {
   SECONDARY_FIELDS: 3,
   AUXILIARY_FIELDS: 4,
   HEADER_FIELDS: 5,
-  ADDITIONAL_FIELDS: 6
+  ADDITIONAL_FIELDS: 6,
+  FOOTER_FIELDS: 7
 };
 
 /**

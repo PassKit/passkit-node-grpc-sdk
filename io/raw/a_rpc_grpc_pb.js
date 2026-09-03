@@ -3,7 +3,7 @@
 // Original file comments:
 // *
 // This protocol is suit for cases where the business logic is handled elsewhere, and the purpose is purely to issue and
-// update content for Apple Wallet and Google Pay.
+// update content for Apple Wallet and Google Wallet.
 'use strict';
 var grpc = require('@grpc/grpc-js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
@@ -101,7 +101,8 @@ function deserialize_raw_PassRecordByExternalIdRequest(buffer_arg) {
 
 
 var RawService = exports.RawService = {
-  createPassProject: {
+  // Creates a Pass Project. Required Fields: name, protocol, classId.
+createPassProject: {
     path: '/raw.Raw/createPassProject',
     requestStream: false,
     responseStream: false,
@@ -112,7 +113,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updatePassProject: {
+  // Updates an existing Pass Project. Required Fields: id, name, protocol, classId.
+updatePassProject: {
     path: '/raw.Raw/updatePassProject',
     requestStream: false,
     responseStream: false,
@@ -123,7 +125,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_raw_PassProject,
     responseDeserialize: deserialize_raw_PassProject,
   },
-  getPassProject: {
+  // Retrieves a Pass Project by ID. Required Fields: id.
+getPassProject: {
     path: '/raw.Raw/getPassProject',
     requestStream: false,
     responseStream: false,
@@ -134,7 +137,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_raw_PassProject,
     responseDeserialize: deserialize_raw_PassProject,
   },
-  copyPassProject: {
+  // Copies an existing Pass Project. Required Fields: id (of the source PassProject).
+copyPassProject: {
     path: '/raw.Raw/copyPassProject',
     requestStream: false,
     responseStream: false,
@@ -145,7 +149,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  deletePassProject: {
+  // Deletes a Pass Project by ID. Deleting a Pass Project results in all passes being invalidated and removed. Use with caution. Required Fields: id.
+deletePassProject: {
     path: '/raw.Raw/deletePassProject',
     requestStream: false,
     responseStream: false,
@@ -156,7 +161,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  createPass: {
+  // Creates a new Pass record. Required Fields: passProjectId, externalId, and fields required by protocol template.
+createPass: {
     path: '/raw.Raw/createPass',
     requestStream: false,
     responseStream: false,
@@ -167,7 +173,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updatePass: {
+  // Updates an existing Pass record. Required Fields: id.
+updatePass: {
     path: '/raw.Raw/updatePass',
     requestStream: false,
     responseStream: false,
@@ -178,7 +185,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  streamPassUpdates: {
+  // Streams multiple Pass updates via gRPC (not available via REST). Required Fields: id for each Pass.
+streamPassUpdates: {
     path: '/raw.Raw/streamPassUpdates',
     requestStream: true,
     responseStream: true,
@@ -189,7 +197,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  getPassById: {
+  // Retrieves a Pass by its internal ID. Required Fields: id.
+getPassById: {
     path: '/raw.Raw/getPassById',
     requestStream: false,
     responseStream: false,
@@ -200,7 +209,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_raw_Pass,
     responseDeserialize: deserialize_raw_Pass,
   },
-  getPassByExternalId: {
+  // Retrieves a Pass by its external ID and Pass Project ID. Required Fields: passProjectId, externalId.
+getPassByExternalId: {
     path: '/raw.Raw/getPassByExternalId',
     requestStream: false,
     responseStream: false,
@@ -211,7 +221,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_raw_Pass,
     responseDeserialize: deserialize_raw_Pass,
   },
-  deletePass: {
+  // Deletes a Pass record. Required Fields: id.
+deletePass: {
     path: '/raw.Raw/deletePass',
     requestStream: false,
     responseStream: false,
@@ -222,7 +233,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  listPassesByPassProject: {
+  // Lists all passes for a Pass Project. Supports pagination. Required Fields: passProjectId.
+listPassesByPassProject: {
     path: '/raw.Raw/listPassesByPassProject',
     requestStream: false,
     responseStream: true,
@@ -233,7 +245,8 @@ var RawService = exports.RawService = {
     responseSerialize: serialize_raw_Pass,
     responseDeserialize: deserialize_raw_Pass,
   },
-  listPassesByPassTemplate: {
+  // Lists all passes for a Pass Template. Supports pagination. Required Fields: passTemplateId.
+listPassesByPassTemplate: {
     path: '/raw.Raw/listPassesByPassTemplate',
     requestStream: false,
     responseStream: true,

@@ -143,8 +143,10 @@ function deserialize_io_PassTemplateResponse(buffer_arg) {
 }
 
 
+// Manages pass templates and designs for Apple Wallet, Google Wallet, and data collection forms.
 var TemplatesService = exports.TemplatesService = {
-  createTemplate: {
+  // Creates a pass template for a protocol and revision. Required fields: protocol, revision, name, colors, fields.
+createTemplate: {
     path: '/io.Templates/createTemplate',
     requestStream: false,
     responseStream: false,
@@ -155,7 +157,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateTemplate: {
+  // Updates an existing pass template. Required Fields: id
+updateTemplate: {
     path: '/io.Templates/updateTemplate',
     requestStream: false,
     responseStream: false,
@@ -166,7 +169,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_PassTemplate,
     responseDeserialize: deserialize_io_PassTemplate,
   },
-  getTemplate: {
+  // Retrieves a pass template by ID. Required Fields: id
+getTemplate: {
     path: '/io.Templates/getTemplate',
     requestStream: false,
     responseStream: false,
@@ -177,7 +181,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_PassTemplateResponse,
     responseDeserialize: deserialize_io_PassTemplateResponse,
   },
-  getDefaultTemplate: {
+  // Retrieves the default pass template for a given protocol and revision. Required Fields: protocol, revision
+getDefaultTemplate: {
     path: '/io.Templates/getDefaultTemplate',
     requestStream: false,
     responseStream: false,
@@ -188,7 +193,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_PassTemplate,
     responseDeserialize: deserialize_io_PassTemplate,
   },
-  copyTemplate: {
+  // Copies an existing pass template and returns a new ID. Required Fields: id
+copyTemplate: {
     path: '/io.Templates/copyTemplate',
     requestStream: false,
     responseStream: false,
@@ -199,7 +205,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  deleteTemplate: {
+  // Deletes a pass template. Required Fields: id
+deleteTemplate: {
     path: '/io.Templates/deleteTemplate',
     requestStream: false,
     responseStream: false,
@@ -210,7 +217,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  listTemplatesForUserDeprecated: {
+  // [DEPRECATED: OR operator is not supported] Retrieves all user-owned pass templates matching filters. Required Fields: pagination.
+listTemplatesForUserDeprecated: {
     path: '/io.Templates/listTemplatesForUserDeprecated',
     requestStream: false,
     responseStream: true,
@@ -221,7 +229,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_PassTemplateResponse,
     responseDeserialize: deserialize_io_PassTemplateResponse,
   },
-  listTemplatesForUser: {
+  // Retrieves all user-owned pass templates matching filters. Required Fields: filters.
+listTemplatesForUser: {
     path: '/io.Templates/listTemplatesForUser',
     requestStream: false,
     responseStream: true,
@@ -232,7 +241,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_PassTemplateResponse,
     responseDeserialize: deserialize_io_PassTemplateResponse,
   },
-  listTemplatesDeprecated: {
+  // [DEPRECATED: OR operator is not supported] Retrieves all company-wide pass templates matching filters. Required Fields: pagination.
+listTemplatesDeprecated: {
     path: '/io.Templates/listTemplatesDeprecated',
     requestStream: false,
     responseStream: true,
@@ -243,7 +253,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_PassTemplateResponse,
     responseDeserialize: deserialize_io_PassTemplateResponse,
   },
-  listTemplates: {
+  // Retrieves all company-wide pass templates matching filters. Required Fields: filters.
+listTemplates: {
     path: '/io.Templates/listTemplates',
     requestStream: false,
     responseStream: true,
@@ -254,7 +265,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_PassTemplateResponse,
     responseDeserialize: deserialize_io_PassTemplateResponse,
   },
-  countTemplatesDeprecated: {
+  // [DEPRECATED: OR operator is not supported] Retrieves a count of company-wide pass templates matching filters. Required Fields: pagination.
+countTemplatesDeprecated: {
     path: '/io.Templates/countTemplatesDeprecated',
     requestStream: false,
     responseStream: false,
@@ -265,7 +277,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  countTemplates: {
+  // Retrieves a count of company-wide pass templates matching filters. Required Fields: filters.
+countTemplates: {
     path: '/io.Templates/countTemplates',
     requestStream: false,
     responseStream: false,
@@ -276,7 +289,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  countTemplatesForUserDeprecated: {
+  // [DEPRECATED: OR operator is not supported] Retrieves a count of user-owned pass templates matching filters. Required Fields: filters.
+countTemplatesForUserDeprecated: {
     path: '/io.Templates/countTemplatesForUserDeprecated',
     requestStream: false,
     responseStream: false,
@@ -287,7 +301,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  countTemplatesForUser: {
+  // Retrieves a count of user-owned pass templates matching filters. Required Fields: filters.
+countTemplatesForUser: {
     path: '/io.Templates/countTemplatesForUser',
     requestStream: false,
     responseStream: false,
@@ -298,7 +313,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  createLocation: {
+  // Creates a new location object. Required Fields: latitude, longitude, message.
+createLocation: {
     path: '/io.Templates/createLocation',
     requestStream: false,
     responseStream: false,
@@ -309,7 +325,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateLocation: {
+  // Updates an existing location. Required Fields: id.
+updateLocation: {
     path: '/io.Templates/updateLocation',
     requestStream: false,
     responseStream: false,
@@ -320,7 +337,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_GPSLocation,
     responseDeserialize: deserialize_io_GPSLocation,
   },
-  getLocation: {
+  // Retrieves a single location by ID. Required Fields: id.
+getLocation: {
     path: '/io.Templates/getLocation',
     requestStream: false,
     responseStream: false,
@@ -331,7 +349,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_GPSLocation,
     responseDeserialize: deserialize_io_GPSLocation,
   },
-  listLocationsDeprecated: {
+  // [DEPRECATED: OR operator is not supported] Lists all location objects matching filters. Required Fields: pagination.
+listLocationsDeprecated: {
     path: '/io.Templates/listLocationsDeprecated',
     requestStream: false,
     responseStream: true,
@@ -342,7 +361,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_GPSLocation,
     responseDeserialize: deserialize_io_GPSLocation,
   },
-  listLocations: {
+  // Lists all location objects matching filters. Required Fields: filters.
+listLocations: {
     path: '/io.Templates/listLocations',
     requestStream: false,
     responseStream: true,
@@ -353,7 +373,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_GPSLocation,
     responseDeserialize: deserialize_io_GPSLocation,
   },
-  copyLocation: {
+  // Copies a location record and returns a new ID. Required Fields: id.
+copyLocation: {
     path: '/io.Templates/copyLocation',
     requestStream: false,
     responseStream: false,
@@ -364,7 +385,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  deleteLocation: {
+  // Deletes a location object. Required Fields: id.
+deleteLocation: {
     path: '/io.Templates/deleteLocation',
     requestStream: false,
     responseStream: false,
@@ -375,7 +397,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  countLocationsDeprecated: {
+  // [DEPRECATED: OR operator is not supported] Retrieves a count of locations that match the supplied criteria. Required: pagination.
+countLocationsDeprecated: {
     path: '/io.Templates/countLocationsDeprecated',
     requestStream: false,
     responseStream: false,
@@ -386,7 +409,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  countLocations: {
+  // Counts the number of location records that match the supplied filters. Required: filters.
+countLocations: {
     path: '/io.Templates/countLocations',
     requestStream: false,
     responseStream: false,
@@ -397,7 +421,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  createBeacon: {
+  // Creates a new beacon object. Required Fields: proximityUUID, lockscreenMessage.
+createBeacon: {
     path: '/io.Templates/createBeacon',
     requestStream: false,
     responseStream: false,
@@ -408,7 +433,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateBeacon: {
+  // Updates an existing beacon object. Required Fields: id.
+updateBeacon: {
     path: '/io.Templates/updateBeacon',
     requestStream: false,
     responseStream: false,
@@ -419,7 +445,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Beacon,
     responseDeserialize: deserialize_io_Beacon,
   },
-  getBeacon: {
+  // Retrieves a single beacon by ID. Required Fields: id.
+getBeacon: {
     path: '/io.Templates/getBeacon',
     requestStream: false,
     responseStream: false,
@@ -430,7 +457,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Beacon,
     responseDeserialize: deserialize_io_Beacon,
   },
-  listBeaconsDeprecated: {
+  // [DEPRECATED: OR operator is not supported] Retrieves beacon objects that match the supplied criteria. Required Fields: pagination.
+listBeaconsDeprecated: {
     path: '/io.Templates/listBeaconsDeprecated',
     requestStream: false,
     responseStream: true,
@@ -441,7 +469,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Beacon,
     responseDeserialize: deserialize_io_Beacon,
   },
-  listBeacons: {
+  // Lists all beacon objects that match the provided filters. Required Fields: filters.
+listBeacons: {
     path: '/io.Templates/listBeacons',
     requestStream: false,
     responseStream: true,
@@ -452,7 +481,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Beacon,
     responseDeserialize: deserialize_io_Beacon,
   },
-  copyBeacon: {
+  // Copies a beacon record and returns a new ID. Required Fields: id.
+copyBeacon: {
     path: '/io.Templates/copyBeacon',
     requestStream: false,
     responseStream: false,
@@ -463,7 +493,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  deleteBeacon: {
+  // Deletes a beacon object. Required Fields: id.
+deleteBeacon: {
     path: '/io.Templates/deleteBeacon',
     requestStream: false,
     responseStream: false,
@@ -474,7 +505,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  countBeaconsDeprecated: {
+  // [DEPRECATED: OR operator is not supported] Retrieves a count of beacons that match the supplied criteria. Required Fields: pagination.
+countBeaconsDeprecated: {
     path: '/io.Templates/countBeaconsDeprecated',
     requestStream: false,
     responseStream: false,
@@ -485,7 +517,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  countBeacons: {
+  // Returns the count of beacons that match the supplied filters. Required Fields: filters.
+countBeacons: {
     path: '/io.Templates/countBeacons',
     requestStream: false,
     responseStream: false,
@@ -496,7 +529,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  createLink: {
+  // Creates a new link object. Required Fields: url, title, type.
+createLink: {
     path: '/io.Templates/createLink',
     requestStream: false,
     responseStream: false,
@@ -507,7 +541,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  updateLink: {
+  // Updates an existing link object. Required Fields: id.
+updateLink: {
     path: '/io.Templates/updateLink',
     requestStream: false,
     responseStream: false,
@@ -518,7 +553,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Link,
     responseDeserialize: deserialize_io_Link,
   },
-  getLink: {
+  // Retrieves a single link by ID. Required Fields: id.
+getLink: {
     path: '/io.Templates/getLink',
     requestStream: false,
     responseStream: false,
@@ -529,7 +565,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Link,
     responseDeserialize: deserialize_io_Link,
   },
-  listLinksDeprecated: {
+  // [DEPRECATED: OR operator is not supported] Retrieves links objects that match the supplied criteria. Required Fields: pagination.
+listLinksDeprecated: {
     path: '/io.Templates/listLinksDeprecated',
     requestStream: false,
     responseStream: true,
@@ -540,7 +577,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Link,
     responseDeserialize: deserialize_io_Link,
   },
-  listLinks: {
+  // Lists all link objects that match the provided filters. Required Fields: filters.
+listLinks: {
     path: '/io.Templates/listLinks',
     requestStream: false,
     responseStream: true,
@@ -551,7 +589,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Link,
     responseDeserialize: deserialize_io_Link,
   },
-  copyLink: {
+  // Copies a link record and returns a new ID. Required Fields: id.
+copyLink: {
     path: '/io.Templates/copyLink',
     requestStream: false,
     responseStream: false,
@@ -562,7 +601,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  deleteLink: {
+  // Deletes a link object. Required Fields: id.
+deleteLink: {
     path: '/io.Templates/deleteLink',
     requestStream: false,
     responseStream: false,
@@ -573,7 +613,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  countLinksDeprecated: {
+  // [DEPRECATED: OR operator is not supported] Retrieves a count of links that match the supplied criteria. Required Fields: pagination.
+countLinksDeprecated: {
     path: '/io.Templates/countLinksDeprecated',
     requestStream: false,
     responseStream: false,
@@ -584,7 +625,8 @@ var TemplatesService = exports.TemplatesService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  countLinks: {
+  // Returns the count of links that match the supplied filters. Required Fields: filters.
+countLinks: {
     path: '/io.Templates/countLinks',
     requestStream: false,
     responseStream: false,

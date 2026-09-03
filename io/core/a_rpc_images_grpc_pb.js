@@ -196,8 +196,10 @@ function deserialize_io_Url(buffer_arg) {
 }
 
 
+// The PassKit Images API lets you manage your image assets for Apple Wallet, Google Wallet and the data collection pages.
 var ImagesService = exports.ImagesService = {
-  setProfileImage: {
+  // Set the profile image for the logged in user. Required Fields: imageData.
+setProfileImage: {
     path: '/io.Images/setProfileImage',
     requestStream: false,
     responseStream: false,
@@ -208,7 +210,8 @@ var ImagesService = exports.ImagesService = {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  getProfileImage: {
+  // Get the profile image URL for the logged in user.
+getProfileImage: {
     path: '/io.Images/getProfileImage',
     requestStream: false,
     responseStream: false,
@@ -219,7 +222,8 @@ var ImagesService = exports.ImagesService = {
     responseSerialize: serialize_io_Url,
     responseDeserialize: deserialize_io_Url,
   },
-  createImages: {
+  // Creates one or more images. Image data is provided in base64. Required Fields: name, imageData.
+createImages: {
     path: '/io.Images/createImages',
     requestStream: false,
     responseStream: false,
@@ -230,7 +234,8 @@ var ImagesService = exports.ImagesService = {
     responseSerialize: serialize_io_ImageIds,
     responseDeserialize: deserialize_io_ImageIds,
   },
-  updateImage: {
+  // Updates an image record's metadata. Required Fields: id.
+updateImage: {
     path: '/io.Images/updateImage',
     requestStream: false,
     responseStream: false,
@@ -241,7 +246,8 @@ var ImagesService = exports.ImagesService = {
     responseSerialize: serialize_io_ImageRecord,
     responseDeserialize: deserialize_io_ImageRecord,
   },
-  getImageURL: {
+  // Retrieves an image URL by its ID. Required Fields: id.
+getImageURL: {
     path: '/io.Images/getImageURL',
     requestStream: false,
     responseStream: false,
@@ -252,7 +258,8 @@ var ImagesService = exports.ImagesService = {
     responseSerialize: serialize_io_Url,
     responseDeserialize: deserialize_io_Url,
   },
-  getStampImageURL: {
+  // Retrieves a stamp image URL with the supplied stamp status. Required Fields: id and status.
+getStampImageURL: {
     path: '/io.Images/getStampImageURL',
     requestStream: false,
     responseStream: false,
@@ -263,7 +270,8 @@ var ImagesService = exports.ImagesService = {
     responseSerialize: serialize_io_Url,
     responseDeserialize: deserialize_io_Url,
   },
-  getStampImageConfig: {
+  // Retrieves the configuration of a stamp image. Required Fields: id.
+getStampImageConfig: {
     path: '/io.Images/getStampImageConfig',
     requestStream: false,
     responseStream: false,
@@ -274,7 +282,8 @@ var ImagesService = exports.ImagesService = {
     responseSerialize: serialize_io_StampImageConfig,
     responseDeserialize: deserialize_io_StampImageConfig,
   },
-  updateStampImageConfig: {
+  // Updates a stamp image configuration. Required Fields: id and config fields.
+updateStampImageConfig: {
     path: '/io.Images/updateStampImageConfig',
     requestStream: false,
     responseStream: false,
@@ -285,7 +294,8 @@ var ImagesService = exports.ImagesService = {
     responseSerialize: serialize_io_Id,
     responseDeserialize: deserialize_io_Id,
   },
-  getStampImagePreview: {
+  // Gets a preview image of the provided stamp image configuration. Required Fields: stampImageConfig and status.
+getStampImagePreview: {
     path: '/io.Images/getStampImagePreview',
     requestStream: false,
     responseStream: false,
@@ -296,7 +306,8 @@ var ImagesService = exports.ImagesService = {
     responseSerialize: serialize_io_StampImagePreview,
     responseDeserialize: deserialize_io_StampImagePreview,
   },
-  getLocalizedImageURL: {
+  // Retrieves a localized image URL for a specific language. Required Fields: iD and languageCode.
+getLocalizedImageURL: {
     path: '/io.Images/getLocalizedImageURL',
     requestStream: false,
     responseStream: false,
@@ -307,7 +318,8 @@ var ImagesService = exports.ImagesService = {
     responseSerialize: serialize_io_Url,
     responseDeserialize: deserialize_io_Url,
   },
-  getProfileImageById: {
+  // Retrieves a profile image URL by a specific ID. Required Fields: id.
+getProfileImageById: {
     path: '/io.Images/getProfileImageById',
     requestStream: false,
     responseStream: false,
@@ -318,7 +330,7 @@ var ImagesService = exports.ImagesService = {
     responseSerialize: serialize_io_Url,
     responseDeserialize: deserialize_io_Url,
   },
-  // returns a zip bundle containing all images for that ID
+  // Retrieves an image bundle (ZIP) containing all images for the given ID. Required Fields: id.
 getImageBundle: {
     path: '/io.Images/getImageBundle',
     requestStream: false,
@@ -330,7 +342,8 @@ getImageBundle: {
     responseSerialize: serialize_io_ImageBundle,
     responseDeserialize: deserialize_io_ImageBundle,
   },
-  getImageData: {
+  // Retrieves metadata for an image record. Required: id.
+getImageData: {
     path: '/io.Images/getImageData',
     requestStream: false,
     responseStream: false,
@@ -341,7 +354,8 @@ getImageBundle: {
     responseSerialize: serialize_io_ImageRecord,
     responseDeserialize: deserialize_io_ImageRecord,
   },
-  deleteImage: {
+  // Deletes an image record. Required: id.
+deleteImage: {
     path: '/io.Images/deleteImage',
     requestStream: false,
     responseStream: false,
@@ -352,7 +366,8 @@ getImageBundle: {
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
-  deleteLocalizedImage: {
+  // Deletes a localized version of an image. Required Fields: id and language code.
+deleteLocalizedImage: {
     path: '/io.Images/deleteLocalizedImage',
     requestStream: false,
     responseStream: false,
@@ -363,7 +378,8 @@ getImageBundle: {
     responseSerialize: serialize_io_ImageRecord,
     responseDeserialize: deserialize_io_ImageRecord,
   },
-  listImagesForUserDeprecated: {
+  // [DEPRECATED] Retrieves all user-owned images using pagination.
+listImagesForUserDeprecated: {
     path: '/io.Images/listImagesForUserDeprecated',
     requestStream: false,
     responseStream: true,
@@ -374,7 +390,8 @@ getImageBundle: {
     responseSerialize: serialize_io_ImageRecord,
     responseDeserialize: deserialize_io_ImageRecord,
   },
-  listImagesForUser: {
+  // Retrieves all images stored under the user account using filters. Required Fields: filters.
+listImagesForUser: {
     path: '/io.Images/listImagesForUser',
     requestStream: false,
     responseStream: true,
@@ -385,7 +402,8 @@ getImageBundle: {
     responseSerialize: serialize_io_ImageRecord,
     responseDeserialize: deserialize_io_ImageRecord,
   },
-  listImagesDeprecated: {
+  // [DEPRECATED] Retrieves all images available to the company.
+listImagesDeprecated: {
     path: '/io.Images/listImagesDeprecated',
     requestStream: false,
     responseStream: true,
@@ -396,7 +414,8 @@ getImageBundle: {
     responseSerialize: serialize_io_ImageRecord,
     responseDeserialize: deserialize_io_ImageRecord,
   },
-  listImages: {
+  // Retrieves all images stored under the company using filters. Required Fields: filters.
+listImages: {
     path: '/io.Images/listImages',
     requestStream: false,
     responseStream: true,
@@ -407,7 +426,8 @@ getImageBundle: {
     responseSerialize: serialize_io_ImageRecord,
     responseDeserialize: deserialize_io_ImageRecord,
   },
-  countImagesDeprecated: {
+  // [DEPRECATED] Returns the count of all images available to the user.
+countImagesDeprecated: {
     path: '/io.Images/countImagesDeprecated',
     requestStream: false,
     responseStream: false,
@@ -418,7 +438,8 @@ getImageBundle: {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  countImages: {
+  // Returns the count of all images available to the user using filters.
+countImages: {
     path: '/io.Images/countImages',
     requestStream: false,
     responseStream: false,
@@ -429,7 +450,8 @@ getImageBundle: {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  countImagesForUserDeprecated: {
+  // [DEPRECATED] Returns the count of images stored under the user's account.
+countImagesForUserDeprecated: {
     path: '/io.Images/countImagesForUserDeprecated',
     requestStream: false,
     responseStream: false,
@@ -440,7 +462,8 @@ getImageBundle: {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  countImagesForUser: {
+  // Returns the count of images stored under the user's account using filters.
+countImagesForUser: {
     path: '/io.Images/countImagesForUser',
     requestStream: false,
     responseStream: false,

@@ -19,6 +19,17 @@ function deserialize_google_protobuf_Empty(buffer_arg) {
   return google_protobuf_empty_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_io_AppleCertificateRenewalAuthority(arg) {
+  if (!(arg instanceof io_certificate_certificate_pb.AppleCertificateRenewalAuthority)) {
+    throw new Error('Expected argument of type io.AppleCertificateRenewalAuthority');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_AppleCertificateRenewalAuthority(buffer_arg) {
+  return io_certificate_certificate_pb.AppleCertificateRenewalAuthority.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_io_CertificateData(arg) {
   if (!(arg instanceof io_certificate_certificate_pb.CertificateData)) {
     throw new Error('Expected argument of type io.CertificateData');
@@ -52,6 +63,28 @@ function deserialize_io_Count(buffer_arg) {
   return io_common_common_objects_pb.Count.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_io_CreateAppleCertificateRenewalAuthorityRequest(arg) {
+  if (!(arg instanceof io_certificate_certificate_pb.CreateAppleCertificateRenewalAuthorityRequest)) {
+    throw new Error('Expected argument of type io.CreateAppleCertificateRenewalAuthorityRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_CreateAppleCertificateRenewalAuthorityRequest(buffer_arg) {
+  return io_certificate_certificate_pb.CreateAppleCertificateRenewalAuthorityRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_io_DeleteAppleCertificateRenewalAuthorityResponse(arg) {
+  if (!(arg instanceof io_certificate_certificate_pb.DeleteAppleCertificateRenewalAuthorityResponse)) {
+    throw new Error('Expected argument of type io.DeleteAppleCertificateRenewalAuthorityResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_DeleteAppleCertificateRenewalAuthorityResponse(buffer_arg) {
+  return io_certificate_certificate_pb.DeleteAppleCertificateRenewalAuthorityResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_io_FileBytes(arg) {
   if (!(arg instanceof io_common_common_objects_pb.FileBytes)) {
     throw new Error('Expected argument of type io.FileBytes');
@@ -72,6 +105,28 @@ function serialize_io_Filters(arg) {
 
 function deserialize_io_Filters(buffer_arg) {
   return io_common_filter_pb.Filters.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_io_GetAppleCertificateRenewalAuthorityRequest(arg) {
+  if (!(arg instanceof io_certificate_certificate_pb.GetAppleCertificateRenewalAuthorityRequest)) {
+    throw new Error('Expected argument of type io.GetAppleCertificateRenewalAuthorityRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_GetAppleCertificateRenewalAuthorityRequest(buffer_arg) {
+  return io_certificate_certificate_pb.GetAppleCertificateRenewalAuthorityRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_io_ListAppleCertificateRenewalAuthoritiesRequest(arg) {
+  if (!(arg instanceof io_certificate_certificate_pb.ListAppleCertificateRenewalAuthoritiesRequest)) {
+    throw new Error('Expected argument of type io.ListAppleCertificateRenewalAuthoritiesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_io_ListAppleCertificateRenewalAuthoritiesRequest(buffer_arg) {
+  return io_certificate_certificate_pb.ListAppleCertificateRenewalAuthoritiesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_io_NFCSigningCredentialsRequest(arg) {
@@ -107,9 +162,22 @@ function deserialize_io_PassTypeIdentifier(buffer_arg) {
   return io_certificate_certificate_pb.PassTypeIdentifier.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_io_UpdateAppleCertificateRenewalAuthorityRequest(arg) {
+  if (!(arg instanceof io_certificate_certificate_pb.UpdateAppleCertificateRenewalAuthorityRequest)) {
+    throw new Error('Expected argument of type io.UpdateAppleCertificateRenewalAuthorityRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
 
+function deserialize_io_UpdateAppleCertificateRenewalAuthorityRequest(buffer_arg) {
+  return io_certificate_certificate_pb.UpdateAppleCertificateRenewalAuthorityRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+
+// Manage your Apple Wallet Pass Type Identifiers & Certificates
 var CertificatesService = exports.CertificatesService = {
-  getAppleCertificateData: {
+  // Retrieves the Apple pass certificate data for the provided Pass Type Identifier. Required Fields: passTypeId.
+getAppleCertificateData: {
     path: '/io.Certificates/getAppleCertificateData',
     requestStream: false,
     responseStream: false,
@@ -120,7 +188,8 @@ var CertificatesService = exports.CertificatesService = {
     responseSerialize: serialize_io_CertificateData,
     responseDeserialize: deserialize_io_CertificateData,
   },
-  getCertificateSigningRequest: {
+  // Retrieves a Certificate Signing Request (CSR) for the logged-in user. This is used to generate a new certificate on the Apple Developer portal.
+getCertificateSigningRequest: {
     path: '/io.Certificates/getCertificateSigningRequest',
     requestStream: false,
     responseStream: false,
@@ -131,7 +200,8 @@ var CertificatesService = exports.CertificatesService = {
     responseSerialize: serialize_io_CertificateSigningRequest,
     responseDeserialize: deserialize_io_CertificateSigningRequest,
   },
-  addAppleCertificate: {
+  // Uploads a new Apple certificate for use with Wallet passes. Required Field: fileBytes.
+addAppleCertificate: {
     path: '/io.Certificates/addAppleCertificate',
     requestStream: false,
     responseStream: false,
@@ -142,7 +212,8 @@ var CertificatesService = exports.CertificatesService = {
     responseSerialize: serialize_io_CertificateData,
     responseDeserialize: deserialize_io_CertificateData,
   },
-  updateAppleCertificate: {
+  // Updates or renews an existing Apple certificate by uploading a new one. Required Fields: fileBytes.
+updateAppleCertificate: {
     path: '/io.Certificates/updateAppleCertificate',
     requestStream: false,
     responseStream: false,
@@ -153,7 +224,8 @@ var CertificatesService = exports.CertificatesService = {
     responseSerialize: serialize_io_CertificateData,
     responseDeserialize: deserialize_io_CertificateData,
   },
-  listAppleCertificatesDeprecated: {
+  // [DEPRECATED] Returns a paginated list of Apple pass certificates for the current user. Required Fields: pagination fields.
+listAppleCertificatesDeprecated: {
     path: '/io.Certificates/listAppleCertificatesDeprecated',
     requestStream: false,
     responseStream: true,
@@ -164,7 +236,8 @@ var CertificatesService = exports.CertificatesService = {
     responseSerialize: serialize_io_CertificateData,
     responseDeserialize: deserialize_io_CertificateData,
   },
-  listAppleCertificates: {
+  // Returns a filtered list of Apple pass certificates for the current user. Required Fields: Filters.
+listAppleCertificates: {
     path: '/io.Certificates/listAppleCertificates',
     requestStream: false,
     responseStream: true,
@@ -175,7 +248,8 @@ var CertificatesService = exports.CertificatesService = {
     responseSerialize: serialize_io_CertificateData,
     responseDeserialize: deserialize_io_CertificateData,
   },
-  countAppleCertificatesDeprecated: {
+  // [DEPRECATED] Returns the count of Apple certificates for the current user based on pagination criteria. Required fields: pagination fields.
+countAppleCertificatesDeprecated: {
     path: '/io.Certificates/countAppleCertificatesDeprecated',
     requestStream: false,
     responseStream: false,
@@ -186,7 +260,8 @@ var CertificatesService = exports.CertificatesService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  countAppleCertificates: {
+  // Returns the count of Apple certificates for the current user using filter criteria. Required Fields: Filters (can be empty, but must be present)
+countAppleCertificates: {
     path: '/io.Certificates/countAppleCertificates',
     requestStream: false,
     responseStream: false,
@@ -197,7 +272,68 @@ var CertificatesService = exports.CertificatesService = {
     responseSerialize: serialize_io_Count,
     responseDeserialize: deserialize_io_Count,
   },
-  sendNFCSigningCredentials: {
+  // Creates an Apple certificate renewal authority for the authenticated user.
+createAppleCertificateRenewalAuthority: {
+    path: '/io.Certificates/createAppleCertificateRenewalAuthority',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_certificate_certificate_pb.CreateAppleCertificateRenewalAuthorityRequest,
+    responseType: io_certificate_certificate_pb.AppleCertificateRenewalAuthority,
+    requestSerialize: serialize_io_CreateAppleCertificateRenewalAuthorityRequest,
+    requestDeserialize: deserialize_io_CreateAppleCertificateRenewalAuthorityRequest,
+    responseSerialize: serialize_io_AppleCertificateRenewalAuthority,
+    responseDeserialize: deserialize_io_AppleCertificateRenewalAuthority,
+  },
+  // Retrieves an Apple certificate renewal authority by ID.
+getAppleCertificateRenewalAuthority: {
+    path: '/io.Certificates/getAppleCertificateRenewalAuthority',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_certificate_certificate_pb.GetAppleCertificateRenewalAuthorityRequest,
+    responseType: io_certificate_certificate_pb.AppleCertificateRenewalAuthority,
+    requestSerialize: serialize_io_GetAppleCertificateRenewalAuthorityRequest,
+    requestDeserialize: deserialize_io_GetAppleCertificateRenewalAuthorityRequest,
+    responseSerialize: serialize_io_AppleCertificateRenewalAuthority,
+    responseDeserialize: deserialize_io_AppleCertificateRenewalAuthority,
+  },
+  // Updates an Apple certificate renewal authority.
+updateAppleCertificateRenewalAuthority: {
+    path: '/io.Certificates/updateAppleCertificateRenewalAuthority',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_certificate_certificate_pb.UpdateAppleCertificateRenewalAuthorityRequest,
+    responseType: io_certificate_certificate_pb.AppleCertificateRenewalAuthority,
+    requestSerialize: serialize_io_UpdateAppleCertificateRenewalAuthorityRequest,
+    requestDeserialize: deserialize_io_UpdateAppleCertificateRenewalAuthorityRequest,
+    responseSerialize: serialize_io_AppleCertificateRenewalAuthority,
+    responseDeserialize: deserialize_io_AppleCertificateRenewalAuthority,
+  },
+  // Deletes an Apple certificate renewal authority.
+deleteAppleCertificateRenewalAuthority: {
+    path: '/io.Certificates/deleteAppleCertificateRenewalAuthority',
+    requestStream: false,
+    responseStream: false,
+    requestType: io_certificate_certificate_pb.GetAppleCertificateRenewalAuthorityRequest,
+    responseType: io_certificate_certificate_pb.DeleteAppleCertificateRenewalAuthorityResponse,
+    requestSerialize: serialize_io_GetAppleCertificateRenewalAuthorityRequest,
+    requestDeserialize: deserialize_io_GetAppleCertificateRenewalAuthorityRequest,
+    responseSerialize: serialize_io_DeleteAppleCertificateRenewalAuthorityResponse,
+    responseDeserialize: deserialize_io_DeleteAppleCertificateRenewalAuthorityResponse,
+  },
+  // Lists Apple certificate renewal authorities visible to the authenticated user.
+listAppleCertificateRenewalAuthorities: {
+    path: '/io.Certificates/listAppleCertificateRenewalAuthorities',
+    requestStream: false,
+    responseStream: true,
+    requestType: io_certificate_certificate_pb.ListAppleCertificateRenewalAuthoritiesRequest,
+    responseType: io_certificate_certificate_pb.AppleCertificateRenewalAuthority,
+    requestSerialize: serialize_io_ListAppleCertificateRenewalAuthoritiesRequest,
+    requestDeserialize: deserialize_io_ListAppleCertificateRenewalAuthoritiesRequest,
+    responseSerialize: serialize_io_AppleCertificateRenewalAuthority,
+    responseDeserialize: deserialize_io_AppleCertificateRenewalAuthority,
+  },
+  // Sends NFC signing credentials for an NFC-enabled Apple certificate to the user's registered email address. Required Fields: certificateId, user email must be associated with the cert.
+sendNFCSigningCredentials: {
     path: '/io.Certificates/sendNFCSigningCredentials',
     requestStream: false,
     responseStream: false,
